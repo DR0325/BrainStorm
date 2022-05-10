@@ -10,7 +10,6 @@ public class Player : DestructableObject
 
     public float runSpeed;
     public float jumpDistance;
-    public float playerHealth;
     public float throwPsycheGrenadeForce;
     public float throwKineticGrenadeForce;
     public float dopamineProjectileForce;
@@ -270,6 +269,8 @@ public class Player : DestructableObject
     private void Awake()
     {
         DeathAction = () => { GameManager.Instance.paused = true; };
+        _health = 100;
+        _maxHealth = 100;
     }
 
 
@@ -278,7 +279,7 @@ public class Player : DestructableObject
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
-        hurtEffect = hurtEffect.GetComponent<Animator>();
+        // hurtEffect = hurtEffect.GetComponent<Animator>();
         shieldAnim = shieldAnim.GetComponent<Animator>();
         stuffAttack = stuffAttack.GetComponent<BoxCollider2D>();
         _pauseMenu = GameObject.FindWithTag("Pause Menu");
@@ -288,8 +289,7 @@ public class Player : DestructableObject
 
     private void Update()
     {
-
-        if (playerHealth <= 0f) dead = true;
+        if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {
             hurtEffect.SetBool("Hurt", true);
@@ -298,7 +298,12 @@ public class Player : DestructableObject
             _checkHurt = false;
         }
 
-        if (hurtEffect.gameObject.activeSelf && _hurtTime2 < Time.time) hurtEffect.SetBool("Hurt", false);
+        if (runPlayer && GameManager.Instance.uiStaminaBar.GetComponent<PlayerBar>().content.fillAmount <= 0.0f)
+        {
+            activateEnergy = false;
+            runPlayer = false;
+            speedPlayer = 0.6f;
+        }
 
         if (!dead)
         {
@@ -325,7 +330,7 @@ public class Player : DestructableObject
             {
                 _whichEnemy = GameObject.FindWithTag(whatTypeOfEnemy);
 
-                playerHealth -= ApplyDamage(_whichEnemy.GetComponent<Enemy>().enemyPower);
+                Health -= ApplyDamage(_whichEnemy.GetComponent<Enemy>().enemyPower);
                 _rateAttack = Time.time + _whichEnemy.GetComponent<Enemy>().attackTime;
 
                 Debug.Log(attackPlayerByEnemy);
@@ -371,8 +376,7 @@ public class Player : DestructableObject
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Addict" || other.gameObject.tag == "Shame" || other.gameObject.tag == "Fear" ||
-            other.gameObject.tag == "Calamity" ||
-            other.gameObject.tag == "Grief" || other.gameObject.tag == "Depression")
+            other.gameObject.tag == "Calamity" || other.gameObject.tag == "Grief" || other.gameObject.tag == "Depression")
             collisionPlayerEnemy = false;
     }
 
@@ -387,6 +391,7 @@ public class Player : DestructableObject
     public void OnRun(InputValue value)
     {
         runPlayer = value.Get<float>() > 0.0f;
+        activateEnergy = runPlayer;
         anim.SetBool("Run", runPlayer);
         speedPlayer = runPlayer ? runSpeed : 6.0f;
     }
@@ -566,7 +571,8 @@ public class Player : DestructableObject
 
     public void OnPausePress()
     {
-        _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+        var pm = GameObject.Find("PauseMenu"); 
+        pm.SetActive(!pm.activeSelf);
         gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap(_pauseMenu.activeSelf ? "UI" : "Player");
     }
     private void Fight()
@@ -714,7 +720,7 @@ public class Player : DestructableObject
 
         damage = power / 20f;
 
-        playerHealth -= damage;
+        Health -= damage;
 
         _checkHurt = true;
 
@@ -787,7 +793,7 @@ public class Player : DestructableObject
 
     private void CollectResources()
     {
-        if (Input.GetKeyDown(KeyCode.G) && GameManager.Instance.inAreaTrunk) GameManager.Instance.addBrainCells = true;
+        // if ( && GameManager.Instance.inAreaTrunk) GameManager.Instance.addBrainCells = true;
     }
 
     private void MoveOnStairs()

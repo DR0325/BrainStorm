@@ -6,15 +6,15 @@ public class PlayerBar : MonoBehaviour {
 
 	[HideInInspector] public GameObject player;
 	public bool potion;
-	public bool shieldPotion;
-	public bool energyPotion;
+	public bool reuptakePotion;
+	public bool staminaPotion;
 
 	public Image content;
 	public float speedLerp;
 	public float initialValue;
-	public bool shield;
+	public bool reuptake;
 	public bool health;
-	public bool energy;
+	public bool stamina;
 
 	private float currentValue;
 	private float t = 0;
@@ -28,14 +28,15 @@ public class PlayerBar : MonoBehaviour {
 		player = GameObject.FindWithTag ("Player");
 	}
 
-	void Update () 
+	void Update ()
 	{
+		var pc = player.GetComponent<Player>();
 		if (health) {
 			if (!potion) {
 
 				check = false;
 
-				currentValue = Map (player.GetComponent<Player> ().playerHealth, 0, 100, 0, 1);
+				currentValue = Map (pc.Health, 0, 100, 0, 1);
 
 				if (Math.Abs(currentValue - content.fillAmount) > 0.0000001f) {
 					content.fillAmount = Mathf.Lerp (initialValue, currentValue, t);
@@ -53,15 +54,15 @@ public class PlayerBar : MonoBehaviour {
 				currentValue = 100f;
 				content.fillAmount = Mathf.Lerp (initialValue, 1f, t);
 				t += 0.45f * Time.deltaTime;
-				player.GetComponent<Player> ().playerHealth = 100f;
+				pc.Health = 100f;
 			}
-			if (content.fillAmount == 1f) {
-				player.GetComponent<Player> ().checkIfEpinepherineIsAddedHealth = false;
+			if (content.fillAmount >= 1f) {
+				pc.checkIfEpinepherineIsAddedHealth = false;
 				potion = false;
 			}
 		}
-		if (shield) {
-			if (!shieldPotion) {
+		if (reuptake) {
+			if (!reuptakePotion) {
 				if (check2) 
 				{
 					k = 0f;
@@ -89,14 +90,14 @@ public class PlayerBar : MonoBehaviour {
 				content.fillAmount = Mathf.Lerp (initialValue, 1f, k);
 				k += 0.45f * Time.deltaTime;
 			}
-			if (content.fillAmount == 1f) {
-				player.GetComponent<Player> ().checkIfPotionIsAddedShield = false;
-				shieldPotion = false;
+			if (content.fillAmount >= 1f) {
+				pc.checkIfPotionIsAddedShield = false;
+				reuptakePotion = false;
 			}
 		}
-		if (energy) 
+		if (stamina) 
 		{
-			if (energyPotion) {
+			if (staminaPotion) {
 				if (!check2) {
 					k = 0f;
 					check2 = true;
@@ -112,14 +113,14 @@ public class PlayerBar : MonoBehaviour {
 					currentValue = content.fillAmount - 0.34f;
 					check = true;
 				}
-				if (player.GetComponent<Player> ().activateEnergy && content.fillAmount >= currentValue) {
+				if (pc.activateEnergy && content.fillAmount >= currentValue) {
 					content.fillAmount = Mathf.Lerp (initialValue, currentValue, k);
 					k += speedLerp * Time.deltaTime;
 				}
 				if (content.fillAmount <= currentValue) {
 					initialValue = content.fillAmount;
 					check = false;
-					player.GetComponent<Player> ().activateEnergy = false;
+					pc.activateEnergy = false;
 					k = 0f;
 				}
 
@@ -127,12 +128,12 @@ public class PlayerBar : MonoBehaviour {
 					initialValue = 0;
 			}
 
-			if (content.fillAmount == 1f) {
-				energyPotion = false;
+			if (content.fillAmount >= 1f) {
+				staminaPotion = false;
 				initialValue = 1f;
 				check2 = false;
 
-				player.GetComponent<Player> ().checkIfPotionIsAddedEnergy = false;
+				pc.checkIfPotionIsAddedEnergy = false;
 			}
 		}
 	}
