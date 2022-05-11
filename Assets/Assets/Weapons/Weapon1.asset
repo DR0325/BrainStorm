@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454e65f20fa4305468254d4e63d5b2a7, type: 3}
+  m_Name: Weapon1
+  m_EditorClassIdentifier: 
+  currWeaponSpr: {fileID: 21300000, guid: e146cb6be13bc2d46b3177b256b59225, type: 3}
+  projectile: {fileID: 5695120891807977199, guid: b5050df12449343469a8d07f49291a95, type: 3}
+  _offset: -90
+  fireRate: 2
