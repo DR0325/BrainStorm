@@ -8,7 +8,6 @@ public class playerController : MonoBehaviour
     public float speed;
     private float moveInput;
     private Rigidbody2D rb;
-    private bool faceRight = true;
 
     // rolling (essentially a dash)
     private float currMoveSpeed;
@@ -31,11 +30,20 @@ public class playerController : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
 
+    //Weapons
+
+    public weaponScript currWeapon;
+    private float fireRateCooldown;
+    public float _offset;
+    private GameObject rotationPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currMoveSpeed = speed;
+        rotationPoint = GameObject.Find("RotationPoint");
+        rotationPoint.GetComponentInChildren<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
     }
 
     // Update is called once per frame
@@ -43,13 +51,7 @@ public class playerController : MonoBehaviour
     {
         //Horizontal movement
         moveInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(moveInput * currMoveSpeed, rb.velocity.y);
-
-        if(faceRight == false && moveInput > 0){
-            FlipChar();  // make character face right if moving right
-        } else if(faceRight == true && moveInput < 0){
-            FlipChar();  // face left when moving left
-        }
+        rb.velocity = new Vector2(moveInput * currMoveSpeed, rb.velocity.y); 
     }
 
     private void Update()
@@ -111,14 +113,20 @@ public class playerController : MonoBehaviour
         {
             rollCooldCounter -= Time.deltaTime;
         }
-    }
 
-    void FlipChar()
-    {
-        faceRight = !faceRight;
-        Vector3 scaler = transform.localScale;     // Flips the character sprite based on direction they moving
-        scaler.x *= -1;
-        transform.localScale = scaler;
+        //Shooting
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - rotationPoint.transform.position;
+        float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offset);
+
+        if (Time.time >= fireRateCooldown)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                currWeapon.Shoot();
+                fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
+            }
+        }
     }
 
 
