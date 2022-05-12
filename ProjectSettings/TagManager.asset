@@ -7,6 +7,7 @@ TagManager:
   - UI
   - Pause Menu
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -16,6 +17,10 @@ TagManager:
   - UI
   - 
   - 
+  - Enviroment
+  - Enemy
+  - Player
+  - Ground
   - 
   - 
   - 

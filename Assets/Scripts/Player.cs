@@ -265,6 +265,8 @@ public class Player : DestructableObject
     private float _timeThrow;
     private float _timeThrow2;
     private GameObject _whichEnemy;
+    private GameObject _gun;
+    private GameObject _bulletPrototype;
 
     private void Awake()
     {
@@ -276,6 +278,8 @@ public class Player : DestructableObject
 
     private void Start()
     {
+        _bulletPrototype = GameObject.Find("BulletPrototype");
+        _gun = GameObject.Find("Gun");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
@@ -289,6 +293,10 @@ public class Player : DestructableObject
 
     private void Update()
     {
+        Vector3 mpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        var position = transform.position;
+        _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
+        _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
         if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {
@@ -423,6 +431,15 @@ public class Player : DestructableObject
 
         anim.SetBool("Jump", true);
     }
+
+    public void OnLook(InputValue value)
+    {
+        // var cursorpos = value.Get<Vector2>();
+        // var position = transform.position;
+        // var angle = Vector2.Angle(new Vector2(position.x, position.y), cursorpos);
+        // GameObject.Find("Gun").transform.eulerAngles = new Vector3(0, 0, angle);
+        // Debug.Log(cursorpos);
+    }
     private void Move()
     {
         if (!stairs)
@@ -476,6 +493,8 @@ public class Player : DestructableObject
             // horizontal = 0f;
         }
     }
+    
+    
 
     private void MoveOnStart()
     {
@@ -526,21 +545,28 @@ public class Player : DestructableObject
 
     public void OnDopamineCannonAttack()
     {
-        if ( !_checkStuff && nextFight < Time.time && !_checkDopamineCannonThrow &&
-            GameManager.Instance.QtyDopamineCanisters > 0 && !_down && !_psycheGrenadeThrow &&
-            !anim.GetBool("DopamineCannonAttack"))
-        {
-            anim.SetBool("DopamineCannonAttack", true);
+        var clone = GameObject.Instantiate(_bulletPrototype);
+        clone.transform.position = transform.position;
+        var bscript = clone.GetComponent<projectile>();
+        var euler = transform.rotation.eulerAngles;
+        bscript.direction = new Vector2(-euler.x, euler.y);
+        bscript.enabled = true;
 
-            _checkDopamineCannonThrow = true;
-            _checkDopamineCannonThrow2 = true;
-            _notThrowDopamineCannon = true;
-
-            _timeFight = Time.time + 0.48f;
-            nextFight = Time.time + 0.689f;
-
-            dopamineCannonAttack = false;
-        }
+        // if ( !_checkStuff && nextFight < Time.time && !_checkDopamineCannonThrow &&
+        //     GameManager.Instance.QtyDopamineCanisters > 0 && !_down && !_psycheGrenadeThrow &&
+        //     !anim.GetBool("DopamineCannonAttack"))
+        // {
+        //     anim.SetBool("DopamineCannonAttack", true);
+        //
+        //     _checkDopamineCannonThrow = true;
+        //     _checkDopamineCannonThrow2 = true;
+        //     _notThrowDopamineCannon = true;
+        //
+        //     _timeFight = Time.time + 0.48f;
+        //     nextFight = Time.time + 0.689f;
+        //
+        //     dopamineCannonAttack = false;
+        // }
     }
 
     public void OnPsycheGrenadeAttack()
