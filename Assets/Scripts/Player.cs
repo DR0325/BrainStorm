@@ -52,10 +52,10 @@ public class Player : DestructableObject
     public bool isItScene1;
 
     [Header("UI LEFT UP BARS")]
-    public GameObject energyBar;
+    public GameObject staminaBar;
 
     public GameObject healthBar;
-    public GameObject shieldBar;
+    public GameObject reuptakeBar;
 
     [HideInInspector]
     public float horizontal;
@@ -163,7 +163,7 @@ public class Player : DestructableObject
     [HideInInspector]
     public bool fireArrowAttack;
 
-    public bool fireRockAttack;
+    public bool kineticGrenadeAttack;
     public bool psycheGrenadeAttack;
 
     [HideInInspector]
@@ -419,7 +419,14 @@ public class Player : DestructableObject
             var translation = _moveDir.x * speedPlayer * Time.deltaTime;
 
             horizontal = _moveDir.x;
-
+            if (horizontal < 0.0f)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (horizontal > 0.0f)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
             transform.Translate(translation, 0, 0);
             //Control for mobile devices
             if (moveLeftBut && !moveRightBut)
@@ -651,7 +658,7 @@ public class Player : DestructableObject
 
         if (!_checkStuff && _timeFight < Time.time &&
             Mathf.Abs(horizontal) < 0.1f && !anim.GetBool("StuffAttack") && !_checkDopamineCannonThrow &&
-            energyBar.GetComponent<PlayerBar>().content.fillAmount > 0 && !_down)
+            staminaBar.GetComponent<PlayerBar>().content.fillAmount > 0 && !_down)
         {
             anim.SetBool("StuffAttack", true);
             GameManager.Instance.checkStuffSound = true;
@@ -708,7 +715,7 @@ public class Player : DestructableObject
             ThrowKineticGrenade();
 
             _kineticGrenadeThrow = false;
-            fireRockAttack = false;
+            kineticGrenadeAttack = false;
 
             GameManager.Instance.throwPsycheGrenadeSound = true;
         }
