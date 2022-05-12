@@ -280,7 +280,7 @@ public class Player : DestructableObject
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
         // hurtEffect = hurtEffect.GetComponent<Animator>();
-        shieldAnim = shieldAnim.GetComponent<Animator>();
+        // shieldAnim = shieldAnim.GetComponent<Animator>();
         stuffAttack = stuffAttack.GetComponent<BoxCollider2D>();
         _pauseMenu = GameObject.FindWithTag("Pause Menu");
         _normalSpeed = speedPlayer;
@@ -292,7 +292,7 @@ public class Player : DestructableObject
         if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {
-            hurtEffect.SetBool("Hurt", true);
+            // hurtEffect.SetBool("Hurt", true);
             _hurtTime2 = Time.time + 0.05f;
 
             _checkHurt = false;
@@ -345,10 +345,10 @@ public class Player : DestructableObject
             if (Mathf.Abs(horizontal) > 0.01)
             {
                 checkIdle = false;
-                anim.SetBool("SecondIdle", false);
+                // anim.SetBool("SecondIdle", false);
             }
 
-            if (checkIdle && timeIdle < Time.time) anim.SetBool("SecondIdle", true);
+            // if (checkIdle && timeIdle < Time.time) anim.SetBool("SecondIdle", true);
 
             if (stairs)
                 MoveOnStairs();
@@ -360,12 +360,12 @@ public class Player : DestructableObject
 
             CollectResources();
 
-            anim.SetFloat("speed", Mathf.Abs(horizontal));
-            anim.SetBool("Grounded", grounded);
-            anim.SetFloat("vSpeed", rb.velocity.y);
+            // anim.SetFloat("speed", Mathf.Abs(horizontal));
+            // anim.SetBool("Grounded", grounded);
+            // anim.SetFloat("vSpeed", rb.velocity.y);
         }
 
-        if (dead && !bridgeDead) anim.SetBool("Dead", true);
+        // if (dead && !bridgeDead) anim.SetBool("Dead", true);
     }
 
     private void FixedUpdate()
@@ -398,6 +398,17 @@ public class Player : DestructableObject
     public void OnMove(InputValue value)
     {
         _moveDir = value.Get<Vector2>();
+        // if (!anim.GetBool("Run"))
+        // {
+            if (_moveDir.x != 0.0f)
+            {
+                anim.SetBool("Walk", true);
+            }
+            else
+            {
+                anim.SetBool("Walk", false);
+            }
+        // }
     }
 
     public void OnJump()
@@ -550,9 +561,11 @@ public class Player : DestructableObject
     public void OnSerotoninShotgunAttack()
     {
         if (!_checkStuff && nextFight < Time.time && !_checkSerotoninShells && Mathf.Abs(horizontal) < 0.05f &&
-            GameManager.Instance.QtySerotoninShells > 0 && !_psycheGrenadeThrow && !anim.GetBool("shotgunAttack") && !_down)
+            GameManager.Instance.QtySerotoninShells > 0 && !_psycheGrenadeThrow && 
+            // !anim.GetBool("shotgunAttack") &&
+            !_down)
         {
-            anim.SetBool("SerotoninShotgun", true);
+            // anim.SetBool("SerotoninShotgun", true);
 
             _checkSerotoninShells = true;
 
@@ -566,7 +579,7 @@ public class Player : DestructableObject
         if (!_kineticGrenadeThrow && _timeFight < Time.time && GameManager.Instance.QtyKineticGrenades > 0 && 
             Mathf.Abs(horizontal) < 0.1f && nextFight < Time.time && !_down)
         {
-            anim.SetBool("ThrowKineticGrenade", true);
+            // anim.SetBool("ThrowKineticGrenade", true);
 
             _kineticGrenadeThrow = true;
 
