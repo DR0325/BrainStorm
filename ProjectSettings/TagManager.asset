@@ -4,6 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
+=======
+  - UI
+  - Pause Menu
+>>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
   - Enemy
   - Weapon
   layers:
@@ -13,10 +18,20 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
+=======
+  - 
+  - 
+>>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
   - Enviroment
   - Enemy
   - Player
   - Ground
+<<<<<<< HEAD
+=======
+  - 
+  - 
+>>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
   - 
   - 
   - 

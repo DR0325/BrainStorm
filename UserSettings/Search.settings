@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 trackSelection = true
 fetchPreview = true
 wantsMore = false
@@ -67,3 +68,6 @@ queryBuilder = false
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "all"
 disabledIndexers = ""
+=======
+{}
+>>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
