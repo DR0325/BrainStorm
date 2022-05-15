@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 using System;
->>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +12,10 @@ public class projectile : MonoBehaviour
 
     public GameObject destroyEffect;
     public LayerMask isSolid;
-<<<<<<< HEAD
-=======
+
+
     public Vector2 direction;
->>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,7 @@ public class projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
+
         RaycastHit2D hitInf = Physics2D.Raycast(transform.position, transform.up, distance, isSolid);
         if (hitInf.collider != null)
         {
@@ -45,7 +43,7 @@ public class projectile : MonoBehaviour
     {
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
-=======
+
         transform.Translate(Vector3.up * (speed * Time.deltaTime));
     }
 
@@ -53,6 +51,6 @@ public class projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) {}
         Destroy(this);
->>>>>>> 2815eaf424240e1f7609962611c8c5440855503b
+
     }
 }
