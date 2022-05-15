@@ -65,7 +65,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8706678419190157883, guid: 32ecb040371a623429849a4de226fedc, type: 3}
       propertyPath: m_Name
-      value: 45DownRight
+      value: 45DownLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ecb040371a623429849a4de226fedc, type: 3}
+--- !u!1 &4943824439948556311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8706678419190157883, guid: 32ecb040371a623429849a4de226fedc, type: 3}
+  m_PrefabInstance: {fileID: 4345881032770497068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8746375750451421589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943824439948556311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8160e940dffceb478ad3058c4938b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doesPlatformMove: 0
+  returnDirection: 0
+  speed: 0
+  direction_360: 0
+  direction2_360: 0
+  timeLengthMove: 0
