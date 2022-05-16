@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 45DownLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 8706678419190157883, guid: 32ecb040371a623429849a4de226fedc, type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ecb040371a623429849a4de226fedc, type: 3}
 --- !u!1 &4943824439948556311 stripped
@@ -87,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doesPlatformMove: 0
+  doesPlatformDisappear: 0
   returnDirection: 0
   speed: 0
   direction_360: 0

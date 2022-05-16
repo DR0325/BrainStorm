@@ -9,6 +9,7 @@ public class projectile : MonoBehaviour
     public float speed;
     public float lifeTime;
     public float distance;
+    //GameObject target;
 
     public GameObject destroyEffect;
     public LayerMask isSolid;

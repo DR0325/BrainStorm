@@ -177,4 +177,12 @@ public class LevelComponents : MonoBehaviour
             }
         }
     }
+
+
+    //Shows draws out for direction.
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = ConsoleColor.Green;
+    //    Gizmos.DrawWireSphere();
+    //}
 }

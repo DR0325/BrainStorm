@@ -48,7 +48,7 @@ public class Player : DestructableObject
 
     public LayerMask whatIsGround;
     public LayerMask isStairs;
-    
+
     public bool isItScene1;
 
     [Header("UI LEFT UP BARS")]
@@ -57,6 +57,8 @@ public class Player : DestructableObject
     public GameObject healthBar;
     public GameObject reuptakeBar;
 
+ 
+    
     [HideInInspector]
     public float horizontal;
 
@@ -156,8 +158,9 @@ public class Player : DestructableObject
     [HideInInspector]
     public float hurtTime;
 
-    //Android and IOS control,variables which check which buttons was touched
-    [HideInInspector]
+
+//Android and IOS control,variables which check which buttons was touched
+[HideInInspector]
     public bool dopamineCannonAttack;
 
     [HideInInspector]
@@ -293,10 +296,10 @@ public class Player : DestructableObject
 
     private void Update()
     {
-        Vector3 mpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    //    Vector3 mpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var position = transform.position;
-        _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
-        _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
+      //  _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
+       // _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
         if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {
