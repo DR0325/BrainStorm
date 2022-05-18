@@ -8,10 +8,10 @@ public class projectile : MonoBehaviour
     public float speed;
     public float lifeTime;
     public float distance;
+    public float damage;
 
     public GameObject destroyEffect;
     public LayerMask isSolid;
-    public Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +20,23 @@ public class projectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+void Update()
     {
-        transform.Translate(Vector3.up * (speed * Time.deltaTime));
+        RaycastHit2D hitInf = Physics2D.Raycast(transform.position, transform.up, distance, isSolid);
+        if (hitInf.collider != null)
+        {
+            if (hitInf.collider.CompareTag("Enemy"))
+            {
+                hitInf.collider.GetComponent<Enemy>().TakeDamage(damage);
+            }
+            DestroyProjectile();
+        }
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void DestroyProjectile()
     {
-        if (collision.gameObject.CompareTag("Enemy")) {}
-        Destroy(this);
+        Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

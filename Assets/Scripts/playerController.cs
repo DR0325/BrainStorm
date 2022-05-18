@@ -58,7 +58,7 @@ public class playerController : MonoBehaviour
     {
         //determine if char is touching ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
-
+        
         // jump only if touching ground
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {

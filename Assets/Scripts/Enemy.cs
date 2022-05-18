@@ -5,15 +5,20 @@ public class Enemy : DestructableObject
 {
     public int _experienceGain;
 	public float attackTime;
-	//Enemy properties
-	[Range(100f,1000f)]
+    public float health;
+
+    public SpriteRenderer sprite;
+    public float flashTime;
+
+    //Enemy properties
+    [Range(100f, 1000f)]
 	public float enemyPower;
     public bool followsPlayer;
     private bool _isTouchingPlayer;
     private float _timeSinceLastDamage;
     private GameObject player;
 
-    public CapsuleCollider2D collider;
+    public CapsuleCollider2D enemyCollider;
     
 	private void Awake()
     {
@@ -31,7 +36,13 @@ public class Enemy : DestructableObject
 
     private void Update()
     {
+
         
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         if (_isTouchingPlayer)
         {
             _timeSinceLastDamage += Time.deltaTime;
@@ -49,6 +60,22 @@ public class Enemy : DestructableObject
         bool left = transform.position.x > p.transform.position.x;
         p.rb.AddForce(new Vector2((left ? -enemyPower : enemyPower) * 3.0f, 0.0f));
         _timeSinceLastDamage = 0.0f;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        FlashStart();
+    }
+
+    void FlashStart()
+    {
+        sprite.color = Color.red;
+        Invoke("FlashStop", flashTime);
+    }
+    void FlashStop()
+    {
+        sprite.color = Color.white;
     }
 
     private void OnCollisionEnter2D(Collision2D col)

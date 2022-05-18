@@ -47,12 +47,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""d9daf1bd-2c40-4e8a-b5ad-9e033d585c43"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Run"",
@@ -64,36 +64,27 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""DopamineCannonAttack"",
+                    ""name"": ""Roll"",
                     ""type"": ""Button"",
+                    ""id"": ""98e52764-e8d0-4702-86c0-449fbaa91133"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootWeapon"",
+                    ""type"": ""Value"",
                     ""id"": ""4e79bab8-b004-42de-9e3a-68c9d9a76528"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""SerotoninShotgunAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""62010741-1457-4b98-80f4-43915c26655f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PsycheGrenadeAttack"",
+                    ""name"": ""UseGrenade"",
                     ""type"": ""Button"",
                     ""id"": ""a3b61821-5366-4fa5-bd9f-d9174e99f473"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""KineticGrenadeAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""7fd5c6e6-f394-4e04-b8ee-847fd6364d2a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -326,29 +317,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DopamineCannonAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""71f30a40-f70b-4d94-be79-dce7efda0786"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SerotoninShotgunAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""550caa7e-814e-4864-9bc4-28ae71068238"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""SerotoninShotgunAttack"",
+                    ""action"": ""ShootWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -359,40 +328,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PsycheGrenadeAttack"",
+                    ""action"": ""UseGrenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""6932b5ce-07e8-4079-bc2c-6b9409952f6f"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""PsycheGrenadeAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2c03fae6-b1df-4433-9344-c10abbd48902"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KineticGrenadeAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8becb3a0-0d1e-44e5-b36e-557d02f89874"",
-                    ""path"": ""<Keyboard>/v"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""KineticGrenadeAttack"",
+                    ""action"": ""UseGrenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -403,7 +350,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""DopamineCannonAttack"",
+                    ""action"": ""ShootWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -426,6 +373,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""PausePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d23fdaa0-8c22-4ead-a1f7-13dcafa61a14"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc17e1d7-6140-4942-a997-77ab88111769"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1048,10 +1017,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_DopamineCannonAttack = m_Player.FindAction("DopamineCannonAttack", throwIfNotFound: true);
-        m_Player_SerotoninShotgunAttack = m_Player.FindAction("SerotoninShotgunAttack", throwIfNotFound: true);
-        m_Player_PsycheGrenadeAttack = m_Player.FindAction("PsycheGrenadeAttack", throwIfNotFound: true);
-        m_Player_KineticGrenadeAttack = m_Player.FindAction("KineticGrenadeAttack", throwIfNotFound: true);
+        m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
+        m_Player_ShootWeapon = m_Player.FindAction("ShootWeapon", throwIfNotFound: true);
+        m_Player_UseGrenade = m_Player.FindAction("UseGrenade", throwIfNotFound: true);
         m_Player_PausePress = m_Player.FindAction("PausePress", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1129,10 +1097,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_DopamineCannonAttack;
-    private readonly InputAction m_Player_SerotoninShotgunAttack;
-    private readonly InputAction m_Player_PsycheGrenadeAttack;
-    private readonly InputAction m_Player_KineticGrenadeAttack;
+    private readonly InputAction m_Player_Roll;
+    private readonly InputAction m_Player_ShootWeapon;
+    private readonly InputAction m_Player_UseGrenade;
     private readonly InputAction m_Player_PausePress;
     public struct PlayerActions
     {
@@ -1142,10 +1109,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @DopamineCannonAttack => m_Wrapper.m_Player_DopamineCannonAttack;
-        public InputAction @SerotoninShotgunAttack => m_Wrapper.m_Player_SerotoninShotgunAttack;
-        public InputAction @PsycheGrenadeAttack => m_Wrapper.m_Player_PsycheGrenadeAttack;
-        public InputAction @KineticGrenadeAttack => m_Wrapper.m_Player_KineticGrenadeAttack;
+        public InputAction @Roll => m_Wrapper.m_Player_Roll;
+        public InputAction @ShootWeapon => m_Wrapper.m_Player_ShootWeapon;
+        public InputAction @UseGrenade => m_Wrapper.m_Player_UseGrenade;
         public InputAction @PausePress => m_Wrapper.m_Player_PausePress;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1168,18 +1134,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @DopamineCannonAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDopamineCannonAttack;
-                @DopamineCannonAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDopamineCannonAttack;
-                @DopamineCannonAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDopamineCannonAttack;
-                @SerotoninShotgunAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSerotoninShotgunAttack;
-                @SerotoninShotgunAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSerotoninShotgunAttack;
-                @SerotoninShotgunAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSerotoninShotgunAttack;
-                @PsycheGrenadeAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPsycheGrenadeAttack;
-                @PsycheGrenadeAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPsycheGrenadeAttack;
-                @PsycheGrenadeAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPsycheGrenadeAttack;
-                @KineticGrenadeAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKineticGrenadeAttack;
-                @KineticGrenadeAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKineticGrenadeAttack;
-                @KineticGrenadeAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKineticGrenadeAttack;
+                @Roll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                @Roll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                @Roll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                @ShootWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootWeapon;
+                @ShootWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootWeapon;
+                @ShootWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootWeapon;
+                @UseGrenade.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseGrenade;
+                @UseGrenade.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseGrenade;
+                @UseGrenade.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseGrenade;
                 @PausePress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPausePress;
                 @PausePress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPausePress;
                 @PausePress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPausePress;
@@ -1199,18 +1162,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @DopamineCannonAttack.started += instance.OnDopamineCannonAttack;
-                @DopamineCannonAttack.performed += instance.OnDopamineCannonAttack;
-                @DopamineCannonAttack.canceled += instance.OnDopamineCannonAttack;
-                @SerotoninShotgunAttack.started += instance.OnSerotoninShotgunAttack;
-                @SerotoninShotgunAttack.performed += instance.OnSerotoninShotgunAttack;
-                @SerotoninShotgunAttack.canceled += instance.OnSerotoninShotgunAttack;
-                @PsycheGrenadeAttack.started += instance.OnPsycheGrenadeAttack;
-                @PsycheGrenadeAttack.performed += instance.OnPsycheGrenadeAttack;
-                @PsycheGrenadeAttack.canceled += instance.OnPsycheGrenadeAttack;
-                @KineticGrenadeAttack.started += instance.OnKineticGrenadeAttack;
-                @KineticGrenadeAttack.performed += instance.OnKineticGrenadeAttack;
-                @KineticGrenadeAttack.canceled += instance.OnKineticGrenadeAttack;
+                @Roll.started += instance.OnRoll;
+                @Roll.performed += instance.OnRoll;
+                @Roll.canceled += instance.OnRoll;
+                @ShootWeapon.started += instance.OnShootWeapon;
+                @ShootWeapon.performed += instance.OnShootWeapon;
+                @ShootWeapon.canceled += instance.OnShootWeapon;
+                @UseGrenade.started += instance.OnUseGrenade;
+                @UseGrenade.performed += instance.OnUseGrenade;
+                @UseGrenade.canceled += instance.OnUseGrenade;
                 @PausePress.started += instance.OnPausePress;
                 @PausePress.performed += instance.OnPausePress;
                 @PausePress.canceled += instance.OnPausePress;
@@ -1382,10 +1342,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnDopamineCannonAttack(InputAction.CallbackContext context);
-        void OnSerotoninShotgunAttack(InputAction.CallbackContext context);
-        void OnPsycheGrenadeAttack(InputAction.CallbackContext context);
-        void OnKineticGrenadeAttack(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
+        void OnShootWeapon(InputAction.CallbackContext context);
+        void OnUseGrenade(InputAction.CallbackContext context);
         void OnPausePress(InputAction.CallbackContext context);
     }
     public interface IUIActions
