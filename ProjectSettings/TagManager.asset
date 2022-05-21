@@ -12,6 +12,8 @@ TagManager:
   - StaminaBar
   - ReuptakeBar
   - ground
+  - Undefined
+  - Bullet
   layers:
   - Default
   - TransparentFX
