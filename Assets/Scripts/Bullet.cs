@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         private void OnEnable()
     {
        Invoke("Destroy", bulletDuration);
-        transform.position = bulletStartPosition;
+        //transform.position = bulletStartPosition;
 
     }
 

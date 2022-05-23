@@ -7,17 +7,36 @@ public class Player : DestructableObject
 {
     [Header("PROPERTIES OF PLAYER")]
     public float speedPlayer;
-
     public float runSpeed;
-    public float jumpDistance;
+
+    [Header("JUMPING")]
+    public float jumpForce;
+    private float jumpTimeCount;
+    public float jumpTime;
+    public float checkRadius;
+
+    [Header("ROLLING")]
+
+    public float rollSpeed;
+    public float rollLength;
+    public float rollCooldown;
+    private float rollCounter;
+    private float rollCooldCounter;
+
+    [Header("OTHERS")]
+
     public float throwPsycheGrenadeForce;
     public float throwKineticGrenadeForce;
     public float dopamineProjectileForce;
     public float speedStairs;
     public float rateFight;
+    public float _offsetWeap;
     public int currentLevel;
     public bool dontMoveOnStart;
+    
     private Vector2 _moveDir;
+
+   
 
     [Header("OBJECTS OF PLAYER")]
     public Rigidbody2D throwPsycheGrenade;
@@ -46,10 +65,16 @@ public class Player : DestructableObject
     public BoxCollider2D fight2;
     public BoxCollider2D stuffAttack;
 
-    public LayerMask whatIsGround;
+    public LayerMask isGround;
     public LayerMask isStairs;
 
     public bool isItScene1;
+
+    [Header("Weapon")]
+    public weaponScript currWeapon;
+    private float fireRateCooldown;
+    public float _offset;
+    private GameObject rotationPoint;
 
     [Header("UI LEFT UP BARS")]
     public GameObject staminaBar;
@@ -61,6 +86,9 @@ public class Player : DestructableObject
     
     [HideInInspector]
     public float horizontal;
+
+    [HideInInspector]
+    public float currMoveSpeed;
 
     [HideInInspector]
     public float velocityY;
@@ -108,7 +136,10 @@ public class Player : DestructableObject
     public string whatTypeOfEnemy;
 
     [HideInInspector]
-    public bool grounded;
+    private bool isGrounded;
+
+    [HideInInspector]
+    public bool isJumping;
 
     [HideInInspector]
     public bool doubleJumped;
@@ -204,7 +235,6 @@ public class Player : DestructableObject
     private bool _checkFireArrow1;
     private bool _checkHurt;
 
-    private bool _checkJump;
     private bool _checkPotion;
     private bool _checkSound;
     private bool _checkStopSound;
@@ -270,9 +300,16 @@ public class Player : DestructableObject
     private GameObject _whichEnemy;
     private GameObject _gun;
     private GameObject _bulletPrototype;
+    private PlayerInputActions pImputActions;
+
+    private Vector3 respawnPoint;
+    public GameObject fallDetector;
 
     private void Awake()
     {
+        respawnPoint = transform.position;
+        pImputActions = new PlayerInputActions();
+        currMoveSpeed = speedPlayer;
         DeathAction = () => { GameManager.Instance.paused = true; };
         _health = 100;
         _maxHealth = 100;
@@ -282,7 +319,8 @@ public class Player : DestructableObject
     private void Start()
     {
         _bulletPrototype = GameObject.Find("BulletPrototype");
-        _gun = GameObject.Find("Gun");
+        rotationPoint = GameObject.Find("RotationPoint");
+        rotationPoint.GetComponentInChildren<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
@@ -290,16 +328,32 @@ public class Player : DestructableObject
         // shieldAnim = shieldAnim.GetComponent<Animator>();
         stuffAttack = stuffAttack.GetComponent<BoxCollider2D>();
         _pauseMenu = GameObject.FindWithTag("Pause Menu");
-        _normalSpeed = speedPlayer;
+        currMoveSpeed = speedPlayer;
         _timeScene = Time.time + 0.5f;
+        
     }
 
     private void Update()
     {
+<<<<<<< HEAD
     //    Vector3 mpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var position = transform.position;
       //  _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
        // _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
+=======
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
+
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - rotationPoint.transform.position;
+        float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offsetWeap);
+
+
+        if (rollCooldCounter > 0)
+        {
+            rollCooldCounter -= Time.deltaTime;
+        }
+
+>>>>>>> 70812c8fa7be6ceb978af50920d231d2c9b8b716
         if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {
@@ -316,26 +370,15 @@ public class Player : DestructableObject
             speedPlayer = 0.6f;
         }
 
+        // Fall detection 
+
+        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
+
+        // -------
+
         if (!dead)
         {
-            velocityY = rb.velocity.y;
-
-            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-
-            if (grounded)
-            {
-                rb.WakeUp();
-                doubleJumped = false;
-                rb.isKinematic = false;
-                checkStairs = true;
-            }
-
-            if (timerJump < Time.time && grounded && velocityY < 1f)
-            {
-                anim.SetBool("Jump", false);
-                jumpBut = false;
-                _checkJump = false;
-            }
+            velocityY = rb.velocity.y;    
 
             if (attackPlayerByEnemy && _rateAttack < Time.time)
             {
@@ -346,6 +389,38 @@ public class Player : DestructableObject
 
                 Debug.Log(attackPlayerByEnemy);
             }
+
+            // ----- Shooting -----
+
+            if (Time.time >= fireRateCooldown)
+            {
+                if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
+                {
+                    currWeapon.Shoot();
+                    fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
+                }
+            }
+
+            // ------- Rolling ----------
+
+            // stop "rolling" and go back to normal move speed once timer hits 0
+            if (rollCounter > 0)
+            {
+                rollCounter -= Time.deltaTime;
+
+                if (rollCounter <= 0)
+                {
+                    currMoveSpeed = speedPlayer;
+                    rollCooldCounter = rollCooldown;
+                }
+            }
+            // set cooldown for rolling
+            if (rollCooldCounter > 0)
+            {
+                rollCooldCounter -= Time.deltaTime;
+            }
+
+            // ------------------
 
             if (Mathf.Abs(horizontal) < 0.01 && checkIdle == false)
             {
@@ -381,7 +456,57 @@ public class Player : DestructableObject
 
     private void FixedUpdate()
     {
-        Move();
+        _moveDir = pImputActions.Player.Move.ReadValue<Vector2>();
+
+        if (_moveDir.x != 0.0f)
+        {
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
+
+        if (!stairs)
+        {
+            horizontal = _moveDir.x;
+            rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
+
+            //Control for mobile devices
+            if (moveLeftBut && !moveRightBut)
+            {
+                transform.Translate(-currMoveSpeed * Time.deltaTime, 0, 0);
+                horizontal = 1f;
+            }
+
+            if (moveRightBut && !moveLeftBut)
+            {
+                rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
+                horizontal = 1f;
+                if (_flipPlayerRight)
+                {
+                    var theScale = transform.localScale;
+
+                    theScale.x *= -1;
+
+                    transform.localScale = theScale;
+
+                    _flipPlayerRight = false;
+                }
+            }
+            // if (!moveLeftBut && !moveRightBut)
+            // horizontal = 0f;
+        }
+    }
+
+    private void OnEnable()
+    {
+        pImputActions.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pImputActions.Player.Enable();
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -399,18 +524,26 @@ public class Player : DestructableObject
             collisionPlayerEnemy = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("DeathBarrier"))
+        {
+            transform.position = respawnPoint;
+        }
+    }
+
+
     public void OnRun(InputValue value)
     {
         runPlayer = value.Get<float>() > 0.0f;
         activateEnergy = runPlayer;
         anim.SetBool("Run", runPlayer);
-        speedPlayer = runPlayer ? runSpeed : 6.0f;
+        currMoveSpeed = runPlayer ? runSpeed : 6.0f;
     }
     public void OnMove(InputValue value)
     {
         _moveDir = value.Get<Vector2>();
-        // if (!anim.GetBool("Run"))
-        // {
+        
             if (_moveDir.x != 0.0f)
             {
                 anim.SetBool("Walk", true);
@@ -419,89 +552,50 @@ public class Player : DestructableObject
             {
                 anim.SetBool("Walk", false);
             }
-        // }
-    }
-
-    public void OnJump()
-    {
-        rb.AddForce(new Vector2(0, jumpDistance));
-
-        if (!_checkJump)
-        {
-            timerJump = Time.time + 0.1f;
-            _checkJump = true;
-        }
-
-        anim.SetBool("Jump", true);
-    }
-
-    public void OnLook(InputValue value)
-    {
-        // var cursorpos = value.Get<Vector2>();
-        // var position = transform.position;
-        // var angle = Vector2.Angle(new Vector2(position.x, position.y), cursorpos);
-        // GameObject.Find("Gun").transform.eulerAngles = new Vector3(0, 0, angle);
-        // Debug.Log(cursorpos);
-    }
-    private void Move()
-    {
-        if (!stairs)
-        {
-            var translation = _moveDir.x * speedPlayer * Time.deltaTime;
-
-            horizontal = _moveDir.x;
-            if (horizontal < 0.0f)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else if (horizontal > 0.0f)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            transform.Translate(translation, 0, 0);
-            //Control for mobile devices
-            if (moveLeftBut && !moveRightBut)
-            {
-                transform.Translate(-speedPlayer * Time.deltaTime, 0, 0);
-                horizontal = 1f;
-
-                if (!_flipPlayerRight)
-                {
-                    var theScale = transform.localScale;
-
-                    theScale.x *= -1;
-
-                    transform.localScale = theScale;
-
-                    _flipPlayerRight = true;
-                }
-            }
-
-            if (moveRightBut && !moveLeftBut)
-            {
-                transform.Translate(speedPlayer * Time.deltaTime, 0, 0);
-                horizontal = 1f;
-                if (_flipPlayerRight)
-                {
-                    var theScale = transform.localScale;
-
-                    theScale.x *= -1;
-
-                    transform.localScale = theScale;
-
-                    _flipPlayerRight = false;
-                }
-            }
-            // if (!moveLeftBut && !moveRightBut)
-            // horizontal = 0f;
-        }
     }
     
-    
+    public void OnJump(InputValue value)
+    {
+        if (value.isPressed && isGrounded == true)
+        {
+            Debug.Log("Jump");
+            anim.SetBool("Jump", true);
+            isJumping = true;
+            jumpTimeCount = jumpTime;
+            rb.velocity = Vector2.up * jumpForce;
+        }
+       
+        if (value.isPressed && isJumping == true)
+        {
+            if (jumpTimeCount > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                jumpTimeCount -= Time.deltaTime;
+            }
+            else
+            {
+                anim.SetBool("Jump", false);
+                isJumping = false;
+            }
+        }
+        if (value.isPressed == false)
+        {
+            isJumping = false;
+        }
+    }
+
+    private void OnRoll()
+    {
+        if (rollCooldCounter <= 0 && rollCounter <= 0) 
+        {
+            currMoveSpeed = rollSpeed;
+            rollCounter = rollLength;
+        }
+    }
 
     private void MoveOnStart()
     {
-        transform.Translate(speedPlayer * Time.deltaTime, 0, 0);
+        //transform.Translate(speedPlayer * Time.deltaTime, 0, 0);
     }
 
     private void Flip(float horizontal)
@@ -546,32 +640,6 @@ public class Player : DestructableObject
         }
     }
 
-    public void OnDopamineCannonAttack()
-    {
-        var clone = GameObject.Instantiate(_bulletPrototype);
-        clone.transform.position = transform.position;
-        var bscript = clone.GetComponent<projectile>();
-        var euler = transform.rotation.eulerAngles;
-        bscript.direction = new Vector2(-euler.x, euler.y);
-        bscript.enabled = true;
-
-        // if ( !_checkStuff && nextFight < Time.time && !_checkDopamineCannonThrow &&
-        //     GameManager.Instance.QtyDopamineCanisters > 0 && !_down && !_psycheGrenadeThrow &&
-        //     !anim.GetBool("DopamineCannonAttack"))
-        // {
-        //     anim.SetBool("DopamineCannonAttack", true);
-        //
-        //     _checkDopamineCannonThrow = true;
-        //     _checkDopamineCannonThrow2 = true;
-        //     _notThrowDopamineCannon = true;
-        //
-        //     _timeFight = Time.time + 0.48f;
-        //     nextFight = Time.time + 0.689f;
-        //
-        //     dopamineCannonAttack = false;
-        // }
-    }
-
     public void OnPsycheGrenadeAttack()
     {
         if (!_psycheGrenadeThrow && _timeFight < Time.time && GameManager.Instance.QtyPsycheGrenades > 0 &&
@@ -587,43 +655,12 @@ public class Player : DestructableObject
         }
     }
 
-    public void OnSerotoninShotgunAttack()
-    {
-        if (!_checkStuff && nextFight < Time.time && !_checkSerotoninShells && Mathf.Abs(horizontal) < 0.05f &&
-            GameManager.Instance.QtySerotoninShells > 0 && !_psycheGrenadeThrow && 
-            // !anim.GetBool("shotgunAttack") &&
-            !_down)
-        {
-            // anim.SetBool("SerotoninShotgun", true);
-
-            _checkSerotoninShells = true;
-
-            _timeFight = Time.time + 0.48f;
-            nextFight = Time.time + 0.689f;
-        }
-    }
-
-    public void OnKineticGrenadeAttack()
-    {
-        if (!_kineticGrenadeThrow && _timeFight < Time.time && GameManager.Instance.QtyKineticGrenades > 0 && 
-            Mathf.Abs(horizontal) < 0.1f && nextFight < Time.time && !_down)
-        {
-            // anim.SetBool("ThrowKineticGrenade", true);
-
-            _kineticGrenadeThrow = true;
-
-            _grenadeThrowTime = Time.time + 0.25f;
-            _timeThrow = Time.time + 0.42f;
-            _timeFight = Time.time + 0.578f;
-        }
-    }
 
     public void OnPausePress()
     {
-        var pm = GameObject.Find("PauseMenu"); 
-        pm.SetActive(!pm.activeSelf);
-        gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap(_pauseMenu.activeSelf ? "UI" : "Player");
+        
     }
+
     private void Fight()
     {
         
@@ -752,7 +789,7 @@ public class Player : DestructableObject
             _timeFight = Time.time + 0.578f;
         }
 
-        if (_timeThrow < Time.time && _kineticGrenadeThrow && grounded)
+        if (_timeThrow < Time.time && _kineticGrenadeThrow && isGrounded)
         {
             ThrowKineticGrenade();
 

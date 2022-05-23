@@ -25,9 +25,9 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "d9daf1bd-2c40-4e8a-b5ad-9e033d585c43",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -42,36 +42,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "DopamineCannonAttack",
+                    "name": "Roll",
                     "type": "Button",
+                    "id": "98e52764-e8d0-4702-86c0-449fbaa91133",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootWeapon",
+                    "type": "Value",
                     "id": "4e79bab8-b004-42de-9e3a-68c9d9a76528",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "SerotoninShotgunAttack",
-                    "type": "Button",
-                    "id": "62010741-1457-4b98-80f4-43915c26655f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PsycheGrenadeAttack",
+                    "name": "UseGrenade",
                     "type": "Button",
                     "id": "a3b61821-5366-4fa5-bd9f-d9174e99f473",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "KineticGrenadeAttack",
-                    "type": "Button",
-                    "id": "7fd5c6e6-f394-4e04-b8ee-847fd6364d2a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -304,29 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DopamineCannonAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "71f30a40-f70b-4d94-be79-dce7efda0786",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SerotoninShotgunAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "550caa7e-814e-4864-9bc4-28ae71068238",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SerotoninShotgunAttack",
+                    "action": "ShootWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -337,40 +306,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PsycheGrenadeAttack",
+                    "action": "UseGrenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "6932b5ce-07e8-4079-bc2c-6b9409952f6f",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "PsycheGrenadeAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2c03fae6-b1df-4433-9344-c10abbd48902",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KineticGrenadeAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8becb3a0-0d1e-44e5-b36e-557d02f89874",
-                    "path": "<Keyboard>/v",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "KineticGrenadeAttack",
+                    "action": "UseGrenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -381,7 +328,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "DopamineCannonAttack",
+                    "action": "ShootWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -404,6 +351,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "PausePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d23fdaa0-8c22-4ead-a1f7-13dcafa61a14",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc17e1d7-6140-4942-a997-77ab88111769",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

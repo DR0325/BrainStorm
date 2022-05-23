@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("LEVEL STATE")] 
     [HideInInspector] public int enemiesCount;
-    [HideInInspector] public bool paused;
+    [HideInInspector] public bool paused = false;
     [HideInInspector] public bool insideCombatRoom;
     [HideInInspector] public int score;
     [HideInInspector] public string sceneName;
@@ -178,5 +179,35 @@ public class GameManager : MonoBehaviour
         uiHealthBar = GameObject.FindWithTag("HealthBar");
         uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    public void OnPausePress(InputValue value)
+    {
+        if (paused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        paused = false;
+    }
+    private void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        paused = true;
     }
 }

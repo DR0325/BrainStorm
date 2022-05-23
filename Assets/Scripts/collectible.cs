@@ -10,7 +10,7 @@ public class collectible : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<playerController>().currWeapon = weapon;
+            other.GetComponent<Player>().currWeapon = weapon;
             other.transform.GetChild(1).GetComponentInChildren<SpriteRenderer>().sprite = weapon.currWeaponSpr;
             Destroy(gameObject);
         }

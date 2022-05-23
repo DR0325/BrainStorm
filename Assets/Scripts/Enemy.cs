@@ -6,9 +6,18 @@ public class Enemy : DestructableObject
     [SerializeField]  public static Enemy EnemyInstance;
     public int _experienceGain;
 	public float attackTime;
+<<<<<<< HEAD
     public bool doesEnemyMove;
     //Enemy properties
     public float moveSpeed;
+=======
+    public float health;
+
+    public SpriteRenderer sprite;
+    public float flashTime;
+
+    //Enemy properties
+>>>>>>> 70812c8fa7be6ceb978af50920d231d2c9b8b716
     [Range(100f, 1000f)]
 	public float enemyPower;
     public float timeTillBulletIsDestroyed;
@@ -23,6 +32,7 @@ public class Enemy : DestructableObject
     private float _timeSinceLastDamage;
     private GameObject player;
 
+<<<<<<< HEAD
     public GameObject bulletParent;
     public GameObject bullet;
     BulletScript bul;
@@ -31,6 +41,9 @@ public class Enemy : DestructableObject
     [SerializeField]
     public float bulletSpeed;
     public CapsuleCollider2D collider;
+=======
+    public CapsuleCollider2D enemyCollider;
+>>>>>>> 70812c8fa7be6ceb978af50920d231d2c9b8b716
     
 	private void Awake()
     {
@@ -55,6 +68,7 @@ public class Enemy : DestructableObject
 
     private void Update()
     {
+<<<<<<< HEAD
         float distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
         bullet.GetComponent<Bullet>().bulletStartPosition = bulletParent.transform.position;
         //enemy moving towards player
@@ -81,6 +95,16 @@ public class Enemy : DestructableObject
     
 
             if (_isTouchingPlayer)
+=======
+
+        
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (_isTouchingPlayer)
+>>>>>>> 70812c8fa7be6ceb978af50920d231d2c9b8b716
         {
             _timeSinceLastDamage += Time.deltaTime;
             if (_timeSinceLastDamage > attackTime)
@@ -112,6 +136,22 @@ public class Enemy : DestructableObject
         bool left = transform.position.x > p.transform.position.x;
         p.rb.AddForce(new Vector2((left ? -enemyPower : enemyPower) * 3.0f, 0.0f));
         _timeSinceLastDamage = 0.0f;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        FlashStart();
+    }
+
+    void FlashStart()
+    {
+        sprite.color = Color.red;
+        Invoke("FlashStop", flashTime);
+    }
+    void FlashStop()
+    {
+        sprite.color = Color.white;
     }
 
     private void OnCollisionEnter2D(Collision2D col)

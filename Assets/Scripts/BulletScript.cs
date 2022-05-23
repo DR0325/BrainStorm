@@ -116,7 +116,6 @@ public class BulletScript : MonoBehaviour
                 currentAngle += angleStep;
             }
         }
-
     }
 
 
