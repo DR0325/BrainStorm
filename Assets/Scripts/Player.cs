@@ -335,12 +335,11 @@ public class Player : DestructableObject
 
     private void Update()
     {
-<<<<<<< HEAD
+
     //    Vector3 mpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var position = transform.position;
       //  _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
        // _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
-=======
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - rotationPoint.transform.position;
@@ -353,7 +352,7 @@ public class Player : DestructableObject
             rollCooldCounter -= Time.deltaTime;
         }
 
->>>>>>> 70812c8fa7be6ceb978af50920d231d2c9b8b716
+
         if (Health <= 0f) dead = true;
         if (hurtTime < Time.time && _checkHurt)
         {

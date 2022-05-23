@@ -24,10 +24,11 @@ public class LevelComponents : MonoBehaviour
     private Vector3 totalMove, currentPosition;
     private int directionAngleQuadrant;//variable may not be needed.
     private bool direction1Or2 = false;
+    public Rigidbody rb;
 
-
-    void Start()
+            void Start()
     {
+        rb = GetComponent<Rigidbody>();
         currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
         timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
         ChangeTotalMove();
@@ -162,29 +163,38 @@ public class LevelComponents : MonoBehaviour
                 direction1Or2 = false;
             }
             
-     }
+     }//sets direction.
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        currentPosition = transform.position;
         if (doesPlatformMove == true)
         {
             if (timeLengthTracker > 0)
             {
-                currentPosition += totalMove;
-                transform.Translate(currentPosition * speed * Time.deltaTime);
+                
+                rb.velocity = totalMove * speed;
                 timeLengthTracker--;
             }
-            else if(timeLengthTracker <= 0 && nextMoveTime < Time.time)
+            else if (nextMoveTime < Time.deltaTime)
             {
-                nextMoveTime = Time.time + pauseBetweenDirectionSwitch;
+                Vector3 vel = rb.velocity;
+                rb.velocity = vel.normalized * 0f;
+                nextMoveTime = Time.deltaTime + pauseBetweenDirectionSwitch;
             }
             else if (timeLengthTracker <= 0 && returnDirection == true)
             {
+
+                Vector3 vel = rb.velocity;
+                rb.velocity = vel.normalized * 0f;
                 ChangeTotalMove();
                 timeLengthTracker = timeLengthMove;
             }
         }
     }
+
+
+
 
 
     //Shows draws out for direction.

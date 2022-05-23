@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 8706678419190157882}
   - component: {fileID: 8706678419190157880}
   - component: {fileID: 3279985140763465943}
-  m_Layer: 0
+  - component: {fileID: 8746375750451421589}
+  - component: {fileID: -8399531896074296506}
+  m_Layer: 3
   m_Name: 45DownRight
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8706678419190157883}
   m_LocalRotation: {x: 0, y: 0, z: -0.20757025, w: 0.9782201}
   m_LocalPosition: {x: -16.036964, y: 3.644552, z: 0.016058177}
-  m_LocalScale: {x: 29.400826, y: 0.88510007, z: 0.8851}
+  m_LocalScale: {x: 35.335835, y: 1.0637711, z: 1.063771}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,3 +113,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73, y: 0.45}
   m_EdgeRadius: 0
+--- !u!114 &8746375750451421589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706678419190157883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8160e940dffceb478ad3058c4938b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doesPlatformMove: 0
+  doesPlatformDisappear: 0
+  returnDirection: 0
+  speed: 0
+  direction_360: 0
+  direction2_360: 0
+  showMovePath: 0
+  timeLengthMove: 0
+  pauseBetweenDirectionSwitch: 0
+--- !u!50 &-8399531896074296506
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706678419190157883}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 3

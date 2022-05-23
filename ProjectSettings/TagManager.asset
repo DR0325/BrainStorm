@@ -3,12 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - ground
+  - Bullet
+  - UI
+  - Pause Menu
+  - Enemy Spawn Zone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Platform
   - Water
   - UI
   - 
@@ -40,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: transparent
+    uniqueID: 96436395
+    locked: 0
+  - name: 
+    uniqueID: 1595346629
     locked: 0
