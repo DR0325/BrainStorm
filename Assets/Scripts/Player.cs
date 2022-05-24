@@ -340,6 +340,7 @@ public class Player : DestructableObject
         var position = transform.position;
       //  _gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
        // _bulletPrototype.transform.rotation = Quaternion.LookRotation(Vector3.forward, mpos - position);
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - rotationPoint.transform.position;

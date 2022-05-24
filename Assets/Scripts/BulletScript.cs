@@ -46,75 +46,84 @@ public class BulletScript : MonoBehaviour
 
     public void Fire(int bulType) 
     {
-     
+        GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
         float bulDirX;
         float bulDirY;
+        Vector2 bulDir;
         bulletRB = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
-        if (bulletType == 0)
-        {
-            GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
-            Vector2 bulDir = (target.transform.position - transform.position).normalized * speed;
-            
-           bul.transform.position = transform.position;
-            bul.transform.rotation = transform.rotation;
-            bul.SetActive(true);
-            bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
 
-        }
-        else if(bulletType == 1) // homing shot
+        switch (bulletType)
         {
-            GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        }
-        else if (bulletType == 2)//bullet circles enemy // may need additional work with keeping the bullet moving, something to do with update.
-        {
-            for (int i = 0; i <= 1; i++)
-            {
-                 bulDirX = transform.position.x + Mathf.Sin(((angle + 180 * i) * Mathf.PI) / 180f);
-                 bulDirY = transform.position.y + Mathf.Cos(((angle + 180 * i) * Mathf.PI) / 180f);
+            case 0:
 
-                Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-                Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+                
+                 bulDir = (target.transform.position - transform.position).normalized * speed;
 
-                GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
                 bul.transform.position = transform.position;
                 bul.transform.rotation = transform.rotation;
                 bul.SetActive(true);
                 bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+                break;
 
-            }
+            case 1: // homing shot
 
-            angle += 10f;
+                //GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
-            if (angle >= 360f)
-            {
-                angle = 0f;
-            }
-        }
-        else if(bulletType == 3)//spray shot
-        {
-            Vector2 targetDir = (target.transform.position - transform.position).normalized * speed;
-            float targetAngle = Mathf.Sin(targetDir.y / targetDir.x);
-            float angleStep = (endAngle - startAngle) / numberOfBullets;
-            float currentAngle = targetAngle - ((startAngle + endAngle) / .65f);
+                break;
 
-            for(int i = 0; i < numberOfBullets + 1; i++)
-            {
-                bulDirX = transform.position.x + Mathf.Sin((currentAngle * Mathf.PI) / 180f);
-                bulDirY = transform.position.y + Mathf.Cos((currentAngle * Mathf.PI) / 180f);
+            case 2://bullet circles enemy // may need additional work with keeping the bullet moving, something to do with update.
 
-                Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-                Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+                for (int i = 0; i <= 1; i++)
+                {
+                    bulDirX = transform.position.x + Mathf.Sin(((angle + 180 * i) * Mathf.PI) / 180f);
+                    bulDirY = transform.position.y + Mathf.Cos(((angle + 180 * i) * Mathf.PI) / 180f);
 
-                GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
-                bul.transform.position = transform.position;
-                bul.transform.rotation = transform.rotation;
-                bul.SetActive(true);
-                bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+                    Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+                     bulDir = (bulMoveVector - transform.position).normalized;
 
-                currentAngle += angleStep;
-            }
+                    //GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
+                    bul.transform.position = transform.position;
+                    bul.transform.rotation = transform.rotation;
+                    bul.SetActive(true);
+                    bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+
+                }
+
+                angle += 10f;
+
+                if (angle >= 360f)
+                {
+                    angle = 0f;
+                }
+
+                break;
+
+            case 3://spray shot
+
+                Vector2 targetDir = (target.transform.position - transform.position).normalized * speed;
+                float targetAngle = Mathf.Sin(targetDir.y / targetDir.x);
+                float angleStep = (endAngle - startAngle) / numberOfBullets;
+                float currentAngle = targetAngle - ((startAngle + endAngle) / .65f);
+
+                for (int i = 0; i < numberOfBullets + 1; i++)
+                {
+                    bulDirX = transform.position.x + Mathf.Sin((currentAngle * Mathf.PI) / 180f);
+                    bulDirY = transform.position.y + Mathf.Cos((currentAngle * Mathf.PI) / 180f);
+
+                    Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+                   bulDir = (bulMoveVector - transform.position).normalized;
+
+                    //GameObject bul = BulletPool.BulletPoolInstanse.GetBullet();
+                    bul.transform.position = transform.position;
+                    bul.transform.rotation = transform.rotation;
+                    bul.SetActive(true);
+                    bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+
+                    currentAngle += angleStep;
+                }
+                break;
         }
     }
 

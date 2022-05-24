@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     private Vector2 bulletMoveDirection;
     public float speed;
     public float bulletDuration;
-    public Vector2 bulletStartPosition;
+    //public Vector2 bulletStartPosition;
     
 
     [SerializeField] public static Bullet BulletInstance;

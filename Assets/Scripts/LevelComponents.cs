@@ -24,11 +24,11 @@ public class LevelComponents : MonoBehaviour
     private Vector3 totalMove, currentPosition;
     private int directionAngleQuadrant;//variable may not be needed.
     private bool direction1Or2 = false;
-    public Rigidbody rb;
+    public Rigidbody2D rb;
 
             void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
         timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
         ChangeTotalMove();

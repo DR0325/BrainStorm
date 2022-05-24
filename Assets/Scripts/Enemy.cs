@@ -50,6 +50,7 @@ public class Enemy : DestructableObject
 
     private void Start()
     {
+        health = 1000f;
         player = GameObject.FindWithTag("Player");
         bul = bullet.GetComponent<BulletScript>();
         bullet.GetComponent<Bullet>().bulletDuration = timeTillBulletIsDestroyed;
@@ -61,7 +62,7 @@ public class Enemy : DestructableObject
     private void Update()
     {
         float distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
-        bullet.GetComponent<Bullet>().bulletStartPosition = bulletParent.transform.position;
+       // bullet.GetComponent<Bullet>().bulletStartPosition = bulletParent.transform.position;
 
         //enemy moving towards player
         if (doesEnemyMove == true)
@@ -75,8 +76,8 @@ public class Enemy : DestructableObject
         //enemy fire
         if (distanceFromPlayer <= enemyAttackRange && nextFireTime < Time.time && enemyFireType_0To3 != 2)
         {
-            //  Instantiate(bullet, bulletParent.transform.position, Quaternion.identity);
-            //BulletScript.BulletScriptInstance.Fire(enemyFireType_0To3);
+             Instantiate(bullet, bulletParent.transform.position, Quaternion.identity);
+            BulletScript.BulletScriptInstance.Fire(enemyFireType_0To3);
             bul.Fire(enemyFireType_0To3);
             nextFireTime = Time.time + enemyFireRate;
         }
@@ -101,9 +102,19 @@ public class Enemy : DestructableObject
 
          if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy();
         }
 
+    }
+
+    private void Destroy()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 
     //Shows enemy Line of sight and attack range

@@ -28,7 +28,7 @@ public static BulletPool BulletPoolInstanse;
     {
         if(bullets.Count > 0)
         {
-            for(int i = 0; i<bullets.Count;i++)
+            for(int i = 0; i < bullets.Count;i++)
             {
                 if(!bullets[i].activeInHierarchy)
                 {

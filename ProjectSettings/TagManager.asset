@@ -10,6 +10,9 @@ TagManager:
   - UI
   - Pause Menu
   - Enemy Spawn Zone
+  - HealthBar
+  - StaminaBar
+  - ReuptakeBar
   layers:
   - Default
   - TransparentFX

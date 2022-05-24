@@ -302,7 +302,7 @@ RectTransform:
   - {fileID: 2053308468}
   - {fileID: 1445400599}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -358,9 +358,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07bc2eb5a31a40b3b580f4c60c04a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemiesCount: 0
-  Paused: 0
-  InsideCombatRoom: 0
+  enemiesCount: 0
+  paused: 0
+  insideCombatRoom: 0
+  score: 0
+  sceneName: 
+  trunkOpen: 0
+  battleSound: 0
+  addBrainCells: 0
+  inAreaTrunk: 0
+  empty: 0
+  brainCellsAdded: 0
+  attack1Sound: 0
+  throwPsycheGrenadeSound: 0
+  attack2Sound: 0
+  healthPotion: 0
+  woodBreakingSound: 0
+  collectBrainCellsSound: 0
+  checkShotgunSound: 0
+  checkStuffSound: 0
+  shieldPotionSound: 0
+  energyPotionSound: 0
+  crystalSound: 0
+  checkShieldSound: 0
+  checkShieldSound2: 0
+  magicBlastSound: 0
+  checkDefeatedSound: 0
+  checkBattleSound2: 0
+  checkFireExplosion: 0
+  numberOfEnemy: 0
+  lookedTrunk: 0
+  openTrunk: 0
+  musicSource: {fileID: 0}
+  audioSource: {fileID: 0}
+  uiQtyEpinepherine: {fileID: 0}
+  uiQtyReuptakeInhibitor: {fileID: 0}
+  uiQtyDopamineCanisters: {fileID: 0}
+  uiQtySerotoninShells: {fileID: 0}
+  uiQtyExperience: {fileID: 0}
+  uiQtyPsycheGrenades: {fileID: 0}
+  uiQtyKineticGrenades: {fileID: 0}
+  uiHealthBar: {fileID: 0}
+  uiStaminaBar: {fileID: 0}
+  uiReuptakeBar: {fileID: 0}
+  upgrades: {fileID: 0}
+  pauseMenu: {fileID: 0}
+--- !u!1001 &1729924407
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.74496496
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.1639557
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.016058177
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00071954384
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935097230737382055, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+      propertyPath: m_Name
+      value: Big Platform
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
 --- !u!1 &2053308467
 GameObject:
   m_ObjectHideFlags: 0

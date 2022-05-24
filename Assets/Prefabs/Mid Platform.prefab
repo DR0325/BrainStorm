@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 14.462266
+      value: 5.5621877
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_LocalScale.y
@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.74
+      value: 11.98
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.05
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382054, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -61,24 +61,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935097230737382055, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
       propertyPath: m_Name
-      value: Mid Platform
+      value: Small Platform
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9073349853453619275, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
+    - {fileID: 6557527734587468762, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
 --- !u!1 &5751083123257378969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2935097230737382055, guid: 98044288829a0ea479c25ce5a23014cf, type: 3}
   m_PrefabInstance: {fileID: 7454720447831446078}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6049373410155452
-MonoBehaviour:
+--- !u!50 &949124090864312252
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5751083123257378969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8160e940dffceb478ad3058c4938b36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
