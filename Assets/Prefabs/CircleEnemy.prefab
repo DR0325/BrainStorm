@@ -162,10 +162,10 @@ MonoBehaviour:
   enemyFireType_0To3: 3
   enemyPower: 377
   timeTillBulletIsDestroyed: 2
-  showEnemyLineOfSight: 0
-  showEnemyAttackRange: 0
-  enemyAttackRange: 5
-  enemyLineOfSight: 10
+  showEnemyLineOfSight: 1
+  showEnemyAttackRange: 1
+  enemyAttackRange: 8
+  enemyLineOfSight: 40
   enemyFireRate: 6
   followsPlayer: 0
   bulletParent: {fileID: 7570806851383399407}

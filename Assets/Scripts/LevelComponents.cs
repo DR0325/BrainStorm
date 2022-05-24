@@ -30,8 +30,9 @@ public class LevelComponents : MonoBehaviour
     [SerializeField] Transform destinationPosition;
     [SerializeField] int speed;
 
-    Vector2 startingPosition;
-    Vector2 target;
+  Vector2 startingPosition;
+   Vector2 target;
+    Vector2 destinationPos;
 
 
 
@@ -39,12 +40,17 @@ public class LevelComponents : MonoBehaviour
 
             void Start()
     {
+        if (doesPlatformMove)
+        {
+
+            target = destinationPosition.position;
+        }
+        destinationPos = target;
         startingPosition = transform.position;
-        target = destinationPosition.position;
         rb = GetComponent<Rigidbody2D>();
         currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
         timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
-        ChangeTotalMove();
+       // ChangeTotalMove();
     }
 
     void MovePlatform()
@@ -222,19 +228,20 @@ public class LevelComponents : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if(transform.position == target)
+
+        if(Vector2.Distance(transform.position, target) <= 0.01f)
         {
-           if( target == startingPosition)
-            {
-                target = destinationPosition;
-            }
-           else if(target == destinationPosition)
+       
+            if (target == destinationPos)
             {
                 target = startingPosition;
             }
+            else
+            {
+                target = destinationPos;
+            }
         }
-        
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
     }
 
