@@ -6,12 +6,25 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [Header("GAME MANAGER GLOBALS")] 
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+
+    private bool gameHasEnded = false;
+
+    public float restartDelay = 1f;
+
+    public GameOverScreen gameOverScreen;
+
+    public GameObject player;
+    private Player _player;
+
+    public Transform levelStartPos;
+    public static Vector2 lastCheckPointPos = new Vector2(30,15);
 
     [Header("LEVEL STATE")] 
     [HideInInspector] public int enemiesCount;
@@ -45,6 +58,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numberOfEnemy;
     [HideInInspector] public bool lookedTrunk;
     [HideInInspector] public bool openTrunk;
+
     [Header("GAME SOUNDS")] 
     public AudioSource musicSource;
     public AudioSource audioSource;
@@ -162,6 +176,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Objects")] 
     public GameObject upgrades;
     public GameObject pauseMenu;
+    public GameObject lvlClearMenu;
     
 
     private float _timeScale;
@@ -175,7 +190,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _timeScale = Time.timeScale;
+        lastCheckPointPos = levelStartPos.position;
+        Time.timeScale = 1f;
         uiHealthBar = GameObject.FindWithTag("HealthBar");
         uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
@@ -186,28 +202,64 @@ public class GameManager : MonoBehaviour
         
     }
 
+
+    public void Restart()
+    {
+        gameHasEnded = false;
+        paused = false;
+        Time.timeScale = 1f;
+        lastCheckPointPos = levelStartPos.position;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        //gameOverScreen.gameObject.SetActive(false);
+    }
+
     public void OnPausePress(InputValue value)
     {
-        if (paused)
+        if (gameHasEnded == false)
         {
-            Resume();
-        }
-        else
-        {
-            Pause();
+            if (paused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenu.SetActive(false);
+        player.GetComponent<Player>().paused = false;
         Time.timeScale = 1f;
         paused = false;
     }
-    private void Pause()
+    public void Pause()
     {
         pauseMenu.SetActive(true);
+        player.GetComponent<Player>().paused = true;
         Time.timeScale = 0f;
         paused = true;
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LevelComplete()
+    {
+        lastCheckPointPos = levelStartPos.position;
+        gameHasEnded = true;
+        Time.timeScale = 0f;
+        lvlClearMenu.SetActive(true);
+        lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score);
+
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

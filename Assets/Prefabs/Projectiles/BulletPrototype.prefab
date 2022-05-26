@@ -100,12 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   lifeTime: 1
-  distance: 1
+  distance: 0.1
   damage: 10
   destroyEffect: {fileID: 75373302167834451, guid: 8dfcc85046001954090d26ddd9c3a894, type: 3}
   isSolid:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 3968
 --- !u!70 &1629315363108868765
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

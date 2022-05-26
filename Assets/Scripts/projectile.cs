@@ -25,7 +25,7 @@ void Update()
         RaycastHit2D hitInf = Physics2D.Raycast(transform.position, transform.up, distance, isSolid);
         if (hitInf.collider != null)
         {
-            if (hitInf.collider.CompareTag("Enemy"))
+            if (hitInf.collider.CompareTag("Enemy") || hitInf.collider.CompareTag("CombatEnemy"))
             {
                 hitInf.collider.GetComponent<Enemy>().TakeDamage(damage);
             }

@@ -33,7 +33,7 @@ public class Enemy1_Patrol : MonoBehaviour
     {
        if(_Patrol == true)
         {
-            mustFlip = !Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+            mustFlip = !Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
         } 
     }
 

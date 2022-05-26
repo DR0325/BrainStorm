@@ -12,6 +12,9 @@ TagManager:
   - StaminaBar
   - ReuptakeBar
   - DeathBarrier
+  - GM
+  - CombatEnemy
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Door
   - Enviroment
   - Enemy
   - Player
