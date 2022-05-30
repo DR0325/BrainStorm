@@ -15,6 +15,11 @@ public class CameraLook : MonoBehaviour {
     public bool followPlayer;
     public bool inCombat;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Update()
     {
         //Lock camera

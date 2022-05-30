@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac938165dcd7fa542add015ebc030b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 240
+  walkSpeed: 150
   _Patrol: 0
   rb: {fileID: -2404311118478384620}
   groundCheck: {fileID: 6298261599793882483}
