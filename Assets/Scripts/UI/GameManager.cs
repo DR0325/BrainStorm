@@ -204,6 +204,7 @@ public class GameManager : MonoBehaviour
         uiHealthBar = GameObject.FindWithTag("HealthBar");
         uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
+        LevelTimer.instance.BeginTimer();
     }
 
     private void Update()
