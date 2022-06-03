@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 1596992689142989312}
   - component: {fileID: 1596992689142989313}
   - component: {fileID: 1596992689142989322}
+  - component: {fileID: -719704212693421576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4129634a019748979d2c37e9762ac894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 0
   speedPlayer: 6
   runSpeed: 10
   jumpForce: 11
@@ -317,6 +319,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   reuptakeBar: {fileID: 0}
   horizontal: 0
+  currentHealth: 0
   currMoveSpeed: 0
   velocityY: 0
   velocityX: 0
@@ -350,7 +353,7 @@ MonoBehaviour:
   checkIfPotionIsAddedShield: 0
   checkIfEpinepherineIsAddedHealth: 0
   hurtTime: 0
-  dopamineCannonAttack: 0
+  paused: 0
   fireArrowAttack: 0
   kineticGrenadeAttack: 0
   psycheGrenadeAttack: 0
@@ -392,6 +395,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-719704212693421576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596992689142989314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311c244d2134a4149935dabf38c71cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1596992689961676330
 GameObject:
   m_ObjectHideFlags: 0
