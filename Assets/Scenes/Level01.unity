@@ -3897,7 +3897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountText: {fileID: 946821394}
---- !u!114 &1864073859
+--- !u!114 &1864073862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4983,6 +4983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 382265762410317521, guid: 92d131dfc231f3c438d808c8b6d96ac5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92d131dfc231f3c438d808c8b6d96ac5, type: 3}
 --- !u!1001 &3250424665577212704
 PrefabInstance:
