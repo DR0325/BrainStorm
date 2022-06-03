@@ -39,7 +39,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        currWave = waves[currWaveNum];
+        if (waves.Length != 0)
+        {
+            currWave = waves[currWaveNum];
+        }
         SpawnSomething();
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
         if(totalEnemies.Length == 0)

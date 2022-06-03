@@ -1937,6 +1937,86 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3325531204428805887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5476817307301129177}
+  - component: {fileID: 5661278505018024621}
+  - component: {fileID: 8819427661242900941}
+  m_Layer: 5
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5476817307301129177
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325531204428805887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5421405414844421997}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 41, y: 472}
+  m_SizeDelta: {x: 204.2056, y: 66}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5661278505018024621
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325531204428805887}
+  m_CullTransparentMesh: 1
+--- !u!114 &8819427661242900941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325531204428805887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
 --- !u!1 &5421405414364993145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,14 +2067,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07bc2eb5a31a40b3b580f4c60c04a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletScript: {fileID: 0}
+  bulletPool: {fileID: 0}
+  enemyPool: {fileID: 0}
   restartDelay: 1
   gameOverScreen: {fileID: 0}
   player: {fileID: 0}
+  enemySpawners: {fileID: 0}
+  BulletSpawners: {fileID: 0}
   levelStartPos: {fileID: 0}
   enemiesCount: 0
   paused: 0
   insideCombatRoom: 0
   score: 0
+  totalTimeScore: 0
+  time: 0
   sceneName: 
   trunkOpen: 0
   battleSound: 0
@@ -2219,6 +2306,7 @@ GameObject:
   - component: {fileID: 5421405414844421998}
   - component: {fileID: 5421405414844421999}
   - component: {fileID: 5421405414844421776}
+  - component: {fileID: 5036111796594855280}
   m_Layer: 5
   m_Name: UI
   m_TagString: UI
@@ -2246,6 +2334,7 @@ RectTransform:
   - {fileID: 1307619875835124338}
   - {fileID: 1793580264992126736}
   - {fileID: 8275591061964412707}
+  - {fileID: 5476817307301129177}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2315,6 +2404,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5036111796594855280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421405414844421777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b73316a70728248907a51b1af87f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplierForScore: 0
+  timeToDepreciateTimeScore: 0
+  possibleTimeScore: 0
+  currentTimeText: {fileID: 8819427661242900941}
 --- !u!1 &6026949961749805075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,7 +2649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a79d1c878cde842a3632b43f3d53a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 2186927226261640541}
+  timeText: {fileID: 3979344674547404896}
 --- !u!1 &8411530950234556671
 GameObject:
   m_ObjectHideFlags: 0

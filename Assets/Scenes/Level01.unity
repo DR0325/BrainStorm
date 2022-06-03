@@ -2483,6 +2483,8 @@ MonoBehaviour:
   sprite: {fileID: 1149803309}
   flashTime: 0
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
   hurtBox: {fileID: 0}
 --- !u!61 &1149803308
 BoxCollider2D:
@@ -4540,6 +4542,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5036111796594855280, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: possibleTimeScore
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036111796594855280, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: multiplierForScore
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036111796594855280, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: timeToDepreciateTimeScore
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 5421405414364993143, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: player
       value: 

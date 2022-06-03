@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        transform.position = GameManager.lastCheckPointPos;
+        
         currentHealth = startingHealth;
         pImputActions = new PlayerInputActions();
         currMoveSpeed = speedPlayer;
@@ -236,6 +236,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        transform.position = GameManager.lastCheckPointPos;
         _bulletPrototype = GameObject.Find("BulletPrototype");
         rotationPoint = GameObject.Find("RotationPoint");
         rotationPoint.GetComponentInChildren<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;

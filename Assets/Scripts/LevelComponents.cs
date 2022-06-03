@@ -50,6 +50,7 @@ public class LevelComponents : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
         timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
+        nextMoveTime = pauseBetweenDirectionSwitch;
        // ChangeTotalMove();
     }
 
@@ -229,17 +230,20 @@ public class LevelComponents : MonoBehaviour
     private void Update()
     {
 
-        if(Vector2.Distance(transform.position, target) <= 0.01f)
+        if(Vector2.Distance(transform.position, target) <= 0.01f )
         {
        
-            if (target == destinationPos)
+            if (target == destinationPos && nextMoveTime <= 0)
             {
                 target = startingPosition;
+                nextMoveTime = pauseBetweenDirectionSwitch;
             }
-            else
+            else if(target == startingPosition && nextMoveTime <= 0)
             {
                 target = destinationPos;
+                nextMoveTime = pauseBetweenDirectionSwitch;
             }
+            nextMoveTime = nextMoveTime - Time.deltaTime;
         }
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
