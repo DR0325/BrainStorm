@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     [Header("GAME MANAGER GLOBALS")] 
     private static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -70,6 +71,14 @@ public class GameManager : MonoBehaviour
     private int _qtyPsycheGrenades;
     private int _qtyKineticGrenades;
     private int _qtySerotoninShells;
+
+
+   
+
+
+
+
+
     /// <summary>
     /// Healing Item
     /// </summary>
