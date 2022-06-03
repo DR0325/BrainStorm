@@ -251,6 +251,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+      
         if (!dead && !paused)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
@@ -424,7 +425,14 @@ public class Player : MonoBehaviour
             TakeDamage(10f);
             transform.position = GameManager.lastCheckPointPos;
         }
+        
+        if (collision.gameObject.CompareTag("Star"))
+        {
+            Destroy(collision.gameObject);
+        }
+
     }
+
 
     public void TakeDamage(float _damage)
     {
