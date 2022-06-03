@@ -2146,6 +2146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5421405414364993144}
   - component: {fileID: 5421405414364993143}
+  - component: {fileID: 5603012279446219823}
   - component: {fileID: 1307619875907597961}
   m_Layer: 5
   m_Name: GameManager
@@ -2236,6 +2237,19 @@ MonoBehaviour:
   upgrades: {fileID: 0}
   pauseMenu: {fileID: 594334199466884390}
   lvlClearMenu: {fileID: 0}
+--- !u!114 &5603012279446219823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421405414364993145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e24a7b0cb0c7447921b6331fd0fc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeCounter: {fileID: 0}
 --- !u!114 &1307619875907597961
 MonoBehaviour:
   m_ObjectHideFlags: 0

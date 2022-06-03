@@ -3897,19 +3897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountText: {fileID: 946821394}
---- !u!114 &1864073862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864073853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e24a7b0cb0c7447921b6331fd0fc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeCounter: {fileID: 971201844}
 --- !u!1 &1866526367
 GameObject:
   m_ObjectHideFlags: 0
@@ -4965,6 +4952,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5603012279446219823, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: timeCounter
+      value: 
+      objectReference: {fileID: 971201844}
     - target: {fileID: 7775579394176341158, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: scoreText
       value: 
