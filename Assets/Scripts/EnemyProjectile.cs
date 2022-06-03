@@ -8,7 +8,8 @@ public class EnemyProjectile : MonoBehaviour
     public float damage;
 
     private GameObject player;
-    private Vector2 moveDirection;
+    [HideInInspector]
+    public Vector2 moveDirection;
 
     public GameObject destroyEffect;
     public LayerMask isSolid;
@@ -22,20 +23,28 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        if (moveDirection != null)
+        {
+            transform.Translate(moveDirection * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        RaycastHit2D hitInf = Physics2D.Raycast(transform.position, transform.up, distance, isSolid);
-        if (hitInf.collider != null)
+
+        if (collision.CompareTag("Player"))
         {
-            if (hitInf.collider.CompareTag("Player"))
-            {
-                hitInf.collider.GetComponent<Player>().TakeDamage(damage);
-            }
+            collision.GetComponent<Player>().TakeDamage(damage);
             DestroyProjectile();
         }
+        if (collision.IsTouchingLayers(isSolid))
+            DestroyProjectile();
+        
+        
     }
 
     void DestroyProjectile()
