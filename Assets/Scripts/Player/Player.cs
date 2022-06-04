@@ -59,6 +59,16 @@ public class Player : MonoBehaviour
     private float fireRateCooldown;
     public float _offset;
     private GameObject rotationPoint;
+    public GameObject gun;
+
+    [Header("Melee")]
+    private float timebtwAtk;
+    public float startTimeBtwAtk;
+
+    public Transform attackPos;
+    public float atkRange;
+    public LayerMask whatIsEnemy;
+    public float swordDmg;
 
     [Header("InviFrames")]
     [SerializeField] private float iFramesDuration;
@@ -190,15 +200,6 @@ public class Player : MonoBehaviour
     public bool psycheGrenadeAttack;
 
     [HideInInspector]
-    public bool swordAttackBut;
-
-    [HideInInspector]
-    public bool swordAttackBut2;
-
-    [HideInInspector]
-    public bool shieldButAndroid;
-
-    [HideInInspector]
     public bool moveLeftBut;
 
     [HideInInspector]
@@ -216,6 +217,7 @@ public class Player : MonoBehaviour
     private float _timeDefeat;
     private float _timeFight;
     private float _timeScene;
+    private Collider2D damageEnemy;
 
     private GameObject _whichEnemy;
     private GameObject _gun;
@@ -280,14 +282,36 @@ public class Player : MonoBehaviour
             velocityY = rb.velocity.y;    
 
             // ----- Shooting -----
-
-            if (Time.time >= fireRateCooldown)
+            
+            if (Time.time >= fireRateCooldown && gun.activeSelf)
             {
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
                 {
                     currWeapon.Shoot();
                     fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
                 }
+            }
+
+            // ----- Melee ---------
+
+            if (timebtwAtk <= 0)
+            {
+                if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
+                {
+                    damageEnemy = Physics2D.OverlapCircle(attackPos.position, atkRange, whatIsEnemy);
+                    if (damageEnemy != null)
+                    {
+                        if (damageEnemy.CompareTag("Enemy") || damageEnemy.CompareTag("CombatEnemy"))
+                        {
+                            damageEnemy.GetComponent<Enemy>().TakeDamage(swordDmg);
+                        }
+                    }
+                    
+                    timebtwAtk = startTimeBtwAtk;
+                }
+            } else
+            {
+                timebtwAtk -= Time.deltaTime;
             }
 
             // ------- Rolling ----------
@@ -400,6 +424,12 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         pImputActions.Player.Enable();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(attackPos.position, atkRange);
     }
 
     private void OnCollisionExit2D(Collision2D other)
