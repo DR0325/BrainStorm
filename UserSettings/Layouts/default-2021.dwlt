@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 42
+  controlID: 102
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 43
+  controlID: 19
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 44
+  controlID: 20
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,7 +251,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 18}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_SaveData: []
   m_MixersTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a483ffff
+    m_SelectedIDs: 
     m_LastClickedID: -31836
     m_ExpandedIDs: 12eb343c
     m_RenameOverlay:
@@ -701,9 +701,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 576.27966, y: 212.07779, z: 4.4111834}
+    m_Target: {x: 65.00949, y: 20.027847, z: 26.77872}
     speed: 2
-    m_Value: {x: 604.0947, y: 223.63776, z: 4.187453}
+    m_Value: {x: 65.00949, y: 20.027847, z: 26.77872}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -754,9 +754,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 474.8044
+    m_Target: 27.894348
     speed: 2
-    m_Value: 497.1774
+    m_Value: 27.894348
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -814,7 +814,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: bccafeff06cbfefffecdfeff92cffeffa0cffeff86d0feff52d2feff9cd2feff94d5feff28d7feff36d7feff1cd8feff4cdafeff9cdafeff94ddfeff28dffeff36dffeff1ce0fefffae1feff4ae2feff42e5feffd6e6feffe4e6feffcae7feff62fafeffaefafeffa6fdfeff3afffeff48fffeff2e00ffffc00efffffe0efffff611ffff8a13ffff9813ffff7e14ffffc239ffff103affff083dffff9c3effffaa3effff903fffff1c42ffff6642ffff5e45fffff246ffff0047ffffe647ffff06a5ffffa2b3ffffb6e1ffff1cebffff2cebffff5af3ffff60f3ffff66f3ffff6cf3ffff98f7ffffe6f9ffff28fbffffaa68000050ae000086ae000024af00006cb3000012b400005ec8000094c80000d2c8000032c900005ed40000
+      m_ExpandedIDs: b2acffffeef8ffff28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1052,36 +1052,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Prefabs/Enemies
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Prefabs/Enemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\crepa\Documents\Unity\BrainStorm2
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 62}
-    m_SelectedIDs: 10700000
-    m_LastClickedID: 28688
-    m_ExpandedIDs: 00000000cc640000d0640000d2640000d4640000d66400004265000000ca9a3b
+    scrollPos: {x: 0, y: 34}
+    m_SelectedIDs: 4a6d0000
+    m_LastClickedID: 27978
+    m_ExpandedIDs: 0000000046660000486600004a6600004c6600004e6600006a6600006e6600007266000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Prefabs
-      m_OriginalName: Prefabs
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 25918
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -1095,7 +1095,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc640000ce640000d0640000d2640000d4640000d6640000
+    m_ExpandedIDs: 0000000046660000486600004a6600004c6600004e660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

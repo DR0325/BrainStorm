@@ -5548,7 +5548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320892125954465757, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
       propertyPath: lineOfSight
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
