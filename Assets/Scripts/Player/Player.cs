@@ -220,7 +220,6 @@ public class Player : MonoBehaviour
     private float _timeDefeat;
     private float _timeFight;
     private float _timeScene;
-    private Collider2D damageEnemy;
 
     private GameObject _whichEnemy;
     private GameObject _gun;
@@ -301,16 +300,18 @@ public class Player : MonoBehaviour
 
             if (timebtwAtk <= 0)
             {
-                if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
+                if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f && selectedWeapon == 1)
                 {
                     swordAnim.SetBool("isAttacking", true);
-                    damageEnemy = Physics2D.OverlapCircle(attackPos.position, atkRange, whatIsEnemy);
+                    Collider2D damageEnemy = Physics2D.OverlapCircle(attackPos.position, atkRange, whatIsEnemy);
                     if (damageEnemy != null)
                     {
-                        if (damageEnemy.CompareTag("Enemy") || damageEnemy.CompareTag("CombatEnemy"))
-                        {
-                            damageEnemy.GetComponent<Enemy>().TakeDamage(swordDmg);
-                        }
+                        
+                            if (damageEnemy.CompareTag("Enemy") || damageEnemy.CompareTag("CombatEnemy"))
+                            {
+                                damageEnemy.GetComponent<Enemy>().TakeDamage(swordDmg);
+                            }
+                        
                     }
                     timebtwAtk = startTimeBtwAtk;
                 }
