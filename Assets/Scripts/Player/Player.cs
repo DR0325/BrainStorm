@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
     public float runSpeed;
 
     [Header("JUMPING")]
+    private float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+
+    private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
+
     public float jumpForce;
     private float jumpTimeCount;
     public float jumpTime;
@@ -261,6 +267,55 @@ public class Player : MonoBehaviour
             float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offsetWeap);
 
+            //------- Jump --------
+
+            if(isGrounded == true)
+            {
+                coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                coyoteTimeCounter -= Time.deltaTime;
+            }
+
+            if (pImputActions.Player.Jump.IsPressed())
+            {
+                jumpBufferCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferCounter -= Time.deltaTime;
+            }
+
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
+            {
+                anim.SetBool("Jump", true);
+                isJumping = true;
+                jumpBufferCounter = 0f;
+                coyoteTimeCounter = 0f;
+                jumpTimeCount = jumpTime;
+                rb.velocity = Vector2.up * jumpForce;
+            }
+
+            if (pImputActions.Player.Jump.IsPressed() && isJumping == true)
+            {
+                if (jumpTimeCount > 0)
+                {
+                    rb.velocity = Vector2.up * (jumpForce * 0.75f);
+                    jumpTimeCount -= Time.deltaTime;
+                }
+                else
+                {
+                    anim.SetBool("Jump", false);
+                    isJumping = false;
+                }
+            }
+            if (pImputActions.Player.Jump.IsPressed() == false)
+            {
+                isJumping = false;
+            }
+
+            //---------------
 
             if (rollCooldCounter > 0)
             {
@@ -579,32 +634,7 @@ public class Player : MonoBehaviour
     
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && isGrounded == true)
-        {
-            Debug.Log("Jump");
-            anim.SetBool("Jump", true);
-            isJumping = true;
-            jumpTimeCount = jumpTime;
-            rb.velocity = Vector2.up * jumpForce;
-        }
-       
-        if (value.isPressed && isJumping == true)
-        {
-            if (jumpTimeCount > 0)
-            {
-                rb.velocity = Vector2.up * jumpForce;
-                jumpTimeCount -= Time.deltaTime;
-            }
-            else
-            {
-                anim.SetBool("Jump", false);
-                isJumping = false;
-            }
-        }
-        if (value.isPressed == false)
-        {
-            isJumping = false;
-        }
+         
     }
 
     private void OnRoll()

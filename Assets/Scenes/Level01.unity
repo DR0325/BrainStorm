@@ -5524,6 +5524,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1415214158}
     - target: {fileID: 7739342646034291292, guid: 044520b80d7a59f4db532b58735525bb, type: 3}
+      propertyPath: checkRadius
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739342646034291292, guid: 044520b80d7a59f4db532b58735525bb, type: 3}
       propertyPath: fallDetector
       value: 
       objectReference: {fileID: 374133044}

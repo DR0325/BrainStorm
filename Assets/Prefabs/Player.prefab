@@ -452,11 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  speedPlayer: 6
-  runSpeed: 10
-  jumpForce: 11
+  speedPlayer: 5
+  runSpeed: 7
+  jumpForce: 10
   jumpTime: 0.2
-  checkRadius: 0.1
+  checkRadius: 0.05
   rollSpeed: 16
   rollLength: 0.25
   rollCooldown: 0.6
