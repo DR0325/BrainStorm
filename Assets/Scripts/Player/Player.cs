@@ -350,6 +350,14 @@ public class Player : MonoBehaviour
         if (!dead)
         {
             _moveDir = pImputActions.Player.Move.ReadValue<Vector2>();
+            if (_moveDir.x > 0)
+            {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (_moveDir.x < 0)
+            {
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            }
 
             if (_moveDir.x != 0.0f)
             {

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 651931271181543577}
   m_Layer: 9
   m_Name: SnowBoi
-  m_TagString: Enemy
+  m_TagString: CombatEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +186,8 @@ MonoBehaviour:
   sprite: {fileID: 651931271181543579}
   flashTime: 0.15
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
   hurtBox: {fileID: 651931271181543572}
 --- !u!114 &651931271181543577
 MonoBehaviour:

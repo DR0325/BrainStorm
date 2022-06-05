@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public BulletScript bulletScript;
     public BulletPool bulletPool;
     public EnemyPool enemyPool;
+    public EnemySpawnController enemySpawnController;
 
     private bool gameHasEnded = false;
 

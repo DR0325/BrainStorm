@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 6298261600560207565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.06, y: 14.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.02, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6298261599793882483}
@@ -157,6 +157,8 @@ MonoBehaviour:
   sprite: {fileID: 6298261600560207567}
   flashTime: 0.15
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
   hurtBox: {fileID: 2854280303395836002}
 --- !u!114 &6298261600560207554
 MonoBehaviour:

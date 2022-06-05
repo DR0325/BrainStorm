@@ -1591,16 +1591,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8086a6b1685f825409fdaa6b6ece2c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves: []
+  waves:
+  - name: 
+    typeOfEnemies:
+    - {fileID: 7320892125954465744, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
+    - {fileID: 6298261600560207565, guid: f9a2142abf8c37242bc539d3db553731, type: 3}
+    enemyAmount: 10
+    rate: 0.01
   spawnPoints:
   - {fileID: 1469631469}
   - {fileID: 1131322939}
   - {fileID: 1618931697}
   - {fileID: 691653013}
   - {fileID: 806014435}
-  drawSize: {x: 0, y: 0, z: 0}
-  draw: 0
-  isTriggered: 0
+  drawSize: {x: 1, y: 1, z: 0}
+  draw: 1
+  isTriggered: 1
   isDone: 0
   random: 0
 --- !u!1 &1821475430 stripped
@@ -2596,23 +2602,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.24158958
+      value: 3.461443
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.047084
+      value: 15.002391
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3088549
+      value: 18.752989
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.9
+      value: 7.22
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.77
+      value: -2.67
       objectReference: {fileID: 0}
     - target: {fileID: 5735637491000887416, guid: 629d5d33c239dd84d8c0c9acaba919f7, type: 3}
       propertyPath: m_LocalPosition.z

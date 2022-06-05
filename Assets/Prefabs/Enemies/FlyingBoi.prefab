@@ -107,6 +107,8 @@ MonoBehaviour:
   sprite: {fileID: 7320892125954465747}
   flashTime: 0.15
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
   hurtBox: {fileID: 7320892125954465745}
 --- !u!61 &7320892125954465745
 BoxCollider2D:

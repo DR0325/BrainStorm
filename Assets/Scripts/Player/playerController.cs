@@ -52,6 +52,8 @@ public class playerController : MonoBehaviour
         //Horizontal movement
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * currMoveSpeed, rb.velocity.y); 
+
+
     }
 
     private void Update()

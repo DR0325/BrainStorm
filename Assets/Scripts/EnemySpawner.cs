@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     public bool draw;
 
     private bool canSpawn = true;
-    [HideInInspector]
+    
     public bool isTriggered = false;
     public bool isDone = false;
     public bool random = false;
@@ -35,15 +35,23 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         //StartCoroutine(SpawnObject());
-    }
+        if (waves.Length != 0)
+        {
+            nextSpawnTime = waves[0].rate;
 
+        }
+    }
     private void Update()
     {
         if (waves.Length != 0)
         {
             currWave = waves[currWaveNum];
         }
-        SpawnSomething();
+        if (nextSpawnTime <= 0)
+        { 
+            SpawnSomething();
+            nextSpawnTime = waves[0].rate;
+        }
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
         if(totalEnemies.Length == 0)
         {
@@ -60,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
                 isDone = true;
             }
         }
+        nextSpawnTime -= Time.deltaTime;
         
     }
 
