@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  lineOfSight: 8
+  lineOfSight: 10
 --- !u!50 &8631420789325528133
 Rigidbody2D:
   serializedVersion: 4

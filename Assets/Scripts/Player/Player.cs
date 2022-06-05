@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public Animator hurtEffect;
     public GameObject defeatAnimator;
-    public Animator shieldAnim;
+    public Animator swordAnim;
 
     public BoxCollider2D fight1;
     public BoxCollider2D fight2;
@@ -55,6 +55,9 @@ public class Player : MonoBehaviour
     public bool isItScene1;
 
     [Header("Weapon")]
+    public int selectedWeapon = 0;
+    private int prevSelWeapon;
+    public Transform weaponHolder;
     public weaponScript currWeapon;
     private float fireRateCooldown;
     public float _offset;
@@ -221,7 +224,6 @@ public class Player : MonoBehaviour
 
     private GameObject _whichEnemy;
     private GameObject _gun;
-    private GameObject _bulletPrototype;
     private PlayerInputActions pImputActions;
 
     public GameObject fallDetector;
@@ -238,14 +240,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _bulletPrototype = GameObject.Find("BulletPrototype");
         rotationPoint = GameObject.Find("RotationPoint");
-        rotationPoint.GetComponentInChildren<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
+        weaponHolder.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
+        SelectWeapon();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
-        // hurtEffect = hurtEffect.GetComponent<Animator>();
-        // shieldAnim = shieldAnim.GetComponent<Animator>();
+        // hurtEffect = hurtEffect.GetComponent<Animator>(); 
         currMoveSpeed = speedPlayer;
         _timeScene = Time.time + 0.5f;
         
@@ -279,10 +280,14 @@ public class Player : MonoBehaviour
             fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
 
             // -------
-            velocityY = rb.velocity.y;    
+            velocityY = rb.velocity.y;
+
+            //------Weapon Switching -----------
+
+            prevSelWeapon = selectedWeapon;
 
             // ----- Shooting -----
-            
+
             if (Time.time >= fireRateCooldown && gun.activeSelf)
             {
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
@@ -298,6 +303,7 @@ public class Player : MonoBehaviour
             {
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
                 {
+                    swordAnim.SetBool("isAttacking", true);
                     damageEnemy = Physics2D.OverlapCircle(attackPos.position, atkRange, whatIsEnemy);
                     if (damageEnemy != null)
                     {
@@ -306,11 +312,11 @@ public class Player : MonoBehaviour
                             damageEnemy.GetComponent<Enemy>().TakeDamage(swordDmg);
                         }
                     }
-                    
                     timebtwAtk = startTimeBtwAtk;
                 }
             } else
             {
+                swordAnim.SetBool("isAttacking", false);
                 timebtwAtk -= Time.deltaTime;
             }
 
@@ -453,6 +459,78 @@ public class Player : MonoBehaviour
         {
             TakeDamage(10f);
             transform.position = GameManager.lastCheckPointPos;
+        }
+    }
+
+    private void SelectWeapon()
+    {
+        int i = 0;
+        foreach(Transform weapon in weaponHolder)
+        {
+            if (i == selectedWeapon)
+                weapon.gameObject.SetActive(true);
+            else
+                weapon.gameObject.SetActive(false);
+            i++;
+        }
+    }
+
+    public void OnSwitchWeapon(InputValue value)
+    {
+        
+
+        if (value.Get<float>() > 0f)
+        {
+            if(selectedWeapon >= weaponHolder.childCount - 1)
+            {
+                selectedWeapon = 0;
+            }
+            else
+                selectedWeapon++;
+        }
+        if (value.Get<float>() < 0f)
+        {
+            if (selectedWeapon <= 0)
+            {
+                selectedWeapon = weaponHolder.childCount - 1;
+            }
+            else
+                selectedWeapon--;
+        }
+
+        if (prevSelWeapon != selectedWeapon)
+        {
+            SelectWeapon();
+        }
+    }
+    public void OnSwitchWeapon1()
+    {
+        selectedWeapon = 0;
+
+        if (prevSelWeapon != selectedWeapon)
+        {
+            SelectWeapon();
+        }
+    }
+
+    public void OnSwitchWeapon2()
+    {
+        if (weaponHolder.childCount >= 2)
+            selectedWeapon = 1;
+
+        if (prevSelWeapon != selectedWeapon)
+        {
+            SelectWeapon();
+        }
+    }
+    public void OnSwitchWeapon3()
+    {
+        if(weaponHolder.childCount >= 3)
+            selectedWeapon = 2;
+
+        if (prevSelWeapon != selectedWeapon)
+        {
+            SelectWeapon();
         }
     }
 
