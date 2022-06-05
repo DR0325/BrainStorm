@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
                 jumpTimeCount = jumpTime;
                 rb.velocity = Vector2.up * jumpForce;
             }
-
+            
             if (pImputActions.Player.Jump.IsPressed() && isJumping == true)
             {
                 if (jumpTimeCount > 0)
@@ -314,7 +314,7 @@ public class Player : MonoBehaviour
             {
                 isJumping = false;
             }
-
+            
             //---------------
 
             if (rollCooldCounter > 0)
