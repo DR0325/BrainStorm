@@ -23,6 +23,7 @@ public class DifficultyMenu : MonoBehaviour
         dmgMult = 1;
         StateNameController.damageMultiplier = dmgMult;
         StateNameController.healthMultiplier = healthMult;
+        StateNameController.meleeOnly = false;
         menu.SetActive(false);
     }
 
@@ -32,6 +33,7 @@ public class DifficultyMenu : MonoBehaviour
         dmgMult = 2;
         StateNameController.damageMultiplier = dmgMult;
         StateNameController.healthMultiplier = healthMult;
+        StateNameController.meleeOnly = false;
         menu.SetActive(false);
     }
 
@@ -41,6 +43,7 @@ public class DifficultyMenu : MonoBehaviour
         dmgMult = 2;
         StateNameController.damageMultiplier = dmgMult;
         StateNameController.healthMultiplier = healthMult;
+        StateNameController.meleeOnly = true;
         menu.SetActive(false);
     }
 }

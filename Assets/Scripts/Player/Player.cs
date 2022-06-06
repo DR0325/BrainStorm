@@ -230,6 +230,7 @@ public class Player : MonoBehaviour
     private GameObject _whichEnemy;
     private GameObject _gun;
     private PlayerInputActions pImputActions;
+    private bool meleeOnly;
 
     public GameObject fallDetector;
 
@@ -245,6 +246,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        meleeOnly = StateNameController.meleeOnly;
         rotationPoint = GameObject.Find("RotationPoint");
         weaponHolder.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
         SelectWeapon();
@@ -254,6 +256,11 @@ public class Player : MonoBehaviour
         // hurtEffect = hurtEffect.GetComponent<Animator>(); 
         currMoveSpeed = speedPlayer;
         _timeScene = Time.time + 0.5f;
+        if(meleeOnly == true)
+        {
+            selectedWeapon = 1;
+            SelectWeapon();
+        }
         
     }
 
@@ -533,60 +540,70 @@ public class Player : MonoBehaviour
 
     public void OnSwitchWeapon(InputValue value)
     {
-        
-
-        if (value.Get<float>() > 0f)
+        if (meleeOnly == false)
         {
-            if(selectedWeapon >= weaponHolder.childCount - 1)
+            if (value.Get<float>() > 0f)
             {
-                selectedWeapon = 0;
+                if (selectedWeapon >= weaponHolder.childCount - 1)
+                {
+                    selectedWeapon = 0;
+                }
+                else
+                    selectedWeapon++;
             }
-            else
-                selectedWeapon++;
-        }
-        if (value.Get<float>() < 0f)
-        {
-            if (selectedWeapon <= 0)
+            if (value.Get<float>() < 0f)
             {
-                selectedWeapon = weaponHolder.childCount - 1;
+                if (selectedWeapon <= 0)
+                {
+                    selectedWeapon = weaponHolder.childCount - 1;
+                }
+                else
+                    selectedWeapon--;
             }
-            else
-                selectedWeapon--;
-        }
 
-        if (prevSelWeapon != selectedWeapon)
-        {
-            SelectWeapon();
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
         }
     }
     public void OnSwitchWeapon1()
     {
-        selectedWeapon = 0;
-
-        if (prevSelWeapon != selectedWeapon)
+        if (meleeOnly == false)
         {
-            SelectWeapon();
+            selectedWeapon = 0;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
         }
     }
 
     public void OnSwitchWeapon2()
     {
-        if (weaponHolder.childCount >= 2)
-            selectedWeapon = 1;
-
-        if (prevSelWeapon != selectedWeapon)
+        if (meleeOnly == false)
         {
-            SelectWeapon();
+            if (weaponHolder.childCount >= 2)
+                selectedWeapon = 1;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
         }
     }
     public void OnSwitchWeapon3()
     {
-        if(weaponHolder.childCount >= 3)
-            selectedWeapon = 2;
-
-        if (prevSelWeapon != selectedWeapon)
+        if (meleeOnly == false)
         {
-            SelectWeapon();
+            if (weaponHolder.childCount >= 3)
+                selectedWeapon = 2;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
         }
     }
 
