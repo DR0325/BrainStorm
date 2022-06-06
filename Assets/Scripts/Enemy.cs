@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     public float health;
     public float damage;
 
+    private float dmgMultip;
+    private float healthMultip;
+
     public SpriteRenderer sprite;
     public float flashTime;
 
@@ -27,7 +30,11 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        dmgMultip = StateNameController.damageMultiplier;
+        healthMultip = StateNameController.healthMultiplier;
         player = GameObject.FindWithTag("Player");
+        health *= healthMultip;
+        damage *= dmgMultip;
     }
 
     private void Update()

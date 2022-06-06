@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     private int _qtyPsycheGrenades;
     private int _qtyKineticGrenades;
     private int _qtySerotoninShells;
+
+    
     /// <summary>
     /// Healing Item
     /// </summary>
@@ -190,6 +192,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         lastCheckPointPos = levelStartPos.position;
         Time.timeScale = 1f;
         uiHealthBar = GameObject.FindWithTag("HealthBar");

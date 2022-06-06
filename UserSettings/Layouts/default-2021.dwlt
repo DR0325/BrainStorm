@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 54
+  controlID: 21
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 108
+  controlID: 30
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 109
+  controlID: 31
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -310,7 +310,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 59762
+  m_LastSelectedObjectID: 39036
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -342,9 +342,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72e90000
-      m_LastClickedID: 59762
-      m_ExpandedIDs: 7212ffffc012ffffca15ffff4817ffff5617ffff4e18ffff28fbffff3e640000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 80b1ffff76b2ffff02bdffffacbfffff20c2ffff28fbffff8865000020980000429800007c980000be980000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 11}
+        m_ClientGUIView: {fileID: 8}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -615,9 +615,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 31.960686, y: 14.760385, z: 0.531773}
+    m_Target: {x: 490.8994, y: 273.24487, z: -7.357757}
     speed: 2
-    m_Value: {x: 31.960686, y: 14.760385, z: 0.531773}
+    m_Value: {x: 490.8994, y: 273.24487, z: -7.357757}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -668,9 +668,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.3173381
+    m_Target: 324.69614
     speed: 2
-    m_Value: 1.3173381
+    m_Value: 324.69614
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 5e97eb03825dee720800000000000000
+  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: 
 --- !u!114 &19
 MonoBehaviour:
@@ -1137,22 +1137,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/UI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\crepa\Documents\Unity\BrainStorm2
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 9}
-    m_SelectedIDs: aa700000
-    m_LastClickedID: 28842
-    m_ExpandedIDs: 000000003e680000406800004268000044680000466800004868000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: ce680000
+    m_LastClickedID: 26830
+    m_ExpandedIDs: 000000003e68000040680000426800004468000046680000c468000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1299,7 +1299,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 436
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

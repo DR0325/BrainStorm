@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour
     public float damage;
 
     private GameObject player;
+    private bool isTriggered = false;
     [HideInInspector]
     public Vector2 moveDirection;
 
@@ -17,27 +18,22 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage *= StateNameController.damageMultiplier;
         Invoke("DestroyProjectile", lifeTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moveDirection != null)
-        {
-            transform.Translate(moveDirection * speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
+         transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && isTriggered == false)
         {
+            isTriggered = true;
             collision.GetComponent<Player>().TakeDamage(damage);
             DestroyProjectile();
         }
