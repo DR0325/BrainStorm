@@ -201,4 +201,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1659667632980587070, guid: 88e9784292f8dde41937d310f99e9e28, type: 3}
   shootPoint: {fileID: 651931270500689742}
+  shootDirection: {x: -1, y: 0}
   fireRate: 1

@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
     public float runSpeed;
 
     [Header("JUMPING")]
+    private float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+
+    private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
+
     public float jumpForce;
     private float jumpTimeCount;
     public float jumpTime;
@@ -43,7 +49,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public Animator hurtEffect;
     public GameObject defeatAnimator;
-    public Animator shieldAnim;
+    public Animator swordAnim;
 
     public BoxCollider2D fight1;
     public BoxCollider2D fight2;
@@ -55,10 +61,23 @@ public class Player : MonoBehaviour
     public bool isItScene1;
 
     [Header("Weapon")]
+    public int selectedWeapon = 0;
+    private int prevSelWeapon;
+    public Transform weaponHolder;
     public weaponScript currWeapon;
     private float fireRateCooldown;
     public float _offset;
     private GameObject rotationPoint;
+    public GameObject gun;
+
+    [Header("Melee")]
+    private float timebtwAtk;
+    public float startTimeBtwAtk;
+
+    public Transform attackPos;
+    public float atkRange;
+    public LayerMask whatIsEnemy;
+    public float swordDmg;
 
     [Header("InviFrames")]
     [SerializeField] private float iFramesDuration;
@@ -190,15 +209,6 @@ public class Player : MonoBehaviour
     public bool psycheGrenadeAttack;
 
     [HideInInspector]
-    public bool swordAttackBut;
-
-    [HideInInspector]
-    public bool swordAttackBut2;
-
-    [HideInInspector]
-    public bool shieldButAndroid;
-
-    [HideInInspector]
     public bool moveLeftBut;
 
     [HideInInspector]
@@ -219,8 +229,8 @@ public class Player : MonoBehaviour
 
     private GameObject _whichEnemy;
     private GameObject _gun;
-    private GameObject _bulletPrototype;
     private PlayerInputActions pImputActions;
+    private bool meleeOnly;
 
     public GameObject fallDetector;
 
@@ -236,22 +246,27 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _bulletPrototype = GameObject.Find("BulletPrototype");
+        Physics2D.IgnoreLayerCollision(10, 9, false);
+        meleeOnly = StateNameController.meleeOnly;
         rotationPoint = GameObject.Find("RotationPoint");
-        rotationPoint.GetComponentInChildren<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
+        weaponHolder.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = currWeapon.currWeaponSpr;
+        SelectWeapon();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //defeatAnimator = defeatAnimator.GetComponent<Animator> ();
-        // hurtEffect = hurtEffect.GetComponent<Animator>();
-        // shieldAnim = shieldAnim.GetComponent<Animator>();
+        // hurtEffect = hurtEffect.GetComponent<Animator>(); 
         currMoveSpeed = speedPlayer;
         _timeScene = Time.time + 0.5f;
+        if(meleeOnly == true)
+        {
+            selectedWeapon = 1;
+            SelectWeapon();
+        }
         
     }
 
     private void Update()
     {
-      
         if (!dead && !paused)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
@@ -260,6 +275,55 @@ public class Player : MonoBehaviour
             float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offsetWeap);
 
+            //------- Jump --------
+
+            if(isGrounded == true)
+            {
+                coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                coyoteTimeCounter -= Time.deltaTime;
+            }
+
+            if (pImputActions.Player.Jump.IsPressed())
+            {
+                jumpBufferCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferCounter -= Time.deltaTime;
+            }
+
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
+            {
+                anim.SetBool("Jump", true);
+                isJumping = true;
+                jumpBufferCounter = 0f;
+                coyoteTimeCounter = 0f;
+                jumpTimeCount = jumpTime;
+                rb.velocity = Vector2.up * jumpForce;
+            }
+            
+            if (pImputActions.Player.Jump.IsPressed() && isJumping == true)
+            {
+                if (jumpTimeCount > 0)
+                {
+                    rb.velocity = Vector2.up * (jumpForce * 0.75f);
+                    jumpTimeCount -= Time.deltaTime;
+                }
+                else
+                {
+                    anim.SetBool("Jump", false);
+                    isJumping = false;
+                }
+            }
+            if (pImputActions.Player.Jump.IsPressed() == false)
+            {
+                isJumping = false;
+            }
+            
+            //---------------
 
             if (rollCooldCounter > 0)
             {
@@ -278,17 +342,46 @@ public class Player : MonoBehaviour
             fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
 
             // -------
-            velocityY = rb.velocity.y;    
+            velocityY = rb.velocity.y;
+
+            //------Weapon Switching -----------
+
+            prevSelWeapon = selectedWeapon;
 
             // ----- Shooting -----
 
-            if (Time.time >= fireRateCooldown)
+            if (Time.time >= fireRateCooldown && gun.activeSelf)
             {
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
                 {
                     currWeapon.Shoot();
                     fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
                 }
+            }
+
+            // ----- Melee ---------
+
+            if (timebtwAtk <= 0)
+            {
+                if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f && selectedWeapon == 1)
+                {
+                    swordAnim.SetBool("isAttacking", true);
+                    Collider2D damageEnemy = Physics2D.OverlapCircle(attackPos.position, atkRange, whatIsEnemy);
+                    if (damageEnemy != null)
+                    {
+                        
+                            if (damageEnemy.CompareTag("Enemy") || damageEnemy.CompareTag("CombatEnemy"))
+                            {
+                                damageEnemy.GetComponent<Enemy>().TakeDamage(swordDmg);
+                            }
+                        
+                    }
+                    timebtwAtk = startTimeBtwAtk;
+                }
+            } else
+            {
+                swordAnim.SetBool("isAttacking", false);
+                timebtwAtk -= Time.deltaTime;
             }
 
             // ------- Rolling ----------
@@ -403,6 +496,12 @@ public class Player : MonoBehaviour
         pImputActions.Player.Enable();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(attackPos.position, atkRange);
+    }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Addict" || other.gameObject.tag == "Shame" || other.gameObject.tag == "Fear" ||
@@ -425,14 +524,89 @@ public class Player : MonoBehaviour
             TakeDamage(10f);
             transform.position = GameManager.lastCheckPointPos;
         }
-        
-        if (collision.gameObject.CompareTag("Star"))
-        {
-            Destroy(collision.gameObject);
-        }
-
     }
 
+    private void SelectWeapon()
+    {
+        int i = 0;
+        foreach(Transform weapon in weaponHolder)
+        {
+            if (i == selectedWeapon)
+                weapon.gameObject.SetActive(true);
+            else
+                weapon.gameObject.SetActive(false);
+            i++;
+        }
+    }
+
+    public void OnSwitchWeapon(InputValue value)
+    {
+        if (meleeOnly == false)
+        {
+            if (value.Get<float>() > 0f)
+            {
+                if (selectedWeapon >= weaponHolder.childCount - 1)
+                {
+                    selectedWeapon = 0;
+                }
+                else
+                    selectedWeapon++;
+            }
+            if (value.Get<float>() < 0f)
+            {
+                if (selectedWeapon <= 0)
+                {
+                    selectedWeapon = weaponHolder.childCount - 1;
+                }
+                else
+                    selectedWeapon--;
+            }
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
+        }
+    }
+    public void OnSwitchWeapon1()
+    {
+        if (meleeOnly == false)
+        {
+            selectedWeapon = 0;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
+        }
+    }
+
+    public void OnSwitchWeapon2()
+    {
+        if (meleeOnly == false)
+        {
+            if (weaponHolder.childCount >= 2)
+                selectedWeapon = 1;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
+        }
+    }
+    public void OnSwitchWeapon3()
+    {
+        if (meleeOnly == false)
+        {
+            if (weaponHolder.childCount >= 3)
+                selectedWeapon = 2;
+
+            if (prevSelWeapon != selectedWeapon)
+            {
+                SelectWeapon();
+            }
+        }
+    }
 
     public void TakeDamage(float _damage)
     {
@@ -478,32 +652,7 @@ public class Player : MonoBehaviour
     
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && isGrounded == true)
-        {
-            Debug.Log("Jump");
-            anim.SetBool("Jump", true);
-            isJumping = true;
-            jumpTimeCount = jumpTime;
-            rb.velocity = Vector2.up * jumpForce;
-        }
-       
-        if (value.isPressed && isJumping == true)
-        {
-            if (jumpTimeCount > 0)
-            {
-                rb.velocity = Vector2.up * jumpForce;
-                jumpTimeCount -= Time.deltaTime;
-            }
-            else
-            {
-                anim.SetBool("Jump", false);
-                isJumping = false;
-            }
-        }
-        if (value.isPressed == false)
-        {
-            isJumping = false;
-        }
+         
     }
 
     private void OnRoll()
@@ -558,17 +707,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //checkStairs = false;
-        }
-    }
-
-    private void NotStayAboveEnemy()
-    {
-        if (collisionPlayerEnemy && transform.position.y > -0.6f)
-        {
-            if (transform.localScale.x > 0)
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(50f, 0), ForceMode2D.Force);
-            else
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(-50f, 0), ForceMode2D.Force);
         }
     }
 
