@@ -156,6 +156,8 @@ MonoBehaviour:
   sprite: {fileID: 6298261600560207567}
   flashTime: 0.15
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
   hurtBox: {fileID: 0}
 --- !u!114 &6298261600560207554
 MonoBehaviour:

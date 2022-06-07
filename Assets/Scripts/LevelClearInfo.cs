@@ -8,9 +8,11 @@ using TMPro;
 public class LevelClearInfo : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public void Setup(int score)
+    public TextMeshProUGUI timeText;
+    public void Setup(int score, float time)
     {
         gameObject.SetActive(true);
         scoreText.text = "Score: " + score.ToString();
+        timeText.text = "Time: " + time.ToString();
     }
 }

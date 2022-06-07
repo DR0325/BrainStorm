@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        transform.position = GameManager.lastCheckPointPos;
+        
         currentHealth = startingHealth;
         pImputActions = new PlayerInputActions();
         currMoveSpeed = speedPlayer;

@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelTimer : MonoBehaviour
 {
     public static LevelTimer instance;
 
-    public Text timeCounter;
+    public TMP_Text timeCounter;
 
     private TimeSpan timePlaying;
     private bool timerGoing;
@@ -21,6 +22,7 @@ public class LevelTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BeginTimer();
         timeCounter.text = "Time:00:00.00";
         timerGoing = false;
 

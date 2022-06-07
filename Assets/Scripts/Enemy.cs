@@ -18,7 +18,9 @@ public class Enemy : MonoBehaviour
     public bool followsPlayer;
     private bool _isTouchingPlayer;
     private float _timeSinceLastDamage;
-   
+    public GameObject bulletParent;
+    public int enemyScoreValue;
+
 
     public Collider2D hurtBox;
     private GameObject player;
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameManager.Instance.score += enemyScoreValue;
         }
     }
 

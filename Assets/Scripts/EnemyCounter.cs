@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyCounter : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemyCounter : MonoBehaviour
         
     }
     GameObject[] enemies;
-    public Text enemyCountText;
+    public TMP_Text enemyCountText;
     // Update is called once per frame
     void Update()
     {

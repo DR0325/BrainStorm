@@ -9,11 +9,16 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{ // ver1
 
     [Header("GAME MANAGER GLOBALS")] 
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+
+    [Header("Scripts")]
+    public BulletScript bulletScript;
+    public BulletPool bulletPool;
+    public EnemyPool enemyPool;
 
     private bool gameHasEnded = false;
 
@@ -21,8 +26,13 @@ public class GameManager : MonoBehaviour
 
     public GameOverScreen gameOverScreen;
 
+
+    [Header("Game Objects")]
     public GameObject player;
     private Player _player;
+    public GameObject enemySpawners;//  1/2 maybe make these two just an int.. or an array of game objects. A way to access the spawners
+    public GameObject BulletSpawners;// 2/2 from other scripts to keep track of enemy count and maybe other things that we think of.
+
 
     public Transform levelStartPos;
     public static Vector2 lastCheckPointPos = new Vector2(30,15);
@@ -32,6 +42,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool paused = false;
     [HideInInspector] public bool insideCombatRoom;
     [HideInInspector] public int score;
+    [HideInInspector] public int totalTimeScore;
+    [HideInInspector] public float time;
     [HideInInspector] public string sceneName;
     [HideInInspector] public bool trunkOpen;
     [HideInInspector] public bool battleSound;
@@ -187,10 +199,8 @@ public class GameManager : MonoBehaviour
     {
         if (_instance != null && _instance != this) Destroy(gameObject);
         else _instance = this;
-    }
 
-    private void Start()
-    {
+        //find all the prefabs that are not part of the UI prefab
 
         lastCheckPointPos = levelStartPos.position;
         Time.timeScale = 1f;
@@ -198,6 +208,16 @@ public class GameManager : MonoBehaviour
         uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
         LevelTimer.instance.BeginTimer();
+        player = GameObject.FindWithTag("Player");
+    }
+
+    private void Start()
+    {
+        //lastCheckPointPos = levelStartPos.position;
+        //Time.timeScale = 1f;
+        //uiHealthBar = GameObject.FindWithTag("HealthBar");
+        //uiStaminaBar = GameObject.FindWithTag("StaminaBar");
+        //uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
     }
 
     private void Update()
@@ -253,16 +273,26 @@ public class GameManager : MonoBehaviour
 
     public void LevelComplete()
     {
+        score += totalTimeScore;
         lastCheckPointPos = levelStartPos.position;
         gameHasEnded = true;
         Time.timeScale = 0f;
         lvlClearMenu.SetActive(true);
-        lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score);
+        lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score, time);
+        score = 0;
+        time = 0f;
 
     }
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex + 1 != null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
