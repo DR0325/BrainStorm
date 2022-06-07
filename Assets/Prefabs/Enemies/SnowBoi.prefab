@@ -180,15 +180,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _experienceGain: 50
-  attackTime: 2
   health: 50
   damage: 10
   sprite: {fileID: 651931271181543579}
   flashTime: 0.15
+  fireRate: 0
+  pauseRate: 0
+  nextFire: 0
   followsPlayer: 0
   bulletParent: {fileID: 0}
+  bulletType: {fileID: 0}
   enemyScoreValue: 0
+  lineOfSight: 0
+  firingRange: 0
+  enemyFireingType: 0
+  enemyMovementType: 0
+  moveSpeed: 0
+  bulletSpeed: 0
+  numberOfBullets: 0
+  startAngle: 0
+  endAngle: 0
+  bulParent: {fileID: 0}
   hurtBox: {fileID: 651931271181543572}
+  player: {fileID: 0}
+  distanceFromPlayer: 0
 --- !u!114 &651931271181543577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,4 +218,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1659667632980587070, guid: 88e9784292f8dde41937d310f99e9e28, type: 3}
   shootPoint: {fileID: 651931270500689742}
+  shootDirection: {x: -1, y: 0}
   fireRate: 1

@@ -13,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void Fire()
     {
-        Bullet bul = GameManager.Instance.bulletPool.GetBullet(0);
+      //  Bullet bul = GameManager.Instance.bulletPool.GetBullet(0);
 
 
     }

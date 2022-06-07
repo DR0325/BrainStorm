@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
 
     [Header("Scripts")]
-    public BulletScript bulletScript;
+    //[HideInInspector] public BulletScript bulletScript;
     public BulletPool bulletPool;
     public EnemyPool enemyPool;
     public EnemySpawnController enemySpawnController;
+    //[HideInInspector] public EnemyController enemyController;
 
     private bool gameHasEnded = false;
 

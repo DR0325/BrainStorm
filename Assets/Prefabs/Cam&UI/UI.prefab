@@ -2028,6 +2028,7 @@ GameObject:
   - component: {fileID: 5421405414364993144}
   - component: {fileID: 5421405414364993143}
   - component: {fileID: 1307619875907597961}
+  - component: {fileID: 5024149392925870566}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -2070,6 +2071,7 @@ MonoBehaviour:
   bulletScript: {fileID: 0}
   bulletPool: {fileID: 0}
   enemyPool: {fileID: 0}
+  enemySpawnController: {fileID: 0}
   restartDelay: 1
   gameOverScreen: {fileID: 0}
   player: {fileID: 0}
@@ -2218,6 +2220,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5024149392925870566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421405414364993145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16d1b3ba7f6ffc43aa13ae61fad2b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderOfSpawnerTrigger: []
+  currentSpawner: 0
+  platformAppear: {fileID: 0}
+  IsSpawnerActive: 1
 --- !u!1 &5421405414749246750
 GameObject:
   m_ObjectHideFlags: 0

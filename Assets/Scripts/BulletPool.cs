@@ -5,13 +5,13 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
 
-//public static BulletPool BulletPoolInstanse;
+public static BulletPool bulletPoolInstanse;
 
     [SerializeField]
-    private Bullet[] pooledBullet;
+    private GameObject[] pooledBullet;
     private bool notEnoughBulletsInPool = true;
 
-    private List<Bullet> bullets;
+    private List<GameObject> bullets;
 
     //private void Awake()
     //{
@@ -21,25 +21,28 @@ public class BulletPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bullets = new List<Bullet>();   
+        bulletPoolInstanse = this;
+        bullets = new List<GameObject>();   
     }
 
-    public Bullet GetBullet(int whatBullet)
+    public GameObject GetBullet(GameObject bulletToFire)
     {
         if(bullets.Count > 0)
         {
             for(int i = 0; i < bullets.Count;i++)
             {
-                if(!bullets[i].gameObject.activeInHierarchy && bullets[i].tag == pooledBullet[whatBullet].tag)
+                if(!bullets[i].gameObject.activeInHierarchy && bullets[i].tag == bulletToFire.tag)
                 {
                     return bullets[i];
                 }
             }
+            
         }
         if(notEnoughBulletsInPool)
         {
-            Bullet bul = Instantiate(pooledBullet[whatBullet]);
-            bul.gameObject.SetActive(false);
+
+           GameObject bul = Instantiate(bulletToFire);
+            bul.SetActive(false);
             bullets.Add(bul);
             return bul;
         }

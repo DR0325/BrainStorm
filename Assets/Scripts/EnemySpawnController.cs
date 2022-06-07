@@ -7,6 +7,7 @@ public class EnemySpawnController : MonoBehaviour
     public EnemySpawner[] orderOfSpawnerTrigger;
     public int currentSpawner;
     public GameObject platformAppear;
+    public bool IsSpawnerActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +17,21 @@ public class EnemySpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(orderOfSpawnerTrigger[currentSpawner].isDone)
+        if (IsSpawnerActive)
         {
-            if(orderOfSpawnerTrigger[currentSpawner + 1] !=null)
+            if (orderOfSpawnerTrigger[currentSpawner] != null)
             {
-                orderOfSpawnerTrigger[currentSpawner + 1].isTriggered = true;
-            }
-            else
-            {
-                platformAppear.SetActive(true);
+                if (orderOfSpawnerTrigger[currentSpawner].isDone)
+                {
+                    if (orderOfSpawnerTrigger[currentSpawner + 1] != null)
+                    {
+                        orderOfSpawnerTrigger[currentSpawner + 1].isTriggered = true;
+                    }
+                    else
+                    {
+                        platformAppear.SetActive(true);
+                    }
+                }
             }
         }
     }

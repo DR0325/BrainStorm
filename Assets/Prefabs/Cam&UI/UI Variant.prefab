@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5421405414364993143, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: bulletScript
       value: 
-      objectReference: {fileID: 1098517443}
+      objectReference: {fileID: 0}
     - target: {fileID: 5421405414844421777, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: m_Name
       value: UI Variant
@@ -135,25 +135,3 @@ PrefabInstance:
     - {fileID: 6420209857204080419, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
     - {fileID: 1307619875907597961, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
---- !u!1 &2836986960223778214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5421405414364993145, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
-  m_PrefabInstance: {fileID: 7810283111062135775}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1098517443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836986960223778214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebfcb4a306f8d9442a1009c3a32e2412, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  bulletType: 0
-  numberOfBullets: 0
-  startAngle: 0
-  endAngle: 0

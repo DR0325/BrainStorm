@@ -101,15 +101,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _experienceGain: 30
-  attackTime: 1
   health: 30
   damage: 15
   sprite: {fileID: 7320892125954465747}
   flashTime: 0.15
+  fireRate: 0
+  pauseRate: 0
+  nextFire: 0
   followsPlayer: 0
   bulletParent: {fileID: 0}
+  bulletType: {fileID: 0}
   enemyScoreValue: 0
+  lineOfSight: 0
+  firingRange: 0
+  enemyFireingType: 0
+  enemyMovementType: 0
+  moveSpeed: 0
+  bulletSpeed: 0
+  numberOfBullets: 0
+  startAngle: 0
+  endAngle: 0
+  bulParent: {fileID: 0}
   hurtBox: {fileID: 7320892125954465745}
+  player: {fileID: 0}
+  distanceFromPlayer: 0
 --- !u!61 &7320892125954465745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  lineOfSight: 5.5
+  lineOfSight: 10
 --- !u!50 &8631420789325528133
 Rigidbody2D:
   serializedVersion: 4
