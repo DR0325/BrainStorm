@@ -16,6 +16,12 @@ TagManager:
   - CombatEnemy
   - Checkpoint
   - Star
+  - Bullet3
+  - ground
+  - Bullet1
+  - Enemy Spawn Zone
+  - Bullet2
+  - LevelEnter
   layers:
   - Default
   - TransparentFX

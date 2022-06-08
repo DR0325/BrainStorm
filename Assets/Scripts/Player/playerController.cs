@@ -56,6 +56,7 @@ public class playerController : MonoBehaviour
 
     private void Update()
     {
+       
         //determine if char is touching ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
         

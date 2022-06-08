@@ -517,9 +517,23 @@ public class Player : MonoBehaviour
             collisionPlayerEnemy = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.CompareTag("DeathBarrier"))
+        //void OnTriggerEnter2d(Collider2D collision)
+        //{
+            if (other.CompareTag("LevelEnter"))
+            {
+                Debug.Log("Boom");
+                LevelTimer.instance.BeginTimer();
+            }
+            if (other.CompareTag("Star"))
+            {
+
+                
+                Destroy(other);
+            }
+        //}
+        if (other.CompareTag("DeathBarrier"))
         {
             TakeDamage(10f);
             transform.position = GameManager.lastCheckPointPos;

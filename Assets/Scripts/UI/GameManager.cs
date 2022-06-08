@@ -218,6 +218,7 @@ public class GameManager : MonoBehaviour
         //uiHealthBar = GameObject.FindWithTag("HealthBar");
         //uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         //uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
+        LevelTimer.instance.BeginTimer();
     }
 
     private void Update()
@@ -232,7 +233,9 @@ public class GameManager : MonoBehaviour
         paused = false;
         Time.timeScale = 1f;
         lastCheckPointPos = levelStartPos.position;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+       // LevelTimer.instance.BeginTimer();
         //gameOverScreen.gameObject.SetActive(false);
     }
 
