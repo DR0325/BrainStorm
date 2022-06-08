@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool openTrunk;
 
     [Header("GAME SOUNDS")] 
-    public AudioSource musicSource;
-    public AudioSource audioSource;
+    //public AudioSource musicSource;
+    //public AudioSource audioSource;
     [Header("PLAYER RESOURCES")] 
     private int _qtyEpinepherine;
     private int _qtyReuptakeInhibitor;
