@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     private float _timeSinceLastDamage;
     public GameObject bulletParent;
     public int enemyScoreValue;
-
+    public GameObject deathParticles;
 
     public Collider2D hurtBox;
     private GameObject player;
@@ -47,7 +47,10 @@ public class Enemy : MonoBehaviour
     {    
         if (health <= 0)
         {
+     
             Destroy(gameObject);
+            GameObject go = Instantiate(deathParticles) as GameObject;
+            go.transform.position = transform.position;
             GameManager.Instance.score += enemyScoreValue;
         }
     }
