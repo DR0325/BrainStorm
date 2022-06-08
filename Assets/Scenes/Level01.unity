@@ -4525,6 +4525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 651931271181543574, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
+      propertyPath: knockbackPower
+      value: 50.26
+      objectReference: {fileID: 0}
     - target: {fileID: 651931271181543575, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: m_Name
       value: SnowBoi (1)
@@ -6595,6 +6599,14 @@ PrefabInstance:
     - target: {fileID: 7320892125954465744, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320892125954465746, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
+      propertyPath: knockbackPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320892125954465746, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
+      propertyPath: knockbackDuration
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7320892125954465756, guid: 882f816cea1f0924da527dd2de121f6a, type: 3}
       propertyPath: m_RootOrder
