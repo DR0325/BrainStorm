@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(Player.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            StartCoroutine(player.GetComponent<Player>().Knockback(knockbackDuration, knockbackPower, this.transform));
         }
     }
 

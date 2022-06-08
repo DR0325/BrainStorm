@@ -186,10 +186,12 @@ public class GameManager : MonoBehaviour
     public GameObject uiHealthBar;
     public GameObject uiStaminaBar;
     public GameObject uiReuptakeBar;
+    public GameObject uiBossBar;
     [Header("UI Objects")] 
     public GameObject upgrades;
     public GameObject pauseMenu;
     public GameObject lvlClearMenu;
+    public GameObject lvlTimer;
     
 
     private float _timeScale;
@@ -207,7 +209,7 @@ public class GameManager : MonoBehaviour
         uiHealthBar = GameObject.FindWithTag("HealthBar");
         uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
-        LevelTimer.instance.BeginTimer();
+        lvlTimer.GetComponent<LevelTimer>().BeginTimer();
         player = GameObject.FindWithTag("Player");
     }
 
