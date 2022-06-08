@@ -56,7 +56,10 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                isDone = true;
+                if (!canSpawn)
+                {
+                    isDone = true;
+                }
             }
         }
         

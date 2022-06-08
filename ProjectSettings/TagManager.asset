@@ -15,6 +15,7 @@ TagManager:
   - GM
   - CombatEnemy
   - Checkpoint
+  - BossBar
   - Star
   - Bullet3
   - ground

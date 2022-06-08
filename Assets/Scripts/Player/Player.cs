@@ -238,7 +238,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         currentHealth = startingHealth;
         pImputActions = new PlayerInputActions();
         currMoveSpeed = speedPlayer;
