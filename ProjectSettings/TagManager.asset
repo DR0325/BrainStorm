@@ -15,6 +15,7 @@ TagManager:
   - GM
   - CombatEnemy
   - Checkpoint
+  - BossBar
   layers:
   - Default
   - TransparentFX

@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour
     public GameObject uiHealthBar;
     public GameObject uiStaminaBar;
     public GameObject uiReuptakeBar;
+    public GameObject uiBossBar;
     [Header("UI Objects")] 
     public GameObject upgrades;
     public GameObject pauseMenu;
