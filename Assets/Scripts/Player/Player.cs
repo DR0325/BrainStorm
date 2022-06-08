@@ -234,9 +234,11 @@ public class Player : MonoBehaviour
 
     public GameObject fallDetector;
 
+    public static Player instance;
+
     private void Awake()
     {
-        
+        instance = this;
         currentHealth = startingHealth;
         pImputActions = new PlayerInputActions();
         currMoveSpeed = speedPlayer;
@@ -741,6 +743,18 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(iFramesDuration / (numOfFlashes * 2));
         }
         Physics2D.IgnoreLayerCollision(10, 9, false);
+    }
+
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
+        while(knockbackDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * knockbackPower);
+        }
+            yield return 0;
     }
 
 }

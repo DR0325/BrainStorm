@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float knockbackPower = 100;
+    public float knockbackDuration = 1;
+
+
     public int _experienceGain;
     public float attackTime;
     public float health;
@@ -47,6 +51,15 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.score += enemyScoreValue;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            StartCoroutine(Player.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+        }
+    }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
