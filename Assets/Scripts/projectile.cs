@@ -12,7 +12,7 @@ public class projectile : MonoBehaviour
 
     public GameObject destroyEffect;
     public LayerMask isSolid;
-
+    public Vector2 moveDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,8 @@ void Update()
             }
             DestroyProjectile();
         }
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, moveDirection, speed * Time.deltaTime);
+        transform.translate(vector2.up * speed * time.deltatime);
     }
 
     void DestroyProjectile()

@@ -31,8 +31,9 @@ public class CameraFunctionality : MonoBehaviour
 
         //target =;
         //target2 =;
-         player = GameManager.Instance.player;
-        target = player.transform;
+
+        // player = GameManager.Instance.player;
+        //target = GameManager.Instance.player.transform;
         //timerTracker = timer;
 
     }

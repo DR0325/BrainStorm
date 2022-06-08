@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
     private int _qtyPsycheGrenades;
     private int _qtyKineticGrenades;
     private int _qtySerotoninShells;
+
+    
     /// <summary>
     /// Healing Item
     /// </summary>
@@ -200,8 +202,13 @@ public class GameManager : MonoBehaviour
     {
         if (_instance != null && _instance != this) Destroy(gameObject);
         else _instance = this;
+    }
 
         //find all the prefabs that are not part of the UI prefab
+    private void Start()
+    {
+
+
         lastCheckPointPos = levelStartPos.position;
         Time.timeScale = 1f;
         uiHealthBar = GameObject.FindWithTag("HealthBar");
@@ -210,14 +217,14 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
     }
 
-    private void Start()
-    {
+    //private void Start()
+    //{
         //lastCheckPointPos = levelStartPos.position;
         //Time.timeScale = 1f;
         //uiHealthBar = GameObject.FindWithTag("HealthBar");
         //uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         //uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
-    }
+    //}
 
     private void Update()
     {

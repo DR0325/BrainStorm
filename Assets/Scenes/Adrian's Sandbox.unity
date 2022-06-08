@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 651931271181543574, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
+      propertyPath: draw
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 651931271181543574, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 1659667632980587070, guid: 88e9784292f8dde41937d310f99e9e28, type: 3}
@@ -285,6 +289,16 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3940677444311614629, guid: b4b3c86473898614c9342d2c3fdd4dab, type: 3}
   m_PrefabInstance: {fileID: 704555515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &117574283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7739342646034291295, guid: 044520b80d7a59f4db532b58735525bb, type: 3}
+  m_PrefabInstance: {fileID: 1952576227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &117574291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7739342646034291286, guid: 044520b80d7a59f4db532b58735525bb, type: 3}
+  m_PrefabInstance: {fileID: 1952576227}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &201261561
 PrefabInstance:
@@ -811,6 +825,7 @@ MonoBehaviour:
   hurtBox: {fileID: 0}
   player: {fileID: 0}
   distanceFromPlayer: 0
+  draw: 0
 --- !u!50 &1065904263
 Rigidbody2D:
   serializedVersion: 4
@@ -2439,11 +2454,11 @@ PrefabInstance:
     - target: {fileID: 2110208392730083900, guid: a9ca483b59d0c154dbab333b9809c9ac, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 117574283}
     - target: {fileID: 2110208392730083900, guid: a9ca483b59d0c154dbab333b9809c9ac, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 117574291}
     - target: {fileID: 2110208392730083900, guid: a9ca483b59d0c154dbab333b9809c9ac, type: 3}
       propertyPath: target2
       value: 

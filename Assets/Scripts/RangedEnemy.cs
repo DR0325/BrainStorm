@@ -15,7 +15,7 @@ public class RangedEnemy : MonoBehaviour
     private void Start()
     {
         projectile = bullet.GetComponent<EnemyProjectile>();
-        projectile.moveDirection = shootDirection;
+        //projectile.moveDirection = shootDirection;
         nextFire = Time.deltaTime;
     }
 

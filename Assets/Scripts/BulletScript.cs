@@ -105,37 +105,57 @@ public static class BulletScript
 
     public static void Fire4()
     {
-        //Vector2 targetDir = (enemy.bulParent.position + GameManager.Instance.player.transform.position).normalized;
-        //Vector2 targetDir = (GameManager.Instance.player.transform.position - bulletTransform.position).normalized * enemy.bulletSpeed;
-        Vector3 targetAngle = GameManager.Instance.player.transform.position - enemy.bulParent.position;
-        float zRotation = Mathf.Atan2(targetAngle.y, targetAngle.x);
-        //m_Angle = Vector2.Angle(m_MyFirstVector, m_MySecondVector);
-        float spread = enemy.endAngle - enemy.startAngle;
-        float angleStep = spread / enemy.numberOfBullets;
-        float temp = zRotation * Mathf.Rad2Deg;
 
-        float currentAngle = (float)(zRotation + ((spread/2 * Math.PI)/180) );
-        Debug.Log("fire4 step 1");
-        for (int i = 0; i < enemy.numberOfBullets/2 + 1; i++)
-        {
+      
+
+        //float spread = enemy.endAngle - enemy.startAngle;
+        //float angleStep = spread / enemy.numberOfBullets;
+
+
+        //float currentAngle = (float)(zRotation + ((spread/2 * Math.PI)/180) );
+        //Debug.Log("fire4 step 1");
+        //for (int i = 0; i < enemy.numberOfBullets + 1; i++)
+        //{
+
+            Vector3 targetAngle = GameManager.Instance.player.transform.position - enemy.bulParent.position;
+            float spread = enemy.endAngle - enemy.startAngle;
+            float angleStep = spread / enemy.numberOfBullets;
+
+            Vector3 CurrentAngle = Quaternion.Euler(0, 0, -spread / 2) * targetAngle; // starting the current at the one extreme end rotating the target angle by half of the full spread
+
+            for (int i = 0; i < enemy.numberOfBullets;i++) // loop for all bullets
+            {
+            /////////////////////////////
+            //Bullet Creation code here//
+            /////////////////////////////
             pulledBullet = GameManager.Instance.bulletPool.GetBullet(bul);
             pulledBullet.SetActive(true);
-           // pulledBullet.transform.rotation = Quaternion.Euler(0, 0, (zRotation * Mathf.Rad2Deg) + (spread/50));
             pulledBullet.GetComponent<Bullet>().bulletDuration = enemy.howLongWillBulletLast;
-            pulledBullet.transform.position = enemy.bulParent.position;
+            pulledBullet.transform.position = enemy.bulParent.position;//bullet start position
             pulledBullet.GetComponent<Bullet>().firingPattern = enemy.enemyFireingType;
             pulledBullet.GetComponent<Bullet>().damage = enemy.damage;
-            Debug.Log(currentAngle);
-            float bulDirX = pulledBullet.transform.position.x + Mathf.Sin((temp * Mathf.PI)/180);
-            float bulDirY = pulledBullet.transform.position.y + Mathf.Cos((temp * Mathf.PI)/180);
-            Debug.Log("fire4 step 2");
-            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-            Vector2 bulDir = (bulMoveVector - pulledBullet.transform.position).normalized;
+            pulledBullet.GetComponent<Bullet>().SetMoveDirection(new Vector2(CurrentAngle.x, CurrentAngle.y));
+                CurrentAngle = Quaternion.Euler(0, 0, angleStep) * CurrentAngle; // rotate the current angle up by the step angle
+            }
 
-            pulledBullet.GetComponent<Bullet>().SetMoveDirection(bulDir);
+            //pulledBullet = GameManager.Instance.bulletPool.GetBullet(bul);
+            //pulledBullet.SetActive(true);
+           //pulledBullet.transform.rotation = Quaternion.Euler(0, 0, (zRotation * Mathf.Rad2Deg) + (spread/50));
+           // pulledBullet.GetComponent<Bullet>().bulletDuration = enemy.howLongWillBulletLast;
+           // pulledBullet.transform.position = enemy.bulParent.position;
+           // pulledBullet.GetComponent<Bullet>().firingPattern = enemy.enemyFireingType;
+           // pulledBullet.GetComponent<Bullet>().damage = enemy.damage;
+           // Debug.Log(currentAngle);
+           // float bulDirX = pulledBullet.transform.position.x + Mathf.Sin((temp * Mathf.PI)/180);
+           // float bulDirY = pulledBullet.transform.position.y + Mathf.Cos((temp * Mathf.PI)/180);
+           // Debug.Log("fire4 step 2");
+           // Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+           // Vector2 bulDir = (bulMoveVector - pulledBullet.transform.position).normalized;
 
-            currentAngle += angleStep;
-        }
+           // pulledBullet.GetComponent<Bullet>().SetMoveDirection(bulDir);
+
+           // currentAngle += angleStep;
+        //}
         Debug.Log("fire4 step 3");
     }
 

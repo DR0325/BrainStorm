@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public float health;
     public float damage;
 
+    private float dmgMultip;
+    private float healthMultip;
+
     public SpriteRenderer sprite;
     public float flashTime;
 
@@ -37,6 +40,7 @@ public class Enemy : MonoBehaviour
     public Collider2D hurtBox;
     public GameObject player;
     public float distanceFromPlayer;
+    public bool draw;//for draw gizmos
 
     private void Awake()
     {
@@ -47,7 +51,11 @@ public class Enemy : MonoBehaviour
     {
         enemyInstance = this;
         nextFire = fireRate;
+        dmgMultip = StateNameController.damageMultiplier;
+        healthMultip = StateNameController.healthMultiplier;
         player = GameObject.FindWithTag("Player");
+        health *= healthMultip;
+        damage *= dmgMultip;
     }
 
     private void Update()
@@ -93,9 +101,12 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, lineOfSight);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, firingRange);
+        if (draw)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, lineOfSight);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, firingRange);
+        }
     }
 }
