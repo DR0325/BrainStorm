@@ -25,7 +25,7 @@ public class LevelComponents : MonoBehaviour
     private int directionAngleQuadrant;//variable may not be needed.
     private bool direction1Or2 = false;
     public Rigidbody2D rb;
-
+    private Vector3 drawSize = new Vector3(1,1,1);
     //code from class
     [SerializeField] Transform destinationPosition;
     [SerializeField] int speed;
@@ -48,9 +48,9 @@ public class LevelComponents : MonoBehaviour
         destinationPos = target;
         startingPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
-        timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
-        nextMoveTime = pauseBetweenDirectionSwitch;
+        //currentPosition = transform.position; //Setting CurrentPosition to adjust and track.
+        //timeLengthTracker = timeLengthMove; //setting a tracker to count down the move time.
+       // nextMoveTime = pauseBetweenDirectionSwitch;
        // ChangeTotalMove();
     }
 
@@ -232,29 +232,42 @@ public class LevelComponents : MonoBehaviour
 
         if(Vector2.Distance(transform.position, target) <= 0.01f )
         {
-       
-            if (target == destinationPos && nextMoveTime <= 0)
+            if (returnDirection)
             {
-                target = startingPosition;
-                nextMoveTime = pauseBetweenDirectionSwitch;
+                if (target == destinationPos && nextMoveTime <= 0)
+                {
+                    target = startingPosition;
+                    nextMoveTime = pauseBetweenDirectionSwitch;
+                }
+                else if (target == startingPosition && nextMoveTime <= 0)
+                {
+                    target = destinationPos;
+                    nextMoveTime = pauseBetweenDirectionSwitch;
+                }
+                nextMoveTime = nextMoveTime - Time.deltaTime;
             }
-            else if(target == startingPosition && nextMoveTime <= 0)
-            {
-                target = destinationPos;
-                nextMoveTime = pauseBetweenDirectionSwitch;
-            }
-            nextMoveTime = nextMoveTime - Time.deltaTime;
         }
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
     }
 
-
+    //void OnDrawGizmosSelected()
+    //{
+    //    if (draw)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        for (int i = 0; i < spawnPoints.Length; i++)
+    //        {
+    //            Gizmos.DrawCube(spawnPoints[i].transform.position, drawSize);
+    //        }
+    //    }
+    //}
     private void OnDrawGizmosSelected()
     {
         if (showMovePath == true)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(destinationPosition.position, drawSize);
             //Gizmos.DrawLine(this.transform.position, totalMove * 3);
         }
     //    Gizmos.DrawWireSphere();

@@ -32,7 +32,7 @@ void Update()
             DestroyProjectile();
         }
         //transform.position = Vector2.MoveTowards(transform.position, moveDirection, speed * Time.deltaTime);
-        transform.translate(vector2.up * speed * time.deltatime);
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
     void DestroyProjectile()

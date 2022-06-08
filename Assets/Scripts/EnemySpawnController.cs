@@ -6,8 +6,11 @@ public class EnemySpawnController : MonoBehaviour
 {
     public EnemySpawner[] orderOfSpawnerTrigger;
     public int currentSpawner;
-    public GameObject platformAppear;
+    public GameObject LevelComponentManipulate;
     public bool IsSpawnerActive = false;
+    public bool doesPlatformAppear;
+    public bool doesPlatformMove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,17 @@ public class EnemySpawnController : MonoBehaviour
                     }
                     else
                     {
-                        platformAppear.SetActive(true);
+                        if (LevelComponentManipulate != null)
+                        {
+                            if (doesPlatformAppear)
+                            {
+                                LevelComponentManipulate.SetActive(true);
+                            }
+                            if(doesPlatformMove)
+                            {
+                                LevelComponentManipulate.GetComponent<LevelComponents>().doesPlatformMove = true;
+                            }
+                        }
                     }
                 }
             }

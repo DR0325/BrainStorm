@@ -150,15 +150,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _experienceGain: 10
-  attackTime: 1
   health: 100
   damage: 20
   sprite: {fileID: 6298261600560207567}
   flashTime: 0.15
+  fireRate: 0
+  howLongWillBulletLast: 0
+  pauseRate: 0
+  nextFire: 0
   followsPlayer: 0
   bulletParent: {fileID: 0}
+  bulletType: {fileID: 0}
   enemyScoreValue: 0
+  lineOfSight: 0
+  firingRange: 0
+  stepAngle: 0
+  enemyFireingType: 0
+  enemyMovementType: 0
+  moveSpeed: 0
+  bulletSpeed: 0
+  numberOfBullets: 0
+  startAngle: 0
+  endAngle: 0
+  bulParent: {fileID: 0}
   hurtBox: {fileID: 0}
+  player: {fileID: 0}
+  distanceFromPlayer: 0
+  draw: 0
 --- !u!114 &6298261600560207554
 MonoBehaviour:
   m_ObjectHideFlags: 0
