@@ -82,25 +82,15 @@ public static class BulletScript
 
     public static void Fire3()
     {
-
         pulledBullet = GameManager.Instance.bulletPool.GetBullet(bul);
-        pulledBullet.SetActive(true);
+        pulledBullet.gameObject.SetActive(true);
         pulledBullet.GetComponent<Bullet>().bulletDuration = enemy.howLongWillBulletLast;
         pulledBullet.transform.position = enemy.bulParent.position;
         pulledBullet.GetComponent<Bullet>().firingPattern = enemy.enemyFireingType;
         pulledBullet.GetComponent<Bullet>().damage = enemy.damage;
-  
-        float bulDirX = pulledBullet.transform.position.x + Mathf.Sin((angle + 180 * Mathf.PI) / 180f);
-        float bulDirY = pulledBullet.transform.position.y + Mathf.Cos((angle + 180 * Mathf.PI) / 180f);
-        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-        Vector2 bulDir = (bulMoveVector - bulletTransform.position).normalized;
-        pulledBullet.GetComponent<Bullet>().SetMoveDirection(bulDir);
        
-        angle += stepAngle;
-        if (angle >= 360f)
-        {
-            angle = 0f;
-        }
+        Vector3 target = GameManager.Instance.player.transform.position - enemy.bulParent.position;
+        pulledBullet.GetComponent<Bullet>().SetMoveDirection(target);
     }
 
     public static void Fire4()
@@ -159,40 +149,32 @@ public static class BulletScript
         Debug.Log("fire4 step 3");
     }
 
-    //failed attempt at firing, somewhat cool firing pattern..
-    //public static void Fire4()
-    //{
-    //   
-    //    Vector3 targetAngle = GameManager.Instance.player.transform.position - enemy.bulParent.position;
-    //    float zRotation = Mathf.Atan2(targetAngle.y, targetAngle.x);
-    //    float spread = enemy.endAngle - enemy.startAngle;
-    //    float angleStep = spread / enemy.numberOfBullets;
 
-    //    float currentAngle = (float)(zRotation + ((spread / 2 * Math.PI) / 180));
-    //    Debug.Log("fire4 step 1");
-    //    for (int i = 0; i < enemy.numberOfBullets + 1; i++)
-    //    {
-    //        pulledBullet = GameManager.Instance.bulletPool.GetBullet(bul);
-    //        pulledBullet.SetActive(true);
-    //        pulledBullet.GetComponent<Bullet>().bulletDuration = enemy.howLongWillBulletLast;
-    //        pulledBullet.transform.position = enemy.bulParent.position;
-    //        pulledBullet.GetComponent<Bullet>().firingPattern = enemy.enemyFireingType;
-    //        pulledBullet.GetComponent<Bullet>().damage = enemy.damage;
+    public static void Fire5()
+    {
 
-    //        float bulDirX = pulledBullet.transform.position.x + Mathf.Sin((currentAngle));
-    //        float bulDirY = pulledBullet.transform.position.y + Mathf.Cos((currentAngle));
-    //        Debug.Log("fire4 step 2");
-    //        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-    //        Vector2 bulDir = (bulMoveVector - bulletTransform.position).normalized;
+        pulledBullet = GameManager.Instance.bulletPool.GetBullet(bul);
+        pulledBullet.SetActive(true);
+        pulledBullet.GetComponent<Bullet>().bulletDuration = enemy.howLongWillBulletLast;
+        pulledBullet.transform.position = enemy.bulParent.position;
+        pulledBullet.GetComponent<Bullet>().firingPattern = enemy.enemyFireingType;
+        pulledBullet.GetComponent<Bullet>().damage = enemy.damage;
 
-    //        pulledBullet.GetComponent<Bullet>().SetMoveDirection(bulDir);
+        float bulDirX = pulledBullet.transform.position.x + Mathf.Sin((angle + 180 * Mathf.PI) / 180f);
+        float bulDirY = pulledBullet.transform.position.y + Mathf.Cos((angle + 180 * Mathf.PI) / 180f);
+        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+        Vector2 bulDir = (bulMoveVector - bulletTransform.position).normalized;
+        pulledBullet.GetComponent<Bullet>().SetMoveDirection(bulDir);
 
-    //        currentAngle += angleStep;
-    //    }
-    //    Debug.Log("fire4 step 3");
-    //}
+        angle += stepAngle;
+        if (angle >= 360f)
+        {
+            angle = 0f;
+        }
+    }
+    
+    public static void FireSummoner()//new enemy, summons minions to attack instead of actually attacks.
+    {
 
-
-
-
+    }
 }

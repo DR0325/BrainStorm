@@ -4,48 +4,57 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public static Enemy enemyInstance;
-    public int _experienceGain;
-   // public float attackTime;
     public float health;
     public float damage;
+    public int _experienceGain;
 
     private float dmgMultip;
     private float healthMultip;
-
+    public int enemyScoreValue;
     public SpriteRenderer sprite;
     public float flashTime;
 
-    //Enemy properties
+    [Header("Enemy Firing Information")]
+    public int enemyFireingType;
     public float fireRate;
-    public float howLongWillBulletLast;
-    public float pauseRate; //pause delay between shots.
-    public float nextFire;
-    public bool followsPlayer;
-    private bool _isTouchingPlayer;
-    private float _timeSinceLastDamage;
+    public float bulletSpeed;
+    //public float pauseRate; //pause delay between shots. currently not implimented TODO
+    [HideInInspector] public float nextFire;
+    public float firingRange;
     public GameObject bulletParent;
     public GameObject bulletType;
-    public int enemyScoreValue;
-    public float lineOfSight;
-    public float firingRange;
-    public float stepAngle; 
-    public int  enemyFireingType;
-    public int  enemyMovementType;
+    [Header("Type 3 & 4 Firing Information")]
+    public float stepAngle_3;// for bullet type 3
+    public int numberOfBullets_4;// for bullet type 4 use
+    public float startAngle_4; //for bullet type 4 use
+    public float endAngle_4; // for bullet type 4 use
+
+    [Header("Enemy Moving Information")]
+    public bool followsPlayer;
     public float moveSpeed;
-    public float bulletSpeed;
-    public int numberOfBullets;// for bullet type 4 use
-    public float startAngle; //for bullet type 4 use
-    public float endAngle; // for bullet type 4 use
-    public Transform bulParent;
+    public float lineOfSight;
+    private bool _isTouchingPlayer;
+    private float _timeSinceLastDamage;
+    public float howLongWillBulletLast;
+    //public int enemyMovementType; //Currently not implimented TODO
+
+
+
+
+
+
     public Collider2D hurtBox;
-    public GameObject player;
-    public float distanceFromPlayer;
+    [HideInInspector] public Transform bulParent;
+    
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public float distanceFromPlayer;
+    [Header("Draw Information")]
     public bool draw;//for draw gizmos
 
-    private void Awake()
-    {
+    //private void Awake()
+    //{
    
-    }
+    //}
 
     private void Start()
     {
