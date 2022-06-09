@@ -5,7 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
+    //public static LevelSelect instance;
     public GameObject diffMenu;
+    public GameObject loadingScreen;
+
+    private void Awake()
+    {
+        
+
+        
+    }
 
     public void SelectLevel(string levelName)
     {
