@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     
     public Wave[] waves;
     public Transform[] spawnPoints;
+    public GameObject enemyCounter;
 
     private Wave currWave;
     private int currWaveNum;
@@ -59,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!canSpawn)
                 {
                     isDone = true;
+                    enemyCounter.SetActive(false);
                 }
             }
         }

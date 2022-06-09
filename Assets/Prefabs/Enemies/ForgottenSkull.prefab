@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da813b9101b2438f8ae1ca7311f31a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackPower: 100
+  knockbackPower: 20
   knockbackDuration: 1
   _experienceGain: 10
   attackTime: 1
@@ -159,7 +159,7 @@ MonoBehaviour:
   flashTime: 0.15
   followsPlayer: 0
   bulletParent: {fileID: 0}
-  enemyScoreValue: 0
+  enemyScoreValue: 300
   deathParticles: {fileID: 3301324051784629865, guid: 35117a7376f10a14a8aaf15965ef471b, type: 3}
   hurtBox: {fileID: 0}
 --- !u!114 &6298261600560207554

@@ -28,7 +28,7 @@ public class RangedEnemy : MonoBehaviour
     {
         if(Time.time > nextFire)
         {
-            Instantiate(bullet, shootPoint.position, Quaternion.identity);
+            Instantiate(projectile, shootPoint.position, Quaternion.identity);
             nextFire = Time.time + fireRate;
         }
     }

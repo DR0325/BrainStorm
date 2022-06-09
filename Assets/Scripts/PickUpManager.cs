@@ -16,7 +16,7 @@ public class PickUpManager : MonoBehaviour
     public void addStar()
     {
         stars++;
-        starsText.text = stars.ToString();
+        starsText.text = "Stars: " + stars.ToString();
     }
     // Start is called before the first frame update
     void Start()

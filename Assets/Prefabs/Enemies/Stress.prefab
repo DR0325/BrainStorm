@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da813b9101b2438f8ae1ca7311f31a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackPower: 0
+  knockbackDuration: 1
   _experienceGain: 0
   attackTime: 1
   health: 500
@@ -152,6 +154,9 @@ MonoBehaviour:
   sprite: {fileID: 2707518627279008079}
   flashTime: 0.15
   followsPlayer: 0
+  bulletParent: {fileID: 0}
+  enemyScoreValue: 0
+  deathParticles: {fileID: 0}
   hurtBox: {fileID: 0}
 --- !u!1 &7484388805798596969
 GameObject:

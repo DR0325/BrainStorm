@@ -350,6 +350,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+--- !u!1 &613714604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8741195490395107925, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+  m_PrefabInstance: {fileID: 613714603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &623282828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -927,6 +932,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 77970213}
+    - target: {fileID: 3606575516066934942, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
+      propertyPath: enemyCounter
+      value: 
+      objectReference: {fileID: 613714604}
     - target: {fileID: 3606575516066934947, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
       propertyPath: m_Name
       value: BossRoom
@@ -935,6 +944,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3606575516448757226, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
+      propertyPath: enemyCounter
+      value: 
+      objectReference: {fileID: 613714604}
     - target: {fileID: 3606575516448757226, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
       propertyPath: waves.Array.data[0].typeOfEnemies.Array.data[0]
       value: 

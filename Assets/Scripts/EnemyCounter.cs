@@ -18,7 +18,7 @@ public class EnemyCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
 
         enemyCountText.text = "Enemies: " + enemies.Length.ToString();
     }

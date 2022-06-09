@@ -6,16 +6,17 @@ public class CombatZone : MonoBehaviour
 {
     public Transform cam;
 
-   
     public Transform camLock;
     public Transform enemySpawner;
     public GameObject[] Doors;
+
+    public GameObject enemyCounter;
 
     private bool isTriggered = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class CombatZone : MonoBehaviour
                 enemySpawner.GetComponent<EnemySpawner>().isTriggered = true;
                 cam.GetComponent<CameraLook>().camTarget = camLock;
                 cam.GetComponent<CameraLook>().inCombat = true;
+                enemyCounter.SetActive(true);
                 for (int i = 0; i < Doors.Length; i++)
                 {
                     Doors[i].GetComponent<DoorScript>().MoveDoors();
