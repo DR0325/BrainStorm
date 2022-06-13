@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     public float defeatTime;
 
     [HideInInspector]
-    public float groundCheckRadius = 0.2f;
+    public float groundCheckRadius;
 
     [HideInInspector]
     public float rateThrow = 0.01f;
@@ -276,10 +276,16 @@ public class Player : MonoBehaviour
             float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offsetWeap);
 
+            if(currMoveSpeed == speedPlayer)
+            {
+                anim.SetBool("Run", false);
+            }
+
             //------- Jump --------
 
             if(isGrounded == true)
             {
+                anim.SetBool("Jump", false);
                 coyoteTimeCounter = coyoteTime;
             }
             else
@@ -315,7 +321,6 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    anim.SetBool("Jump", false);
                     isJumping = false;
                 }
             }
@@ -396,6 +401,7 @@ public class Player : MonoBehaviour
                 {
                     currMoveSpeed = speedPlayer;
                     Physics2D.IgnoreLayerCollision(10, 9, false);
+                    anim.SetBool("Roll", false);
                     rollCooldCounter = rollCooldown;
                 }
             }
@@ -417,16 +423,6 @@ public class Player : MonoBehaviour
             {
                 checkIdle = false;
                 // anim.SetBool("SecondIdle", false);
-            }
-
-            // if (checkIdle && timeIdle < Time.time) anim.SetBool("SecondIdle", true);
-
-            if (stairs)
-                MoveOnStairs();
-            if (!stairs)
-            {
-                GetComponent<CircleCollider2D>().isTrigger = false;
-                GetComponent<BoxCollider2D>().isTrigger = false;
             }
 
             CollectResources();
@@ -501,6 +497,9 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(attackPos.position, atkRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -676,6 +675,7 @@ public class Player : MonoBehaviour
         {
             currMoveSpeed = rollSpeed;
             Physics2D.IgnoreLayerCollision(10, 9, true);
+            anim.SetBool("Roll", true);
             rollCounter = rollLength;
         }
     }

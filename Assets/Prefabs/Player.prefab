@@ -59,8 +59,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2952284534472176713}
   m_LocalRotation: {x: 0, y: 0, z: 0.60876137, w: 0.7933534}
-  m_LocalPosition: {x: 0.131, y: 0.381, z: 0}
-  m_LocalScale: {x: 0.19314852, y: 0.2972479, z: 1.1031}
+  m_LocalPosition: {x: 0.167, y: 0.269, z: 0}
+  m_LocalScale: {x: 0.10909029, y: 0.16788562, z: 0.6230309}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4480400564004147409}
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4595359034467267204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.052, y: 0.655, z: 0}
+  m_LocalPosition: {x: 0.0010005133, y: 0.355, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -245,7 +245,7 @@ GameObject:
   m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -257,8 +257,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7739342645955570144}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.004, y: -0.285, z: 0}
-  m_LocalScale: {x: 0.10535922, y: 0.21609682, z: 1}
+  m_LocalPosition: {x: -0.0057, y: -0.22, z: 0}
+  m_LocalScale: {x: 1.03, y: 0.21609682, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7739342646034291286}
@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 7739342646034291288}
   - component: {fileID: 7739342646034291291}
   - component: {fileID: 7739342646034291290}
-  - component: {fileID: 7739342646034291293}
   - component: {fileID: 7739342646034291292}
   - component: {fileID: 7739342646034291287}
   m_Layer: 10
@@ -296,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 7739342646034291295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.25, y: 14.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.083092, y: 2.083092, z: 2.083092}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7739342645955570145}
@@ -345,7 +344,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5392d01d9d50b4ed095f3f7e355ab6eb, type: 3}
+  m_Sprite: {fileID: -1306544360, guid: ae7fc8c62d86a4548ab54c981fa29b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -389,7 +388,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 09b150c3fc87d4ee9ac0a05de489a8d2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -410,35 +409,19 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005872309, y: -0.009760618}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.41, y: 0.56}
+    oldSize: {x: 0.36, y: 0.44}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.41, y: 0.56}
+  m_Size: {x: 0.31072474, y: 0.4232049}
   m_EdgeRadius: 0
---- !u!58 &7739342646034291293
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739342646034291295}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
 --- !u!114 &7739342646034291292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +439,7 @@ MonoBehaviour:
   runSpeed: 7
   jumpForce: 10
   jumpTime: 0.2
-  checkRadius: 0.05
+  checkRadius: 0.32
   rollSpeed: 16
   rollLength: 0.25
   rollCooldown: 0.6
@@ -491,7 +474,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
-  swordDmg: 20
+  swordDmg: 25
   iFramesDuration: 1
   numOfFlashes: 3
   staminaBar: {fileID: 0}
