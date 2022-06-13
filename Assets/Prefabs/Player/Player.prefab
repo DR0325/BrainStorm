@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   hurtEffect: {fileID: 3091420540871921656}
   defeatAnimator: {fileID: 3091420540871921601}
-  shieldAnim: {fileID: 3091420540871921656}
+  swordAnim: {fileID: 0}
   fight1: {fileID: 0}
   fight2: {fileID: 0}
   stuffAttack: {fileID: 0}
@@ -133,8 +133,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isItScene1: 0
+  selectedWeapon: 0
+  weaponHolder: {fileID: 0}
   currWeapon: {fileID: 11400000, guid: 209b8dfdf5ccb2c43bbbc46151d69167, type: 2}
   _offset: 0
+  gun: {fileID: 0}
+  startTimeBtwAtk: 0
+  attackPos: {fileID: 0}
+  atkRange: 0
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+  swordDmg: 0
   iFramesDuration: 0
   numOfFlashes: 0
   staminaBar: {fileID: 0}
@@ -179,13 +189,11 @@ MonoBehaviour:
   fireArrowAttack: 0
   kineticGrenadeAttack: 0
   psycheGrenadeAttack: 0
-  swordAttackBut: 0
-  swordAttackBut2: 0
-  shieldButAndroid: 0
   moveLeftBut: 0
   moveRightBut: 0
   jumpBut: 0
   runPlayer: 0
+  fallDetector: {fileID: 0}
 --- !u!50 &3091420540871921643
 Rigidbody2D:
   serializedVersion: 4
@@ -427,7 +435,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

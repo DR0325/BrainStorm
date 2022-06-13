@@ -28,6 +28,7 @@ public class Timer : MonoBehaviour
         {
             currentTime += Time.deltaTime;
         }
+        //string timePlayingStr = "Time : " + currentTime.ToString("mm' : 'ss' . 'ff");
         currentTimeText.text = currentTime.ToString();
         if(timeToDepreciateTimeScore < currentTime)
         {

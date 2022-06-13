@@ -33,7 +33,7 @@ public class CameraLook : MonoBehaviour {
         if (followPlayer == true)
         {
             inCombat = false;
-            transform.position = new Vector3(player.position.x + lookAhead, player.position.y, transform.position.z);
+            transform.position = new Vector3(player.position.x + lookAhead, player.position.y + 1.5f, transform.position.z);
             lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * cameraSpeed);
         }
     }

@@ -13,6 +13,7 @@ public class LevelTimer : MonoBehaviour
 
     private TimeSpan timePlaying;
     private bool timerGoing;
+
     private float elapsedTime;
     
     private void Awake()
@@ -22,9 +23,10 @@ public class LevelTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BeginTimer();
+        
         timeCounter.text = "Time:00:00.00";
         timerGoing = false;
+        BeginTimer();
 
     }
 

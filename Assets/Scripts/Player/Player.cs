@@ -521,15 +521,14 @@ public class Player : MonoBehaviour
     {
         //void OnTriggerEnter2d(Collider2D collision)
         //{
+        /*
             if (other.CompareTag("LevelEnter"))
             {
                 Debug.Log("Boom");
                 LevelTimer.instance.BeginTimer();
-            }
+            }*/
             if (other.CompareTag("Star"))
-            {
-
-                
+            { 
                 Destroy(other);
             }
         //}
