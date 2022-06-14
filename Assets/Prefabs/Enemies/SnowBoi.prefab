@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651931270500689743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.39, y: -1.13, z: 0}
+  m_LocalPosition: {x: -0.244, y: -0.092, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 651931271181543573}
   - component: {fileID: 651931271181543574}
   - component: {fileID: 651931271181543577}
+  - component: {fileID: 193290967363882280}
   m_Layer: 9
   m_Name: SnowBoi
   m_TagString: Enemy
@@ -60,8 +61,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651931271181543575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.6, y: 14.06, z: 0}
-  m_LocalScale: {x: 0.0897836, y: 0.0897836, z: 0.0897836}
+  m_LocalPosition: {x: 35.0743, y: 13.1034, z: 0}
+  m_LocalScale: {x: 2.7247686, y: 2.7247686, z: 2.7247686}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651931270500689742}
@@ -108,8 +109,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: bb4ef6f21a51e894cb428898aea2eb4b, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -224934603, guid: 8ea75e4c9f1207b44bc56fe81bf724ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,18 +134,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25489235, y: 0.08491576}
+  m_Offset: {x: 0.0040951967, y: -0.016962849}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 10}
+    oldSize: {x: 0.36, y: 0.49}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.9613724, y: 8.131793}
+  m_Size: {x: 0.28076875, y: 0.4562534}
   m_EdgeRadius: 0
 --- !u!50 &651931271181543573
 Rigidbody2D:
@@ -186,6 +187,7 @@ MonoBehaviour:
   health: 50
   damage: 10
   sprite: {fileID: 651931271181543579}
+  anim: {fileID: 193290967363882280}
   flashTime: 0.15
   followsPlayer: 0
   bulletParent: {fileID: 0}
@@ -208,3 +210,23 @@ MonoBehaviour:
   shootPoint: {fileID: 651931270500689742}
   shootDirection: {x: -1, y: 0}
   fireRate: 1
+--- !u!95 &193290967363882280
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651931271181543575}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a15eb7bc27a6571489e07fbdd1e3f29e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

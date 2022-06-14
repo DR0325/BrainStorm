@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
     public float _offset;
     private GameObject rotationPoint;
     public GameObject gun;
+    
 
     [Header("Melee")]
     private float timebtwAtk;
@@ -223,8 +224,7 @@ public class Player : MonoBehaviour
     private bool _facingRight = true;
     private bool _flipPlayerRight;
 
-    private float _timeDefeat;
-    private float _timeFight;
+
     private float _timeScene;
 
     private GameObject _whichEnemy;
@@ -232,6 +232,7 @@ public class Player : MonoBehaviour
     private PlayerInputActions pImputActions;
     private bool meleeOnly;
 
+    public GameObject trail;
     public GameObject fallDetector;
 
     public static Player instance;
@@ -276,9 +277,26 @@ public class Player : MonoBehaviour
             float zRotat = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             rotationPoint.transform.rotation = Quaternion.Euler(0f, 0f, zRotat + _offsetWeap);
 
-            if(currMoveSpeed == speedPlayer)
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            if (mousePos.x > gameObject.transform.position.x && _facingRight == false)
+            {
+                _facingRight = true;
+                Flip();    
+            }
+            if (mousePos.x < gameObject.transform.position.x && _facingRight == true)
+            {
+                _facingRight = false;
+                Flip();
+            }
+
+            if(currMoveSpeed <= speedPlayer)
             {
                 anim.SetBool("Run", false);
+                trail.SetActive(false);
+            }
+            if(currMoveSpeed > speedPlayer)
+            {
+                trail.SetActive(true);
             }
 
             //------- Jump --------
@@ -340,7 +358,7 @@ public class Player : MonoBehaviour
             {
                 activateEnergy = false;
                 runPlayer = false;
-                speedPlayer = 0.6f;
+                //speedPlayer = 0.6f;
             }
 
             // Fall detection 
@@ -450,36 +468,14 @@ public class Player : MonoBehaviour
                 anim.SetBool("Walk", false);
             }
 
-            if (!stairs)
+            if(pImputActions.Player.Run.IsPressed() == false && rollCounter <= 0)
             {
-                horizontal = _moveDir.x;
-                rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
-
-                //Control for mobile devices
-                if (moveLeftBut && !moveRightBut)
-                {
-                    transform.Translate(-currMoveSpeed * Time.deltaTime, 0, 0);
-                    horizontal = 1f;
-                }
-
-                if (moveRightBut && !moveLeftBut)
-                {
-                    rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
-                    horizontal = 1f;
-                    if (_flipPlayerRight)
-                    {
-                        var theScale = transform.localScale;
-
-                        theScale.x *= -1;
-
-                        transform.localScale = theScale;
-
-                        _flipPlayerRight = false;
-                    }
-                }
-                // if (!moveLeftBut && !moveRightBut)
-                // horizontal = 0f;
+                currMoveSpeed = speedPlayer;
             }
+           
+             horizontal = _moveDir.x;
+             rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
+            
         }
     }
 
@@ -519,19 +515,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //void OnTriggerEnter2d(Collider2D collision)
-        //{
-        /*
-            if (other.CompareTag("LevelEnter"))
-            {
-                Debug.Log("Boom");
-                LevelTimer.instance.BeginTimer();
-            }*/
-            if (other.CompareTag("Star"))
-            { 
-                Destroy(other);
-            }
-        //}
+        if (other.CompareTag("Star"))
+        {
+            Destroy(other);
+        }
         if (other.CompareTag("DeathBarrier"))
         {
             TakeDamage(10f);
@@ -684,18 +671,9 @@ public class Player : MonoBehaviour
         //transform.Translate(speedPlayer * Time.deltaTime, 0, 0);
     }
 
-    private void Flip(float horizontal)
+    private void Flip()
     {
-        if ((horizontal > 0 && !_facingRight) || (horizontal < 0 && _facingRight))
-        {
-            _facingRight = !_facingRight;
-
-            var theScale = transform.localScale;
-
-            theScale.x *= -1;
-
-            transform.localScale = theScale;
-        }
+        playerSprite.flipX = !playerSprite.flipX;
     }
 
     public void OnPausePress()
@@ -706,22 +684,6 @@ public class Player : MonoBehaviour
     private void CollectResources()
     {
         // if ( && GameManager.Instance.inAreaTrunk) GameManager.Instance.addBrainCells = true;
-    }
-
-    private void MoveOnStairs()
-    {
-        gameObject.GetComponent<Rigidbody2D>().Sleep();
-        GetComponent<CircleCollider2D>().isTrigger = true;
-        GetComponent<BoxCollider2D>().isTrigger = true;
-
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || jumpBut)
-            transform.Translate(0, speedStairs * Time.deltaTime, 0);
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            transform.Translate(0, -speedStairs * Time.deltaTime, 0);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //checkStairs = false;
-        }
     }
 
     private void Down()

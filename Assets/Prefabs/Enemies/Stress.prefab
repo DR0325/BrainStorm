@@ -152,11 +152,12 @@ MonoBehaviour:
   health: 500
   damage: 20
   sprite: {fileID: 2707518627279008079}
+  anim: {fileID: 0}
   flashTime: 0.15
   followsPlayer: 0
   bulletParent: {fileID: 0}
-  enemyScoreValue: 0
-  deathParticles: {fileID: 0}
+  enemyScoreValue: 10000
+  deathParticles: {fileID: 3301324051784629865, guid: 35117a7376f10a14a8aaf15965ef471b, type: 3}
   hurtBox: {fileID: 0}
 --- !u!1 &7484388805798596969
 GameObject:

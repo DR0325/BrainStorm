@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454e65f20fa4305468254d4e63d5b2a7, type: 3}
   m_Name: Weapon2
   m_EditorClassIdentifier: 
-  currWeaponSpr: {fileID: 21300000, guid: 94547767a96db45c0b76d712067eac35, type: 3}
+  currWeaponSpr: {fileID: 21300000, guid: 9ca82242526e79648a74af9ad21e144a, type: 3}
   projectile: {fileID: 1629315363108868761, guid: fec1bd40ae92a524b99e76270be1d65b, type: 3}
-  _offset: -90
+  _offset: 0
   fireRate: 6

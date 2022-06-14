@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private float healthMultip;
 
     public SpriteRenderer sprite;
+    public Animator anim;
     public float flashTime;
 
     //Enemy properties
@@ -44,10 +45,13 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update()
-    {    
+    {
+        if (anim != null && anim.GetBool("gotHit") == true)
+        {
+            anim.SetBool("gotHit", false);
+        }
         if (health <= 0)
         {
-     
             Destroy(gameObject);
             GameObject go = Instantiate(deathParticles) as GameObject;
             go.transform.position = transform.position;
@@ -68,7 +72,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Ouch");
             player.GetComponent<Player>().TakeDamage(damage);
         }
     }
@@ -76,6 +79,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        if (anim != null)
+        {
+            anim.SetBool("gotHit", true);
+        }
         FlashStart();
     }
 

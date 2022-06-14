@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex + 1 != null)
+        if (SceneManager.GetActiveScene().buildIndex+1 != 4)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

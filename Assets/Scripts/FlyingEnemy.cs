@@ -8,6 +8,7 @@ public class FlyingEnemy : MonoBehaviour
     public float lineOfSight;
     private Transform player;
 
+    public Animator anim;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -19,7 +20,9 @@ public class FlyingEnemy : MonoBehaviour
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         if (distanceFromPlayer < lineOfSight)
         {
+            anim.SetBool("startle", true);
             transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+            anim.SetBool("followPlayer", true);
         }
     }
 

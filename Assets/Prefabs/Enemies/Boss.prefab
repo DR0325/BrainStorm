@@ -159,13 +159,9 @@ PrefabInstance:
       value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 8486565349728208392, guid: 8f3fa589999c81b4c9a2f3b7f68cb7cc, type: 3}
-      propertyPath: deathParticles
+      propertyPath: anim
       value: 
-      objectReference: {fileID: 3301324051784629865, guid: 35117a7376f10a14a8aaf15965ef471b, type: 3}
-    - target: {fileID: 8486565349728208392, guid: 8f3fa589999c81b4c9a2f3b7f68cb7cc, type: 3}
-      propertyPath: enemyScoreValue
-      value: 10000
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1562838880538487870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f3fa589999c81b4c9a2f3b7f68cb7cc, type: 3}
 --- !u!1 &1562838878994468112 stripped
