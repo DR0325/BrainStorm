@@ -17,10 +17,15 @@ public class EnemySpawner : MonoBehaviour
     public Wave[] waves;
     public Transform[] spawnPoints;
     public GameObject enemyCounter;
+    public GameObject spawnParticles;
+    private GameObject[] totalEnemies;
 
     private Wave currWave;
     private int currWaveNum;
     private float nextSpawnTime;
+
+    private GameObject ranEnemy;
+    private Transform ranPoint;
 
     public Vector3 drawSize;
     public bool draw;
@@ -30,11 +35,13 @@ public class EnemySpawner : MonoBehaviour
     public bool isTriggered = false;
     public bool isDone = false;
     public bool random = false;
+    private bool iHateThis = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        totalEnemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
         //StartCoroutine(SpawnObject());
     }
 
@@ -45,38 +52,42 @@ public class EnemySpawner : MonoBehaviour
             currWave = waves[currWaveNum];
         }
         SpawnSomething();
-        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
-        if(totalEnemies.Length == 0)
+        if (iHateThis == true)
         {
-            if (currWaveNum + 1 != waves.Length)
+            totalEnemies = GameObject.FindGameObjectsWithTag("CombatEnemy");
+            if (totalEnemies.Length == 0 && iHateThis == true)
             {
-                if (!canSpawn)
+                if (currWaveNum + 1 != waves.Length)
                 {
-                    NextWave();
+                    if (!canSpawn)
+                    {
+                        NextWave();
+                    }
                 }
-            }
-            else
-            {
-                if (!canSpawn)
+                else
                 {
-                    isDone = true;
-                    enemyCounter.SetActive(false);
+                    if (!canSpawn)
+                    {
+                        isDone = true;
+                        enemyCounter.SetActive(false);
+                    }
                 }
             }
         }
-        
     }
 
     void NextWave()
     {
         currWaveNum++;
+        iHateThis = false;
         canSpawn = true;
+        
     }
 
     void SpawnSomething()
     {
         GameObject ranEnemy;
-        Transform ranPoint;
+        Transform ranPoint; 
 
         if (canSpawn && isTriggered)
         {
@@ -85,14 +96,24 @@ public class EnemySpawner : MonoBehaviour
             ranPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
             
             ranEnemy.tag = "CombatEnemy";
+
+            Instantiate(spawnParticles, ranPoint.position, spawnParticles.transform.rotation);
+            StartCoroutine(waityWaiterthatWaits(ranEnemy, ranPoint));
             
-            Instantiate(ranEnemy, ranPoint.position, Quaternion.identity);
             currWave.enemyAmount--;
             if(currWave.enemyAmount == 0)
             {
                 canSpawn = false;
             }
         }
+    }
+
+    private IEnumerator waityWaiterthatWaits(GameObject enemy, Transform point)
+    {
+        yield return new WaitForSeconds(2);
+
+        Instantiate(enemy, point.position, Quaternion.identity);
+        iHateThis = true;
     }
 
     void OnDrawGizmosSelected()

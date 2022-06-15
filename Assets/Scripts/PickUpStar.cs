@@ -16,7 +16,6 @@ public class PickUpStar : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("POOP");
             pUpManager.addStar();
             Destroy(gameObject);
             //Destroy(gameObject);

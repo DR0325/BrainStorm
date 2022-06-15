@@ -5718,18 +5718,6 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.9681
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 49.847
       objectReference: {fileID: 0}
@@ -5740,22 +5728,6 @@ PrefabInstance:
     - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
       propertyPath: m_LocalPosition.z
       value: 9.696729
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5047468911537016199, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5777,10 +5749,6 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5047468911537016201, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 007ebde84f503264e9693078c585fee6, type: 3}
     - target: {fileID: 5047468911537016201, guid: 30e9873bcdd21ea498d2f86e8e8a8c09, type: 3}
       propertyPath: m_SortingOrder
       value: 0
@@ -9982,6 +9950,10 @@ PrefabInstance:
       propertyPath: enemyCounter
       value: 
       objectReference: {fileID: 613714604}
+    - target: {fileID: 3606575516448757226, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
+      propertyPath: spawnParticles
+      value: 
+      objectReference: {fileID: 8982715007409491843, guid: 6e3a26c900871094e9530d42cfb76985, type: 3}
     - target: {fileID: 3606575516448757226, guid: 7fa548c573d51cd45b21c79f098265e1, type: 3}
       propertyPath: waves.Array.data[0].typeOfEnemies.Array.data[0]
       value: 
