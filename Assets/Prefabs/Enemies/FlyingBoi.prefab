@@ -113,7 +113,7 @@ MonoBehaviour:
   followsPlayer: 0
   bulletParent: {fileID: 0}
   enemyScoreValue: 200
-  deathParticles: {fileID: 3301324051784629865, guid: 35117a7376f10a14a8aaf15965ef471b, type: 3}
+  deathParticles: {fileID: 7769784322636431006, guid: 11a0740ad9c72c64d9a691576a373f34, type: 3}
   hurtBox: {fileID: 7320892125954465745}
 --- !u!61 &7320892125954465745
 BoxCollider2D:
