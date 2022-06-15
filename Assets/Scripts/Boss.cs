@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     public Transform FirePoint;
     private Transform player;
     public GameObject stress;
-
+    public GameObject deathParticles;
     public BossBar bar;
 
     bool facingRight = false;
@@ -33,8 +33,10 @@ public class Boss : MonoBehaviour
 
         if(stress == null)
         {
+            GameObject go = Instantiate(deathParticles) as GameObject;
             bar.Deactivate();
             Destroy(gameObject);
+            
         }
     }
 

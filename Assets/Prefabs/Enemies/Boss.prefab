@@ -70,6 +70,7 @@ MonoBehaviour:
   bullet: {fileID: 5081795264842746702, guid: 97fd53197588b524095e1c729652a0a8, type: 3}
   FirePoint: {fileID: 7593978531694565818}
   stress: {fileID: 1562838878994468112}
+  deathParticles: {fileID: 7769784322636431006, guid: c24399a554b4b074da9f030c55cb64b5, type: 3}
   bar: {fileID: 8260563330945912844}
 --- !u!114 &8260563330945912844
 MonoBehaviour:
