@@ -233,7 +233,6 @@ public class Player : MonoBehaviour
     private bool meleeOnly;
 
     public GameObject trail;
-    public GameObject fallDetector;
 
     public static Player instance;
 
@@ -360,10 +359,6 @@ public class Player : MonoBehaviour
                 runPlayer = false;
                 //speedPlayer = 0.6f;
             }
-
-            // Fall detection 
-
-            fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
 
             // -------
             velocityY = rb.velocity.y;
@@ -615,7 +610,6 @@ public class Player : MonoBehaviour
         if (currentHealth > 0)
         {
             //anim.SetTrigger("hurt");
-            Debug.Log("ouch");
             StartCoroutine(IFrames());
         }
         else

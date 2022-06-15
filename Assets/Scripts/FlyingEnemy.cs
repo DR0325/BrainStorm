@@ -9,6 +9,7 @@ public class FlyingEnemy : MonoBehaviour
     private Transform player;
 
     public Animator anim;
+    bool facingRight = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -17,6 +18,14 @@ public class FlyingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.position.x > gameObject.transform.position.x && facingRight == false)
+        {
+            Flip();
+        }
+        if (player.position.x < gameObject.transform.position.x && facingRight == true)
+        {
+            Flip();
+        }
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         if (distanceFromPlayer < lineOfSight)
         {
@@ -30,5 +39,11 @@ public class FlyingEnemy : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 }
