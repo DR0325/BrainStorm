@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource ShootSoundEffect;
+    [SerializeField] private AudioSource RunSoundEffect;
+    [SerializeField] private AudioSource DeathSoundEffect;
+
     [Header("Health")]
     [SerializeField] public float startingHealth;
     
@@ -323,6 +328,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetBool("Jump", true);
                 isJumping = true;
+                jumpSoundEffect.Play();
                 jumpBufferCounter = 0f;
                 coyoteTimeCounter = 0f;
                 jumpTimeCount = jumpTime;
@@ -374,6 +380,7 @@ public class Player : MonoBehaviour
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
                 {
                     currWeapon.Shoot();
+                    ShootSoundEffect.Play();
                     fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
                 }
             }
@@ -616,6 +623,7 @@ public class Player : MonoBehaviour
         {
             if (!dead)
             {
+                DeathSoundEffect.Play();
                 //anim.SetTrigger("die");
                 dead = true;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -637,10 +645,12 @@ public class Player : MonoBehaviour
             if (_moveDir.x != 0.0f)
             {
                 anim.SetBool("Walk", true);
+            RunSoundEffect.Play();
             }
             else
             {
                 anim.SetBool("Walk", false);
+            RunSoundEffect.Stop();
             }
     }
     
