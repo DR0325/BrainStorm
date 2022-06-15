@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private float delayForSound = 100f;
 
     private void Awake()
     {
@@ -13,11 +14,20 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        while (delayForSound > 0)
+        {
+        
+            delayForSound -= Time.deltaTime;
+        }
         SceneManager.LoadScene("LevelSelect");
     }
 
     public void QuitGame()
     {
+        while (delayForSound > 0)
+        {
+            delayForSound -= Time.deltaTime;
+        }
         Application.Quit();
     }
 }

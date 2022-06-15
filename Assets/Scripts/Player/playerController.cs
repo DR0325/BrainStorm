@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
+    //Audio
+    [SerializeField] private AudioSource jumpSoundEffect;
+
     // horizontal movement
     public float speed;
     private float moveInput;
@@ -64,6 +67,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {
             isJumping = true;
+            jumpSoundEffect.Play();
             jumpTimeCount = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
         }

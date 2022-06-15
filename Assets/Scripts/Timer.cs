@@ -6,7 +6,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     bool timerActive;
-    float currentTime;
+    float currentTime = 0f;
     
     public float multiplierForScore;
     public int timeToDepreciateTimeScore;

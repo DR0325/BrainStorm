@@ -3,11 +3,11 @@ fetchPreview = true
 wantsMore = false
 keepOpen = false
 queryFolder = "Assets"
-onBoardingDoNotAskAgain = false
+onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.8040E7BB" = "build settin"
+	"last_search.8040E7BB" = "package mana"
 	"OpenInspectorPreview.8040E7BB" = "0"
 	"currentGroup.8040E7BB" = "all"
 }
@@ -54,6 +54,8 @@ providers = {
 	}
 }
 recentSearches = [
+	"["
+	"pr"
 ]
 searchItemFavorites = [
 ]

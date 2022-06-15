@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    //Audio
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource ShootSoundEffect;
+    [SerializeField] private AudioSource RunSoundEffect;
+    [SerializeField] private AudioSource DeathSoundEffect;
+    public float deathTimePause;
+    private float deathTimePauseCounter;
+
     [Header("Health")]
     [SerializeField] public float startingHealth;
     
@@ -246,6 +254,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        deathTimePauseCounter = deathTimePause;
         Physics2D.IgnoreLayerCollision(10, 9, false);
         meleeOnly = StateNameController.meleeOnly;
         rotationPoint = GameObject.Find("RotationPoint");
@@ -299,6 +308,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetBool("Jump", true);
                 isJumping = true;
+                jumpSoundEffect.Play();
                 jumpBufferCounter = 0f;
                 coyoteTimeCounter = 0f;
                 jumpTimeCount = jumpTime;
@@ -356,6 +366,7 @@ public class Player : MonoBehaviour
                 {
                     currWeapon.Shoot();
                     fireRateCooldown = Time.time + 1 / currWeapon.fireRate;
+                    ShootSoundEffect.Play();
                 }
             }
 
@@ -637,8 +648,19 @@ public class Player : MonoBehaviour
             if (!dead)
             {
                 //anim.SetTrigger("die");
-                dead = true;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                
+                DeathSoundEffect.Play();
+                if (deathTimePauseCounter > 0)
+                {
+                    deathTimePauseCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    deathTimePauseCounter = deathTimePause;
+                    dead = true;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    
+                }
             }
         }
     }
@@ -657,10 +679,12 @@ public class Player : MonoBehaviour
             if (_moveDir.x != 0.0f)
             {
                 anim.SetBool("Walk", true);
+            RunSoundEffect.Play();
             }
             else
             {
                 anim.SetBool("Walk", false);
+            RunSoundEffect.Stop();
             }
     }
     

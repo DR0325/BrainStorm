@@ -14,7 +14,7 @@ public class LevelTimer : MonoBehaviour
     private TimeSpan timePlaying;
     private bool timerGoing;
     private float elapsedTime;
-    
+
     private void Awake()
     {
         instance = this;
@@ -36,10 +36,10 @@ public class LevelTimer : MonoBehaviour
 
         StartCoroutine(UpdateTimer());
     }
-    
+
     public void EndTimer()
     {
-     timerGoing = false;
+        timerGoing = false;
     }
 
     private IEnumerator UpdateTimer()
@@ -57,6 +57,6 @@ public class LevelTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
