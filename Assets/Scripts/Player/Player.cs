@@ -445,6 +445,7 @@ public class Player : MonoBehaviour
                 // anim.SetBool("SecondIdle", false);
             }
 
+
             CollectResources();
 
             // anim.SetFloat("speed", Mathf.Abs(horizontal));
@@ -461,13 +462,15 @@ public class Player : MonoBehaviour
         {
             _moveDir = pImputActions.Player.Move.ReadValue<Vector2>();
 
-            if (_moveDir.x != 0.0f)
+            if (_moveDir.x != 0.0f && isGrounded)
             {
                 anim.SetBool("Walk", true);
+                RunSoundEffect.Play();
             }
             else
             {
                 anim.SetBool("Walk", false);
+                RunSoundEffect.Stop();
             }
 
             if(pImputActions.Player.Run.IsPressed() == false && rollCounter <= 0)
@@ -623,10 +626,13 @@ public class Player : MonoBehaviour
         {
             if (!dead)
             {
+                pImputActions.Disable();
+                rb.velocity = new Vector2(0f,0f);
                 DeathSoundEffect.Play();
-                //anim.SetTrigger("die");
+                playerSprite.color = Color.gray;
+                anim.SetBool("Dead", true);
                 dead = true;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                StartCoroutine(deadRespawn());
             }
         }
     }
@@ -641,17 +647,6 @@ public class Player : MonoBehaviour
     public void OnMove(InputValue value)
     {
         _moveDir = value.Get<Vector2>();
-        
-            if (_moveDir.x != 0.0f)
-            {
-                anim.SetBool("Walk", true);
-            RunSoundEffect.Play();
-            }
-            else
-            {
-                anim.SetBool("Walk", false);
-            RunSoundEffect.Stop();
-            }
     }
     
     public void OnJump(InputValue value)
@@ -719,6 +714,13 @@ public class Player : MonoBehaviour
             rb.AddForce(-direction * knockbackPower);
         }
             yield return 0;
+    }
+
+    private IEnumerator deadRespawn()
+    {
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

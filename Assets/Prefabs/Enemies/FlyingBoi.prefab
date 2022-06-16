@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da813b9101b2438f8ae1ca7311f31a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackPower: 20
+  knockbackPower: 5
   knockbackDuration: 2
   _experienceGain: 30
   attackTime: 1

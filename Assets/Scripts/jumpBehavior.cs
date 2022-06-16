@@ -9,15 +9,12 @@ public class jumpBehavior : StateMachineBehaviour
     public float maxTime;
     private int rand;
 
-    private float startMoveTimer;
-
     private Transform playerPos;
     public float speed;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         rand = Random.Range(0, 2);
-        startMoveTimer = 0.15f;
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         timer = Random.Range(minTime, maxTime);
     }
@@ -39,14 +36,8 @@ public class jumpBehavior : StateMachineBehaviour
         else { timer -= Time.deltaTime; }
 
         Vector3 target = new Vector3(playerPos.position.x, animator.transform.position.y);
-        if (startMoveTimer <= 0)
-        {
-            animator.transform.position = Vector3.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
-        }
-        else
-        {
-            startMoveTimer -= Time.deltaTime;
-        }
+
+        animator.transform.position = Vector3.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

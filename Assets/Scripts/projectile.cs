@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
+    [SerializeField] private AudioSource enemyHitSound;
     public float speed;
     public float lifeTime;
     public float distance;
@@ -27,6 +28,7 @@ void Update()
         {
             if (hitInf.collider.CompareTag("Enemy") || hitInf.collider.CompareTag("CombatEnemy"))
             {
+                enemyHitSound.Play();
                 hitInf.collider.GetComponent<Enemy>().TakeDamage(damage);
             }
             DestroyProjectile();
