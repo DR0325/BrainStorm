@@ -264,6 +264,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         player.GetComponent<Player>().paused = false;
+        player.GetComponent<Player>().pImputActions.Player.Enable();
         Time.timeScale = 1f;
         paused = false;
     }
@@ -271,6 +272,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         player.GetComponent<Player>().paused = true;
+        player.GetComponent<Player>().pImputActions.Player.Disable();
         Time.timeScale = 0f;
         paused = true;
     }
@@ -291,6 +293,7 @@ public class GameManager : MonoBehaviour
         lastCheckPointPos = levelStartPos.position;
         gameHasEnded = true;
         Time.timeScale = 0f;
+        player.GetComponent<Player>().paused = true;
         lvlClearMenu.SetActive(true);
         lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score, time, stars, totalStars);
         score = 0;

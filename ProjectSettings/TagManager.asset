@@ -23,6 +23,7 @@ TagManager:
   - Enemy Spawn Zone
   - Bullet2
   - LevelEnter
+  - weaponCollision
   layers:
   - Default
   - TransparentFX

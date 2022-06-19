@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 3954936317798246571}
   m_Layer: 10
   m_Name: ClipCheck
-  m_TagString: Player
+  m_TagString: weaponCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

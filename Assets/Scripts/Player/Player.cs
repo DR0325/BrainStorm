@@ -235,7 +235,7 @@ public class Player : MonoBehaviour
 
     private GameObject _whichEnemy;
     private GameObject _gun;
-    private PlayerInputActions pImputActions;
+    public PlayerInputActions pImputActions;
     private bool meleeOnly;
     public Transform shootPoint;
     public Collider2D weaponClipCheck;
@@ -461,7 +461,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!dead)
+        if (!dead && !paused)
         {
             _moveDir = pImputActions.Player.Move.ReadValue<Vector2>();
 
@@ -552,69 +552,81 @@ public class Player : MonoBehaviour
 
     public void OnSwitchWeapon(InputValue value)
     {
-        if (meleeOnly == false)
+        if (!dead && !paused)
         {
-            if (value.Get<float>() > 0f)
+            if (meleeOnly == false)
             {
-                if (selectedWeapon >= weaponHolder.childCount - 1)
+                if (value.Get<float>() > 0f)
                 {
-                    selectedWeapon = 0;
+                    if (selectedWeapon >= weaponHolder.childCount - 1)
+                    {
+                        selectedWeapon = 0;
+                    }
+                    else
+                        selectedWeapon++;
                 }
-                else
-                    selectedWeapon++;
-            }
-            if (value.Get<float>() < 0f)
-            {
-                if (selectedWeapon <= 0)
+                if (value.Get<float>() < 0f)
                 {
-                    selectedWeapon = weaponHolder.childCount - 1;
+                    if (selectedWeapon <= 0)
+                    {
+                        selectedWeapon = weaponHolder.childCount - 1;
+                    }
+                    else
+                        selectedWeapon--;
                 }
-                else
-                    selectedWeapon--;
-            }
 
-            if (prevSelWeapon != selectedWeapon)
-            {
-                SelectWeapon();
+                if (prevSelWeapon != selectedWeapon)
+                {
+                    SelectWeapon();
+                }
             }
         }
     }
     public void OnSwitchWeapon1()
     {
-        if (meleeOnly == false)
+        if (!dead && !paused)
         {
-            selectedWeapon = 0;
-
-            if (prevSelWeapon != selectedWeapon)
+            if (meleeOnly == false)
             {
-                SelectWeapon();
+                selectedWeapon = 0;
+
+                if (prevSelWeapon != selectedWeapon)
+                {
+                    SelectWeapon();
+                }
             }
         }
     }
 
     public void OnSwitchWeapon2()
     {
-        if (meleeOnly == false)
+        if (!dead && !paused)
         {
-            if (weaponHolder.childCount >= 2)
-                selectedWeapon = 1;
-
-            if (prevSelWeapon != selectedWeapon)
+            if (meleeOnly == false)
             {
-                SelectWeapon();
+                if (weaponHolder.childCount >= 2)
+                    selectedWeapon = 1;
+
+                if (prevSelWeapon != selectedWeapon)
+                {
+                    SelectWeapon();
+                }
             }
         }
     }
     public void OnSwitchWeapon3()
     {
-        if (meleeOnly == false)
+        if (!dead && !paused)
         {
-            if (weaponHolder.childCount >= 3)
-                selectedWeapon = 2;
-
-            if (prevSelWeapon != selectedWeapon)
+            if (meleeOnly == false)
             {
-                SelectWeapon();
+                if (weaponHolder.childCount >= 3)
+                    selectedWeapon = 2;
+
+                if (prevSelWeapon != selectedWeapon)
+                {
+                    SelectWeapon();
+                }
             }
         }
     }
@@ -662,12 +674,15 @@ public class Player : MonoBehaviour
 
     private void OnRoll()
     {
-        if (rollCooldCounter <= 0 && rollCounter <= 0) 
+        if (!dead && !paused)
         {
-            currMoveSpeed = rollSpeed;
-            Physics2D.IgnoreLayerCollision(10, 9, true);
-            anim.SetBool("Roll", true);
-            rollCounter = rollLength;
+            if (rollCooldCounter <= 0 && rollCounter <= 0)
+            {
+                currMoveSpeed = rollSpeed;
+                Physics2D.IgnoreLayerCollision(10, 9, true);
+                anim.SetBool("Roll", true);
+                rollCounter = rollLength;
+            }
         }
     }
 
