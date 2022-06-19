@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
     public bool isDone = false;
     public bool random = false;
     private bool iHateThis = false;
-
+    private int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -87,23 +87,27 @@ public class EnemySpawner : MonoBehaviour
     void SpawnSomething()
     {
         GameObject ranEnemy;
-        Transform ranPoint; 
-
+        Transform ranPoint;
+        
         if (canSpawn && isTriggered)
         {
             //if random
             ranEnemy = currWave.typeOfEnemies[Random.Range(0, currWave.typeOfEnemies.Length)];
             ranPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            
+            if(random == false)
+            {
+                ranPoint = spawnPoints[count];
+            }
             ranEnemy.tag = "CombatEnemy";
 
             Instantiate(spawnParticles, ranPoint.position, spawnParticles.transform.rotation);
             StartCoroutine(waityWaiterthatWaits(ranEnemy, ranPoint));
-            
+            count++;
             currWave.enemyAmount--;
             if(currWave.enemyAmount == 0)
             {
                 canSpawn = false;
+                count = 0;
             }
         }
     }
