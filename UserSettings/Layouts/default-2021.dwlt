@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 24
+  controlID: 97
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 25
+  controlID: 98
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 26
+  controlID: 99
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,8 +275,8 @@ MonoBehaviour:
     y: 0
     width: 511
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 24}
   m_Panes:
   - {fileID: 24}
@@ -497,9 +497,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 3ef2fdff
-      m_LastClickedID: -134594
-      m_ExpandedIDs: 14f3fdffae2cfeff58adfeffde46ffffa247ffff7848ffff024bffffaa4bffff1051ffff9c53ffff8056ffffa056ffffee57ffffd461ffff7c62ffffe267ffff6e6affff526dffff726dffffc06effff1690ffffbe90ffff2496ffffb098ffff949bffffb49bffff029dffff34abffffdcabffff42b1ffffceb3ffffb2b6ffffd2b6ffff28b8ffff04c6ffffacc6ffff12ccffff9eceffff82d1ffffa2d1fffffad2ffffc8f4fffff6f4ffff24f5ffff28f5ffffe6f5ffff28fbffffd69400001a950000e6db0000ccdc000028ea000080ea000096ea0000ceea0000c4eb00002ef8000086f800009cf8000046f9000084f90000caf90000d4090100bc0a010066320100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 209ffeffe084ffffa886ffff0cf9ffff28fbffff827100005ace0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -770,9 +770,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 37.562893, y: 11.954741, z: 99.140366}
+    m_Target: {x: 94.707855, y: 25.189407, z: 517.5462}
     speed: 2
-    m_Value: {x: 37.562893, y: 11.954741, z: 99.140366}
+    m_Value: {x: 93.714165, y: 24.76354, z: 499.37845}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -823,9 +823,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.443626
+    m_Target: 49.982594
     speed: 2
-    m_Value: 7.443626
+    m_Value: 47.830235
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1063,7 +1063,7 @@ MonoBehaviour:
     m_SaveData: []
   m_MixersTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 26760000
+    m_SelectedIDs: 
     m_LastClickedID: 30246
     m_ExpandedIDs: 12eb343c
     m_RenameOverlay:
@@ -1285,22 +1285,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Projectiles
+    - Assets/Prefabs/Enemies
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Projectiles
+  - Assets/Prefabs/Enemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\crepa\Documents\Unity\BrainStorm4
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 86}
-    m_SelectedIDs: 62940000
-    m_LastClickedID: 37986
-    m_ExpandedIDs: 00000000f2930000f6930000f8930000fa930000fc930000fe9300000094000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 0e950000
+    m_LastClickedID: 38158
+    m_ExpandedIDs: 000000009494000096940000989400009a9400009c9400009e940000e094000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1328,7 +1328,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f2930000f4930000f6930000f8930000fa930000fc930000fe93000000940000
+    m_ExpandedIDs: 000000009494000096940000989400009a9400009c9400009e940000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1442,7 +1442,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -86910
+  m_LastSelectedObjectID: -1790
 --- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52

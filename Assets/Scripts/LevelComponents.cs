@@ -23,7 +23,7 @@ public class LevelComponents : MonoBehaviour
     private float nextMoveTime;
     private Vector3 totalMove, currentPosition;
     private int directionAngleQuadrant;//variable may not be needed.
-    private bool direction1Or2 = false;
+    //private bool direction1Or2 = false;
     public Rigidbody2D rb;
 
     //code from class

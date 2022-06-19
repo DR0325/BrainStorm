@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
     public BoxCollider2D stuffAttack;
 
     public LayerMask isGround;
+    public LayerMask isEnviroment;
     public LayerMask isStairs;
     
     public bool isItScene1;
@@ -228,7 +229,7 @@ public class Player : MonoBehaviour
 
     private bool _facingRight = true;
     private bool _flipPlayerRight;
-
+    private bool isClipping;
 
     private float _timeScene;
 
@@ -236,6 +237,8 @@ public class Player : MonoBehaviour
     private GameObject _gun;
     private PlayerInputActions pImputActions;
     private bool meleeOnly;
+    public Transform shootPoint;
+    public Collider2D weaponClipCheck;
 
     public GameObject trail;
 
@@ -375,7 +378,7 @@ public class Player : MonoBehaviour
 
             // ----- Shooting -----
 
-            if (Time.time >= fireRateCooldown && gun.activeSelf)
+            if (Time.time >= fireRateCooldown && gun.activeSelf && !weaponClipCheck.IsTouchingLayers(isEnviroment))
             {
                 if (pImputActions.Player.ShootWeapon.ReadValue<float>() > 0.1f)
                 {
@@ -501,6 +504,9 @@ public class Player : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(shootPoint.position, 0.1f);
     }
 
     private void OnCollisionExit2D(Collision2D other)

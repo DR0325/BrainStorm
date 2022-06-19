@@ -7,8 +7,6 @@ using TMPro;
 
 public class Settings : MonoBehaviour
 {
-
-
     //Audio
 
     public AudioMixer audioMixer;
@@ -23,9 +21,6 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        masterVolSlider.value = 1;
-        SFXVolSlider.value = 1;
-        musicVolSlider.value = 1;
 
         resolutions = Screen.resolutions;
 
@@ -52,6 +47,12 @@ public class Settings : MonoBehaviour
         resDropdown.RefreshShownValue();
 
         LoadValues();
+        if(PlayerPrefs.GetString("FirstTime") == null || PlayerPrefs.GetString("FirstTime") != "No")
+        {
+            masterVolSlider.value = 1;
+            SFXVolSlider.value = 1;
+            musicVolSlider.value = 1;
+        }
     }
 
     public void SetResolution(int resIndex)
@@ -90,6 +91,7 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("VolumeValue", volumeVal);
         PlayerPrefs.SetFloat("SFXValue", sfxVal);
         PlayerPrefs.SetFloat("MusicValue", musicVal);
+        PlayerPrefs.SetString("FirstTime", "No");
 
         LoadValues();
     }
@@ -103,7 +105,6 @@ public class Settings : MonoBehaviour
         masterVolSlider.value = volumeVal;
         audioMixer.SetFloat("Master", Mathf.Log10(volumeVal) * 20);
 
-        Debug.Log("woop");
         SFXVolSlider.value = sfxVal;
         audioMixer.SetFloat("SFX", Mathf.Log10(sfxVal) * 20);
 
