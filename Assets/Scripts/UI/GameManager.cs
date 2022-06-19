@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 { // ver1
@@ -192,8 +193,10 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject lvlClearMenu;
     public GameObject lvlTimer;
-    
 
+    public TMP_Text starsText;
+    public int stars;
+    public int totalStars;
     private float _timeScale;
 
     /// Coffee for the brain storm :-)
@@ -221,11 +224,12 @@ public class GameManager : MonoBehaviour
         //uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         //uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
         LevelTimer.instance.BeginTimer();
+        totalStars =  GameObject.FindGameObjectsWithTag("Star").Length;
     }
 
     private void Update()
     {
-        
+
     }
 
 
@@ -276,6 +280,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void addStar()
+    {
+        stars++;
+    }
+
     public void LevelComplete()
     {
         score += totalTimeScore;
@@ -283,7 +292,7 @@ public class GameManager : MonoBehaviour
         gameHasEnded = true;
         Time.timeScale = 0f;
         lvlClearMenu.SetActive(true);
-        lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score, time);
+        lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score, time, stars, totalStars);
         score = 0;
         time = 0f;
 

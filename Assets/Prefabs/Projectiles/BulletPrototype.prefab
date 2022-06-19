@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1629315363108868762}
   - component: {fileID: 1629315363108868765}
   - component: {fileID: 8996080055369584581}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BulletPrototype
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   enemyHitSound: {fileID: 8996080055369584581}
   speed: 20
   lifeTime: 1
-  distance: 0.1
+  distance: 0.5
   damage: 10
   destroyEffect: {fileID: 75373302167834451, guid: 8dfcc85046001954090d26ddd9c3a894, type: 3}
   isSolid:

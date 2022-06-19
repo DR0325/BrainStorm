@@ -2396,8 +2396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71113c67f3f0240826f649ebb3438d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starsText: {fileID: 735990717432865816}
-  stars: 0
 --- !u!1 &5421405414364993145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2506,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 594334199466884390}
   lvlClearMenu: {fileID: 7814516166601784079}
   lvlTimer: {fileID: 5421405414364993145}
+  starsText: {fileID: 0}
+  stars: 0
+  totalStars: 0
 --- !u!114 &5603012279446219823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2640,8 +2641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71113c67f3f0240826f649ebb3438d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starsText: {fileID: 735990717432865816}
-  stars: 0
 --- !u!1 &5421405414749246750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2186927226261640541}
   timeText: {fileID: 3979344674547404896}
+  starsText: {fileID: 735990717432865816}
 --- !u!1 &8411530950234556671
 GameObject:
   m_ObjectHideFlags: 0

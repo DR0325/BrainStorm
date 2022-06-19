@@ -6,18 +6,13 @@ using TMPro;
 public class PickUpManager : MonoBehaviour
 {
     public static PickUpManager instance;
-    public TMP_Text starsText;
-    public int stars;
+    
     private void awake()
     {
         instance = this;
     }
 
-    public void addStar()
-    {
-        stars++;
-        starsText.text = "Stars: " + stars.ToString();
-    }
+    
     // Start is called before the first frame update
     void Start()
     {

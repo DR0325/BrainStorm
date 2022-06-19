@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: -339687158404941682}
   m_Layer: 9
   m_Name: ForgottenSkull
-  m_TagString: Enemy
+  m_TagString: CombatEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -27633,8 +27633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71113c67f3f0240826f649ebb3438d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starsText: {fileID: 1637086222}
-  stars: 0
 --- !u!4 &1304557759
 Transform:
   m_ObjectHideFlags: 0
@@ -28415,7 +28413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945217014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 15, z: 105.89448}
+  m_LocalPosition: {x: 31.9, y: 13.55, z: 105.89448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32754,6 +32752,10 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7775579394176341158, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: starsText
+      value: 
+      objectReference: {fileID: 1637086222}
     - target: {fileID: 7814516166601784079, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: m_IsActive
       value: 0

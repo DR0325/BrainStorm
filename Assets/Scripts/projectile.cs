@@ -23,6 +23,7 @@ public class projectile : MonoBehaviour
     // Update is called once per frame
 void Update()
     {
+        Physics2D.IgnoreLayerCollision(12, 10, true);
         RaycastHit2D hitInf = Physics2D.Raycast(transform.position, transform.up, distance, isSolid);
         if (hitInf.collider != null)
         {

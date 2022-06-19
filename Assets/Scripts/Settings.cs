@@ -8,14 +8,25 @@ using TMPro;
 public class Settings : MonoBehaviour
 {
 
-    public AudioMixer audioMixer;
 
+    //Audio
+
+    public AudioMixer audioMixer;
+    public Slider masterVolSlider;
+    public Slider SFXVolSlider;
+    public Slider musicVolSlider;
+
+    //Resolution
     public TMP_Dropdown resDropdown;
 
     Resolution[] resolutions;
 
     private void Start()
     {
+        masterVolSlider.value = 1;
+        SFXVolSlider.value = 1;
+        musicVolSlider.value = 1;
+
         resolutions = Screen.resolutions;
 
         resDropdown.ClearOptions();
@@ -39,6 +50,8 @@ public class Settings : MonoBehaviour
         resDropdown.AddOptions(resOptions);
         resDropdown.value = currResIndx;
         resDropdown.RefreshShownValue();
+
+        LoadValues();
     }
 
     public void SetResolution(int resIndex)
@@ -50,21 +63,51 @@ public class Settings : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Master", volume);
+        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
     public void SetVolumeSFX(float volume)
     {
-        audioMixer.SetFloat("SFX", volume);
+        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
 
     public void SetVolumeMusic(float volume)
     {
-        audioMixer.SetFloat("Music", volume);
+        audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void SaveVolumeSettings()
+    {
+        float volumeVal = masterVolSlider.value;
+        float sfxVal = SFXVolSlider.value;
+        float musicVal = musicVolSlider.value;
+
+        PlayerPrefs.SetFloat("VolumeValue", volumeVal);
+        PlayerPrefs.SetFloat("SFXValue", sfxVal);
+        PlayerPrefs.SetFloat("MusicValue", musicVal);
+
+        LoadValues();
+    }
+
+    private void LoadValues()
+    {
+        float volumeVal = PlayerPrefs.GetFloat("VolumeValue");
+        float sfxVal = PlayerPrefs.GetFloat("SFXValue");
+        float musicVal = PlayerPrefs.GetFloat("MusicValue");
+
+        masterVolSlider.value = volumeVal;
+        audioMixer.SetFloat("Master", Mathf.Log10(volumeVal) * 20);
+
+        Debug.Log("woop");
+        SFXVolSlider.value = sfxVal;
+        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVal) * 20);
+
+        musicVolSlider.value = musicVal;
+        audioMixer.SetFloat("Music", Mathf.Log10(musicVal) * 20);
     }
 }
