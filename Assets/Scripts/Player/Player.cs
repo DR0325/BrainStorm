@@ -693,6 +693,7 @@ public class Player : MonoBehaviour
     private void Flip()
     {
         playerSprite.flipX = !playerSprite.flipX;
+        weaponHolder.GetChild(0).GetComponent<SpriteRenderer>().flipX = !weaponHolder.GetChild(0).GetComponent<SpriteRenderer>().flipX;
     }
 
     public void OnPausePress()
