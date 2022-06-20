@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 651931271181543578, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 111.4
+      value: 110.69
       objectReference: {fileID: 0}
     - target: {fileID: 651931271181543578, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27665,7 +27665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 651931271181543578, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 121.5
+      value: 120.72
       objectReference: {fileID: 0}
     - target: {fileID: 651931271181543578, guid: 7536c5759e47b3d4195d8fbf30e8a7e2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32583,6 +32583,14 @@ PrefabInstance:
     - target: {fileID: 1307619875835124338, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307619875907597961, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307619875907597961, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1307619875935305016, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: m_SizeDelta.x

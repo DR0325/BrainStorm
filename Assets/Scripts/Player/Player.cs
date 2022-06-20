@@ -255,6 +255,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        pImputActions = new PlayerInputActions();
+        pImputActions.Player.Enable();
         Physics2D.IgnoreLayerCollision(10, 9, false);
         meleeOnly = StateNameController.meleeOnly;
         rotationPoint = GameObject.Find("RotationPoint");
