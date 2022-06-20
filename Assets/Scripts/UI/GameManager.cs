@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public Transform levelStartPos;
     public static Vector2 lastCheckPointPos = new Vector2(30,15);
+    public PlayerInputActions pImputActions;
 
     [Header("LEVEL STATE")] 
     [HideInInspector] public int enemiesCount;
@@ -206,7 +207,7 @@ public class GameManager : MonoBehaviour
         else _instance = this;
 
         //find all the prefabs that are not part of the UI prefab
-
+        pImputActions = new PlayerInputActions();
         lastCheckPointPos = levelStartPos.position;
         Time.timeScale = 1f;
         uiHealthBar = GameObject.FindWithTag("HealthBar");
@@ -223,13 +224,27 @@ public class GameManager : MonoBehaviour
         //uiHealthBar = GameObject.FindWithTag("HealthBar");
         //uiStaminaBar = GameObject.FindWithTag("StaminaBar");
         //uiReuptakeBar = GameObject.FindWithTag("ReuptakeBar");
+        pImputActions.Player.Enable();
         LevelTimer.instance.BeginTimer();
         totalStars =  GameObject.FindGameObjectsWithTag("Star").Length;
     }
 
     private void Update()
     {
-
+        if (pImputActions.Player.PausePress.triggered)
+        {
+            if (gameHasEnded == false)
+            {
+                if (paused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
+            }
+        }
     }
 
 
@@ -247,17 +262,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPausePress(InputValue value)
     {
-        if (gameHasEnded == false)
-        {
-            if (paused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+        
     }
 
     public void Resume()

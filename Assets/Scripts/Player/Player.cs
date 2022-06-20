@@ -280,6 +280,7 @@ public class Player : MonoBehaviour
     {
         if (!dead && !paused)
         {
+            #region Weapon Aim
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, isGround);
 
             Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - rotationPoint.transform.position;
@@ -297,8 +298,10 @@ public class Player : MonoBehaviour
                 _facingRight = false;
                 Flip();
             }
+            #endregion
 
-            if(currMoveSpeed <= speedPlayer)
+
+            if (currMoveSpeed <= speedPlayer)
             {
                 anim.SetBool("Run", false);
                 trail.SetActive(false);
@@ -308,9 +311,11 @@ public class Player : MonoBehaviour
                 trail.SetActive(true);
             }
 
+            #region Jump
+
             //------- Jump --------
 
-            if(isGrounded == true)
+            if (isGrounded == true)
             {
                 anim.SetBool("Jump", false);
                 coyoteTimeCounter = coyoteTime;
@@ -356,12 +361,22 @@ public class Player : MonoBehaviour
             {
                 isJumping = false;
             }
-            
-            //---------------
 
+            //---------------
+            #endregion
+
+            #region running
             if (rollCooldCounter > 0)
             {
                 rollCooldCounter -= Time.deltaTime;
+            }
+
+            if (pImputActions.Player.Run.ReadValue<float>() > 0.0f && !pImputActions.Player.Roll.IsPressed())
+            {
+                runPlayer = pImputActions.Player.Run.ReadValue<float>() > 0.0f;
+                activateEnergy = runPlayer;
+                anim.SetBool("Run", runPlayer);
+                currMoveSpeed = runSpeed;
             }
 
             if (runPlayer && GameManager.Instance.uiStaminaBar.GetComponent<PlayerBar>().content.fillAmount <= 0.0f)
@@ -373,10 +388,73 @@ public class Player : MonoBehaviour
 
             // -------
             velocityY = rb.velocity.y;
+            #endregion
 
+            #region Weapon Switching
             //------Weapon Switching -----------
 
             prevSelWeapon = selectedWeapon;
+            // Scroll wheel
+            if (meleeOnly == false)
+            {
+                if (pImputActions.Player.SwitchWeapon.ReadValue<float>() > 0f)
+                {
+                    if (selectedWeapon >= weaponHolder.childCount - 1)
+                    {
+                        selectedWeapon = 0;
+                    }
+                    else
+                        selectedWeapon++;
+                }
+                if (pImputActions.Player.SwitchWeapon.ReadValue<float>() < 0f)
+                {
+                    if (selectedWeapon <= 0)
+                    {
+                        selectedWeapon = weaponHolder.childCount - 1;
+                    }
+                    else
+                        selectedWeapon--;
+                }
+
+                if (prevSelWeapon != selectedWeapon)
+                {
+                    SelectWeapon();
+                }
+            
+            //Weapon 1
+                if (pImputActions.Player.SwitchWeapon1.IsPressed())
+                {
+                    selectedWeapon = 0;
+
+                    if (prevSelWeapon != selectedWeapon)
+                    {
+                        SelectWeapon();
+                    }
+                }
+           //Weapon 2
+                if (pImputActions.Player.SwitchWeapon2.IsPressed())
+                {
+                    if (weaponHolder.childCount >= 2)
+                        selectedWeapon = 1;
+
+                    if (prevSelWeapon != selectedWeapon)
+                    {
+                        SelectWeapon();
+                    }
+                }
+            //Weapon 3
+                if (pImputActions.Player.SwitchWeapon3.IsPressed())
+                {
+                    if (weaponHolder.childCount >= 3)
+                        selectedWeapon = 2;
+
+                    if (prevSelWeapon != selectedWeapon)
+                    {
+                        SelectWeapon();
+                    }
+                }
+            }
+            #endregion
 
             // ----- Shooting -----
 
@@ -430,10 +508,22 @@ public class Player : MonoBehaviour
                     rollCooldCounter = rollCooldown;
                 }
             }
+
             // set cooldown for rolling
             if (rollCooldCounter > 0)
             {
                 rollCooldCounter -= Time.deltaTime;
+            }
+
+            if (pImputActions.Player.Roll.IsPressed())
+            {
+                if (rollCooldCounter <= 0 && rollCounter <= 0)
+                {
+                    currMoveSpeed = rollSpeed;
+                    Physics2D.IgnoreLayerCollision(10, 9, true);
+                    anim.SetBool("Roll", true);
+                    rollCounter = rollLength;
+                }
             }
 
             // ------------------
@@ -552,87 +642,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnSwitchWeapon(InputValue value)
-    {
-        if (!dead && !paused)
-        {
-            if (meleeOnly == false)
-            {
-                if (value.Get<float>() > 0f)
-                {
-                    if (selectedWeapon >= weaponHolder.childCount - 1)
-                    {
-                        selectedWeapon = 0;
-                    }
-                    else
-                        selectedWeapon++;
-                }
-                if (value.Get<float>() < 0f)
-                {
-                    if (selectedWeapon <= 0)
-                    {
-                        selectedWeapon = weaponHolder.childCount - 1;
-                    }
-                    else
-                        selectedWeapon--;
-                }
-
-                if (prevSelWeapon != selectedWeapon)
-                {
-                    SelectWeapon();
-                }
-            }
-        }
-    }
-    public void OnSwitchWeapon1()
-    {
-        if (!dead && !paused)
-        {
-            if (meleeOnly == false)
-            {
-                selectedWeapon = 0;
-
-                if (prevSelWeapon != selectedWeapon)
-                {
-                    SelectWeapon();
-                }
-            }
-        }
-    }
-
-    public void OnSwitchWeapon2()
-    {
-        if (!dead && !paused)
-        {
-            if (meleeOnly == false)
-            {
-                if (weaponHolder.childCount >= 2)
-                    selectedWeapon = 1;
-
-                if (prevSelWeapon != selectedWeapon)
-                {
-                    SelectWeapon();
-                }
-            }
-        }
-    }
-    public void OnSwitchWeapon3()
-    {
-        if (!dead && !paused)
-        {
-            if (meleeOnly == false)
-            {
-                if (weaponHolder.childCount >= 3)
-                    selectedWeapon = 2;
-
-                if (prevSelWeapon != selectedWeapon)
-                {
-                    SelectWeapon();
-                }
-            }
-        }
-    }
-
     public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
@@ -659,10 +668,7 @@ public class Player : MonoBehaviour
 
     public void OnRun(InputValue value)
     {
-        runPlayer = value.Get<float>() > 0.0f;
-        activateEnergy = runPlayer;
-        anim.SetBool("Run", runPlayer);
-        currMoveSpeed = runPlayer ? runSpeed : 6.0f;
+       
     }
     public void OnMove(InputValue value)
     {
@@ -676,16 +682,7 @@ public class Player : MonoBehaviour
 
     private void OnRoll()
     {
-        if (!dead && !paused)
-        {
-            if (rollCooldCounter <= 0 && rollCounter <= 0)
-            {
-                currMoveSpeed = rollSpeed;
-                Physics2D.IgnoreLayerCollision(10, 9, true);
-                anim.SetBool("Roll", true);
-                rollCounter = rollLength;
-            }
-        }
+       
     }
 
     private void MoveOnStart()
