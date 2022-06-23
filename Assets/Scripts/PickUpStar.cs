@@ -14,11 +14,13 @@ public class PickUpStar : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("weaponCollision"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            gm.addStar();
             Destroy(gameObject);
+            gm.stars++;
             //Destroy(gameObject);
         }
+        else
+            return;
     }
 }

@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
                 jumpBufferCounter -= Time.deltaTime;
             }
 
-            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && pImputActions.Player.Jump.WasPressedThisFrame())
             {
                 anim.SetBool("Jump", true);
                 isJumping = true;
@@ -528,18 +528,6 @@ public class Player : MonoBehaviour
 
             // ------------------
 
-            if (Mathf.Abs(horizontal) < 0.01 && checkIdle == false)
-            {
-                checkIdle = true;
-                timeIdle = rateTimeIdle + Time.time;
-            }
-
-            if (Mathf.Abs(horizontal) > 0.01)
-            {
-                checkIdle = false;
-                // anim.SetBool("SecondIdle", false);
-            }
-
 
             CollectResources();
 
@@ -572,9 +560,21 @@ public class Player : MonoBehaviour
             {
                 currMoveSpeed = speedPlayer;
             }
-           
-             horizontal = _moveDir.x;
-             rb.velocity = new Vector2(horizontal * currMoveSpeed, rb.velocity.y);
+            if (_moveDir.x != 0)
+            {
+                if (_moveDir.x > 0.0f)
+                {
+                    rb.velocity = new Vector2(1 * currMoveSpeed, rb.velocity.y);
+                }
+                if (_moveDir.x < 0.0f)
+                {
+                    rb.velocity = new Vector2(-1 * currMoveSpeed, rb.velocity.y);
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector2(_moveDir.x * currMoveSpeed, rb.velocity.y);
+            }
             
         }
     }
@@ -618,10 +618,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Star"))
-        {
-            Destroy(other);
-        }
         if (other.CompareTag("DeathBarrier"))
         {
             TakeDamage(10f);
@@ -666,25 +662,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnRun(InputValue value)
-    {
-       
-    }
-    public void OnMove(InputValue value)
-    {
-        _moveDir = value.Get<Vector2>();
-    }
-    
-    public void OnJump(InputValue value)
-    {
-         
-    }
-
-    private void OnRoll()
-    {
-       
-    }
-
     private void MoveOnStart()
     {
         //transform.Translate(speedPlayer * Time.deltaTime, 0, 0);
@@ -694,11 +671,6 @@ public class Player : MonoBehaviour
     {
         playerSprite.flipX = !playerSprite.flipX;
         weaponHolder.GetChild(0).GetComponent<SpriteRenderer>().flipX = !weaponHolder.GetChild(0).GetComponent<SpriteRenderer>().flipX;
-    }
-
-    public void OnPausePress()
-    {
-        
     }
 
     private void CollectResources()

@@ -644,7 +644,7 @@ MonoBehaviour:
   startingHealth: 100
   speedPlayer: 5
   runSpeed: 7
-  jumpForce: 10
+  jumpForce: 11.5
   jumpTime: 0.2
   checkRadius: 0.32
   rollSpeed: 16

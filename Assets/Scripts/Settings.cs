@@ -19,8 +19,22 @@ public class Settings : MonoBehaviour
 
     Resolution[] resolutions;
 
+    private void Awake()
+    {
+       
+    }
     private void Start()
     {
+        LoadValues();
+        if (PlayerPrefs.GetString("FirstTime") == null || PlayerPrefs.GetString("FirstTime") != "No")
+        {
+            masterVolSlider.value =0.5f;
+            audioMixer.SetFloat("Master", Mathf.Log10(0.5f) * 20);
+            SFXVolSlider.value = 0.5f;
+            audioMixer.SetFloat("SFX", Mathf.Log10(0.5f) * 20);
+            musicVolSlider.value = 0.5f;
+            audioMixer.SetFloat("Music", Mathf.Log10(0.5f) * 20);
+        }
 
         resolutions = Screen.resolutions;
 
@@ -47,13 +61,6 @@ public class Settings : MonoBehaviour
         resDropdown.value = currResIndx;
         resDropdown.RefreshShownValue();
 
-        LoadValues();
-        if(PlayerPrefs.GetString("FirstTime") == null || PlayerPrefs.GetString("FirstTime") != "No")
-        {
-            masterVolSlider.value = 1;
-            SFXVolSlider.value = 1;
-            musicVolSlider.value = 1;
-        }
     }
 
     public void SetResolution(int resIndex)
