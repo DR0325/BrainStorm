@@ -6171,6 +6171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackPower: 100
   knockbackDuration: 1
+  hitPlayer: 0
   _experienceGain: 0
   attackTime: 0
   health: 1
@@ -27544,6 +27545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackPower: 100
   knockbackDuration: 1
+  hitPlayer: 0
   _experienceGain: 0
   attackTime: 0
   health: 1
@@ -32532,22 +32534,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 171446738729566731, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 524
-      objectReference: {fileID: 0}
-    - target: {fileID: 171446738729566731, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 68
-      objectReference: {fileID: 0}
-    - target: {fileID: 171446738729566731, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 171446738729566731, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -45.474243
-      objectReference: {fileID: 0}
     - target: {fileID: 736736390844441418, guid: ac16c1e6800ab45459063af0bcd02b82, type: 3}
       propertyPath: m_IsActive
       value: 1

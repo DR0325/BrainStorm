@@ -7,11 +7,14 @@ public class FlyingEnemy : MonoBehaviour
     public float speed;
     public float lineOfSight;
     private Transform player;
+    private float distanceFromPlayer;
 
+    private Rigidbody2D rb;
     public Animator anim;
     bool facingRight = false;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -26,13 +29,23 @@ public class FlyingEnemy : MonoBehaviour
         {
             Flip();
         }
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-        if (distanceFromPlayer < lineOfSight)
+        distanceFromPlayer = Vector2.Distance(player.position, transform.position);
+
+        
+        if (GetComponent<Enemy>().hitPlayer == false)
         {
-            anim.SetBool("startle", true);
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
-            anim.SetBool("followPlayer", true);
+            if (distanceFromPlayer < lineOfSight)
+            {
+                anim.SetBool("startle", true);
+                rb.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+                anim.SetBool("followPlayer", true);
+            }
         }
+        if (GetComponent<Enemy>().hitPlayer == true)
+        {
+            rb.position = Vector2.MoveTowards(this.transform.position, player.position, -speed * Time.deltaTime);
+        }
+
     }
 
     private void OnDrawGizmos()

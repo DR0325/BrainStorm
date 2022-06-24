@@ -28,14 +28,20 @@ public class Timer : MonoBehaviour
         {
             currentTime += Time.deltaTime;
         }
+        Debug.Log(possibleTimeScore);
         //string timePlayingStr = "Time : " + currentTime.ToString("mm' : 'ss' . 'ff");
         currentTimeText.text = currentTime.ToString();
         if(timeToDepreciateTimeScore < currentTime)
         {
-            GameManager.Instance.totalTimeScore = (int)(possibleTimeScore - (possibleTimeScore * (multiplierForScore * depretiationMultiplier)));
+            possibleTimeScore -= (int)(possibleTimeScore * depretiationMultiplier);
                 depretiationMultiplier += Time.deltaTime;
         }
+        if(possibleTimeScore < 0)
+        {
+            possibleTimeScore = 0;
+        }
         GameManager.Instance.time = currentTime;
+       
     }
 
     public void startTime()
@@ -47,6 +53,6 @@ public class Timer : MonoBehaviour
     public void stopTime()
     {
         timerActive = false;
-
+       
     }
 }

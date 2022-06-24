@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public BulletPool bulletPool;
     public EnemyPool enemyPool;
 
-    private bool gameHasEnded = false;
+    public bool gameHasEnded = false;
 
     public float restartDelay = 1f;
 
@@ -298,6 +298,7 @@ public class GameManager : MonoBehaviour
         lastCheckPointPos = levelStartPos.position;
         gameHasEnded = true;
         Time.timeScale = 0f;
+        score += GetComponentInParent<Timer>().possibleTimeScore;
         player.GetComponent<Player>().paused = true;
         lvlClearMenu.SetActive(true);
         lvlClearMenu.GetComponent<LevelClearInfo>().Setup(score, time, stars, totalStars);

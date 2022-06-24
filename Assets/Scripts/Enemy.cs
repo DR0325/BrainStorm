@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -6,7 +8,7 @@ public class Enemy : MonoBehaviour
     public float knockbackPower = 100;
     public float knockbackDuration = 1;
 
-
+    public bool hitPlayer = false;
     public int _experienceGain;
     public float attackTime;
     public float health;
@@ -63,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(player.GetComponent<Player>().Knockback(knockbackDuration, knockbackPower, this.transform));
+           // StartCoroutine(player.GetComponent<Player>().Knockback(knockbackDuration, knockbackPower, this.transform));
         }
     }
 
@@ -73,8 +75,24 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             player.GetComponent<Player>().TakeDamage(damage);
+            hitPlayer = true;
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            StartCoroutine(wait());
+        }
+    }
+
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        hitPlayer = false;
+    }
+    
 
     public void TakeDamage(float damage)
     {
