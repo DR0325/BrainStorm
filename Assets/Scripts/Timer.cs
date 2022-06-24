@@ -28,13 +28,14 @@ public class Timer : MonoBehaviour
         {
             currentTime += Time.deltaTime;
         }
-        Debug.Log(possibleTimeScore);
         //string timePlayingStr = "Time : " + currentTime.ToString("mm' : 'ss' . 'ff");
+        Debug.Log(possibleTimeScore);
         currentTimeText.text = currentTime.ToString();
         if(timeToDepreciateTimeScore < currentTime)
         {
             possibleTimeScore -= (int)(possibleTimeScore * depretiationMultiplier);
-                depretiationMultiplier += Time.deltaTime;
+            depretiationMultiplier += Time.deltaTime;
+            timeToDepreciateTimeScore += timeToDepreciateTimeScore;
         }
         if(possibleTimeScore < 0)
         {

@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackPower: 20
   knockbackDuration: 1
+  hitPlayer: 0
   _experienceGain: 10
   attackTime: 1
   health: 100

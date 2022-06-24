@@ -2884,7 +2884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplierForScore: 0.1
-  timeToDepreciateTimeScore: 45
+  timeToDepreciateTimeScore: 7
   possibleTimeScore: 10000
   currentTimeText: {fileID: 3755661261707674685}
 --- !u!1 &6026949961749805075
